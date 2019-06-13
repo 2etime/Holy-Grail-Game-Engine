@@ -36,3 +36,11 @@ extension float4: sizeable { }
 struct Vertex: sizeable {
     var position: float3
 }
+
+struct SceneConstants: sizeable {
+    var viewMatrix = matrix_identity_float4x4
+}
+
+struct ModelConstants: sizeable {
+    var modelMatrix = matrix_identity_float4x4
+}

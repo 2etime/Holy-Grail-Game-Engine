@@ -19,6 +19,14 @@
 		C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D122B25C3200B3F509 /* EngineSettings.swift */; };
 		C60A11D622B2A4C900B3F509 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D522B2A4C900B3F509 /* Shaders.metal */; };
 		C60A11DA22B2A68C00B3F509 /* MetalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D922B2A68C00B3F509 /* MetalTypes.swift */; };
+		C60A11DD22B2B03A00B3F509 /* math.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11DC22B2B03A00B3F509 /* math.swift */; };
+		C60A11E022B2B0BA00B3F509 /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11DF22B2B0BA00B3F509 /* GameNode.swift */; };
+		C60A11E222B2B1EC00B3F509 /* GameTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11E122B2B1EC00B3F509 /* GameTime.swift */; };
+		C60A11E522B2B2DB00B3F509 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11E422B2B2DB00B3F509 /* Renderable.swift */; };
+		C60A11E722B2B32E00B3F509 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11E622B2B32E00B3F509 /* GameScene.swift */; };
+		C60A11E922B2B45200B3F509 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11E822B2B45200B3F509 /* GameObject.swift */; };
+		C60A11ED22B2B49A00B3F509 /* SandboxScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11EC22B2B49A00B3F509 /* SandboxScene.swift */; };
+		C60A11EF22B2B4A500B3F509 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11EE22B2B4A500B3F509 /* Triangle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +66,14 @@
 		C60A11D122B25C3200B3F509 /* EngineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineSettings.swift; sourceTree = "<group>"; };
 		C60A11D522B2A4C900B3F509 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		C60A11D922B2A68C00B3F509 /* MetalTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalTypes.swift; sourceTree = "<group>"; };
+		C60A11DC22B2B03A00B3F509 /* math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = math.swift; sourceTree = "<group>"; };
+		C60A11DF22B2B0BA00B3F509 /* GameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
+		C60A11E122B2B1EC00B3F509 /* GameTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTime.swift; sourceTree = "<group>"; };
+		C60A11E422B2B2DB00B3F509 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		C60A11E622B2B32E00B3F509 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		C60A11E822B2B45200B3F509 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
+		C60A11EC22B2B49A00B3F509 /* SandboxScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandboxScene.swift; sourceTree = "<group>"; };
+		C60A11EE22B2B4A500B3F509 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +126,7 @@
 			children = (
 				C60A11D022B25A1B00B3F509 /* Core */,
 				C60A11D322B2A49D00B3F509 /* Graphics */,
+				C60A11DE22B2B09300B3F509 /* Engine */,
 				C60A11CB22B258AF00B3F509 /* Display */,
 				C60A11CA22B258A200B3F509 /* OtherFiles */,
 			);
@@ -162,6 +179,7 @@
 				C60A11CE22B25A1500B3F509 /* Engine.swift */,
 				C60A11D122B25C3200B3F509 /* EngineSettings.swift */,
 				C60A11D922B2A68C00B3F509 /* MetalTypes.swift */,
+				C60A11E122B2B1EC00B3F509 /* GameTime.swift */,
 				C60A11DB22B2AE6500B3F509 /* maths */,
 			);
 			path = Core;
@@ -186,8 +204,46 @@
 		C60A11DB22B2AE6500B3F509 /* maths */ = {
 			isa = PBXGroup;
 			children = (
+				C60A11DC22B2B03A00B3F509 /* math.swift */,
 			);
 			path = maths;
+			sourceTree = "<group>";
+		};
+		C60A11DE22B2B09300B3F509 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				C60A11DF22B2B0BA00B3F509 /* GameNode.swift */,
+				C60A11E622B2B32E00B3F509 /* GameScene.swift */,
+				C60A11E822B2B45200B3F509 /* GameObject.swift */,
+				C60A11EA22B2B47900B3F509 /* game_scenes */,
+				C60A11EB22B2B48500B3F509 /* game_objects */,
+				C60A11E322B2B2CE00B3F509 /* protocols */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		C60A11E322B2B2CE00B3F509 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C60A11E422B2B2DB00B3F509 /* Renderable.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		C60A11EA22B2B47900B3F509 /* game_scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C60A11EC22B2B49A00B3F509 /* SandboxScene.swift */,
+			);
+			path = game_scenes;
+			sourceTree = "<group>";
+		};
+		C60A11EB22B2B48500B3F509 /* game_objects */ = {
+			isa = PBXGroup;
+			children = (
+				C60A11EE22B2B4A500B3F509 /* Triangle.swift */,
+			);
+			path = game_objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,13 +377,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */,
+				C60A11E022B2B0BA00B3F509 /* GameNode.swift in Sources */,
 				C60A11D622B2A4C900B3F509 /* Shaders.metal in Sources */,
+				C60A11E522B2B2DB00B3F509 /* Renderable.swift in Sources */,
+				C60A11E722B2B32E00B3F509 /* GameScene.swift in Sources */,
 				C60A11A122B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld in Sources */,
 				C60A11DA22B2A68C00B3F509 /* MetalTypes.swift in Sources */,
+				C60A11DD22B2B03A00B3F509 /* math.swift in Sources */,
+				C60A11E222B2B1EC00B3F509 /* GameTime.swift in Sources */,
+				C60A11E922B2B45200B3F509 /* GameObject.swift in Sources */,
 				C60A11CD22B2597F00B3F509 /* Renderer.swift in Sources */,
 				C60A119E22B257A200B3F509 /* MainView.swift in Sources */,
 				C60A119C22B257A200B3F509 /* AppDelegate.swift in Sources */,
+				C60A11ED22B2B49A00B3F509 /* SandboxScene.swift in Sources */,
 				C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */,
+				C60A11EF22B2B4A500B3F509 /* Triangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

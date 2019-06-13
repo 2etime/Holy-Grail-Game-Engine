@@ -8,5 +8,4 @@ enum ClearColors {
 class EngineSettings {
     public static var ClearColor: MTLClearColor = ClearColors.Black
     public static var MainPixelFormat: MTLPixelFormat = .bgra8Unorm_srgb
-    
 }
