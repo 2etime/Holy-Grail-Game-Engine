@@ -22,7 +22,7 @@ class MainView: MTKView {
         
         self.clearColor = EngineSettings.ClearColor
         
-        self.colorPixelFormat = .bgra8Unorm_srgb
+        self.colorPixelFormat = EngineSettings.MainPixelFormat
         
         self.delegate = _renderer
     }

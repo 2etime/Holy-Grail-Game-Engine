@@ -17,6 +17,8 @@
 		C60A11CD22B2597F00B3F509 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11CC22B2597F00B3F509 /* Renderer.swift */; };
 		C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11CE22B25A1500B3F509 /* Engine.swift */; };
 		C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D122B25C3200B3F509 /* EngineSettings.swift */; };
+		C60A11D622B2A4C900B3F509 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D522B2A4C900B3F509 /* Shaders.metal */; };
+		C60A11DA22B2A68C00B3F509 /* MetalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D922B2A68C00B3F509 /* MetalTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		C60A11CC22B2597F00B3F509 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		C60A11CE22B25A1500B3F509 /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		C60A11D122B25C3200B3F509 /* EngineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineSettings.swift; sourceTree = "<group>"; };
+		C60A11D522B2A4C900B3F509 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		C60A11D922B2A68C00B3F509 /* MetalTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				C60A11D022B25A1B00B3F509 /* Core */,
+				C60A11D322B2A49D00B3F509 /* Graphics */,
 				C60A11CB22B258AF00B3F509 /* Display */,
 				C60A11CA22B258A200B3F509 /* OtherFiles */,
 			);
@@ -156,8 +161,33 @@
 			children = (
 				C60A11CE22B25A1500B3F509 /* Engine.swift */,
 				C60A11D122B25C3200B3F509 /* EngineSettings.swift */,
+				C60A11D922B2A68C00B3F509 /* MetalTypes.swift */,
+				C60A11DB22B2AE6500B3F509 /* maths */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		C60A11D322B2A49D00B3F509 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				C60A11D422B2A4A700B3F509 /* shaders */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		C60A11D422B2A4A700B3F509 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				C60A11D522B2A4C900B3F509 /* Shaders.metal */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		C60A11DB22B2AE6500B3F509 /* maths */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = maths;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,7 +321,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */,
+				C60A11D622B2A4C900B3F509 /* Shaders.metal in Sources */,
 				C60A11A122B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld in Sources */,
+				C60A11DA22B2A68C00B3F509 /* MetalTypes.swift in Sources */,
 				C60A11CD22B2597F00B3F509 /* Renderer.swift in Sources */,
 				C60A119E22B257A200B3F509 /* MainView.swift in Sources */,
 				C60A119C22B257A200B3F509 /* AppDelegate.swift in Sources */,
