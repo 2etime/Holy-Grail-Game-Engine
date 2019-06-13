@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C60A119C22B257A200B3F509 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A119B22B257A200B3F509 /* AppDelegate.swift */; };
-		C60A119E22B257A200B3F509 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A119D22B257A200B3F509 /* ViewController.swift */; };
+		C60A119E22B257A200B3F509 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A119D22B257A200B3F509 /* MainView.swift */; };
 		C60A11A122B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C60A119F22B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld */; };
 		C60A11A322B257A200B3F509 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C60A11A222B257A200B3F509 /* Assets.xcassets */; };
 		C60A11A622B257A200B3F509 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C60A11A422B257A200B3F509 /* Main.storyboard */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		C60A119822B257A200B3F509 /* HolyGrailGameEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolyGrailGameEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60A119B22B257A200B3F509 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C60A119D22B257A200B3F509 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C60A119D22B257A200B3F509 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C60A11A022B257A200B3F509 /* HolyGrailGameEngine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HolyGrailGameEngine.xcdatamodel; sourceTree = "<group>"; };
 		C60A11A222B257A200B3F509 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C60A11A522B257A200B3F509 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,13 +98,8 @@
 		C60A119A22B257A200B3F509 /* HolyGrailGameEngine */ = {
 			isa = PBXGroup;
 			children = (
-				C60A119B22B257A200B3F509 /* AppDelegate.swift */,
-				C60A119D22B257A200B3F509 /* ViewController.swift */,
-				C60A11A222B257A200B3F509 /* Assets.xcassets */,
-				C60A11A422B257A200B3F509 /* Main.storyboard */,
-				C60A11A722B257A200B3F509 /* Info.plist */,
-				C60A11A822B257A200B3F509 /* HolyGrailGameEngine.entitlements */,
-				C60A119F22B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld */,
+				C60A11CB22B258AF00B3F509 /* Display */,
+				C60A11CA22B258A200B3F509 /* OtherFiles */,
 			);
 			path = HolyGrailGameEngine;
 			sourceTree = "<group>";
@@ -125,6 +120,27 @@
 				C60A11BE22B257A200B3F509 /* Info.plist */,
 			);
 			path = HolyGrailGameEngineUITests;
+			sourceTree = "<group>";
+		};
+		C60A11CA22B258A200B3F509 /* OtherFiles */ = {
+			isa = PBXGroup;
+			children = (
+				C60A119B22B257A200B3F509 /* AppDelegate.swift */,
+				C60A11A222B257A200B3F509 /* Assets.xcassets */,
+				C60A11A722B257A200B3F509 /* Info.plist */,
+				C60A11A822B257A200B3F509 /* HolyGrailGameEngine.entitlements */,
+				C60A119F22B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld */,
+			);
+			path = OtherFiles;
+			sourceTree = "<group>";
+		};
+		C60A11CB22B258AF00B3F509 /* Display */ = {
+			isa = PBXGroup;
+			children = (
+				C60A119D22B257A200B3F509 /* MainView.swift */,
+				C60A11A422B257A200B3F509 /* Main.storyboard */,
+			);
+			path = Display;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C60A11A122B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld in Sources */,
-				C60A119E22B257A200B3F509 /* ViewController.swift in Sources */,
+				C60A119E22B257A200B3F509 /* MainView.swift in Sources */,
 				C60A119C22B257A200B3F509 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,11 +441,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HolyGrailGameEngine/HolyGrailGameEngine.entitlements;
+				CODE_SIGN_ENTITLEMENTS = HolyGrailGameEngine/OtherFiles/HolyGrailGameEngine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9QQ2JZFGTQ;
-				INFOPLIST_FILE = HolyGrailGameEngine/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/HolyGrailGameEngine/OtherFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -444,11 +460,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HolyGrailGameEngine/HolyGrailGameEngine.entitlements;
+				CODE_SIGN_ENTITLEMENTS = HolyGrailGameEngine/OtherFiles/HolyGrailGameEngine.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9QQ2JZFGTQ;
-				INFOPLIST_FILE = HolyGrailGameEngine/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/HolyGrailGameEngine/OtherFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
