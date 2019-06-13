@@ -14,6 +14,9 @@
 		C60A11A622B257A200B3F509 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C60A11A422B257A200B3F509 /* Main.storyboard */; };
 		C60A11B222B257A200B3F509 /* HolyGrailGameEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11B122B257A200B3F509 /* HolyGrailGameEngineTests.swift */; };
 		C60A11BD22B257A200B3F509 /* HolyGrailGameEngineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11BC22B257A200B3F509 /* HolyGrailGameEngineUITests.swift */; };
+		C60A11CD22B2597F00B3F509 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11CC22B2597F00B3F509 /* Renderer.swift */; };
+		C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11CE22B25A1500B3F509 /* Engine.swift */; };
+		C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D122B25C3200B3F509 /* EngineSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		C60A11B822B257A200B3F509 /* HolyGrailGameEngineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HolyGrailGameEngineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60A11BC22B257A200B3F509 /* HolyGrailGameEngineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolyGrailGameEngineUITests.swift; sourceTree = "<group>"; };
 		C60A11BE22B257A200B3F509 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C60A11CC22B2597F00B3F509 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		C60A11CE22B25A1500B3F509 /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		C60A11D122B25C3200B3F509 /* EngineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,7 @@
 		C60A119A22B257A200B3F509 /* HolyGrailGameEngine */ = {
 			isa = PBXGroup;
 			children = (
+				C60A11D022B25A1B00B3F509 /* Core */,
 				C60A11CB22B258AF00B3F509 /* Display */,
 				C60A11CA22B258A200B3F509 /* OtherFiles */,
 			);
@@ -138,9 +145,19 @@
 			isa = PBXGroup;
 			children = (
 				C60A119D22B257A200B3F509 /* MainView.swift */,
+				C60A11CC22B2597F00B3F509 /* Renderer.swift */,
 				C60A11A422B257A200B3F509 /* Main.storyboard */,
 			);
 			path = Display;
+			sourceTree = "<group>";
+		};
+		C60A11D022B25A1B00B3F509 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C60A11CE22B25A1500B3F509 /* Engine.swift */,
+				C60A11D122B25C3200B3F509 /* EngineSettings.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,9 +290,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */,
 				C60A11A122B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld in Sources */,
+				C60A11CD22B2597F00B3F509 /* Renderer.swift in Sources */,
 				C60A119E22B257A200B3F509 /* MainView.swift in Sources */,
 				C60A119C22B257A200B3F509 /* AppDelegate.swift in Sources */,
+				C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

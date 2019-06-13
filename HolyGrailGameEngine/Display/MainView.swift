@@ -10,8 +10,21 @@ import MetalKit
 
 class MainView: MTKView {
 
+    private var _renderer: Renderer!
     required init(coder: NSCoder) {
         super.init(coder: coder)
+        
+        self.device = MTLCreateSystemDefaultDevice()
+        
+        Engine.Ignite(self.device!)
+        
+        self._renderer = Renderer()
+        
+        self.clearColor = EngineSettings.ClearColor
+        
+        self.colorPixelFormat = .bgra8Unorm_srgb
+        
+        self.delegate = _renderer
     }
     
 }
