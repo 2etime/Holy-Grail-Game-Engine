@@ -1,0 +1,599 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C60A119C22B257A200B3F509 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A119B22B257A200B3F509 /* AppDelegate.swift */; };
+		C60A119E22B257A200B3F509 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A119D22B257A200B3F509 /* ViewController.swift */; };
+		C60A11A122B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C60A119F22B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld */; };
+		C60A11A322B257A200B3F509 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C60A11A222B257A200B3F509 /* Assets.xcassets */; };
+		C60A11A622B257A200B3F509 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C60A11A422B257A200B3F509 /* Main.storyboard */; };
+		C60A11B222B257A200B3F509 /* HolyGrailGameEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11B122B257A200B3F509 /* HolyGrailGameEngineTests.swift */; };
+		C60A11BD22B257A200B3F509 /* HolyGrailGameEngineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11BC22B257A200B3F509 /* HolyGrailGameEngineUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C60A11AE22B257A200B3F509 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C60A119022B257A200B3F509 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C60A119722B257A200B3F509;
+			remoteInfo = HolyGrailGameEngine;
+		};
+		C60A11B922B257A200B3F509 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C60A119022B257A200B3F509 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C60A119722B257A200B3F509;
+			remoteInfo = HolyGrailGameEngine;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C60A119822B257A200B3F509 /* HolyGrailGameEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolyGrailGameEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C60A119B22B257A200B3F509 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C60A119D22B257A200B3F509 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C60A11A022B257A200B3F509 /* HolyGrailGameEngine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HolyGrailGameEngine.xcdatamodel; sourceTree = "<group>"; };
+		C60A11A222B257A200B3F509 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C60A11A522B257A200B3F509 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C60A11A722B257A200B3F509 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C60A11A822B257A200B3F509 /* HolyGrailGameEngine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HolyGrailGameEngine.entitlements; sourceTree = "<group>"; };
+		C60A11AD22B257A200B3F509 /* HolyGrailGameEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HolyGrailGameEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C60A11B122B257A200B3F509 /* HolyGrailGameEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolyGrailGameEngineTests.swift; sourceTree = "<group>"; };
+		C60A11B322B257A200B3F509 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C60A11B822B257A200B3F509 /* HolyGrailGameEngineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HolyGrailGameEngineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C60A11BC22B257A200B3F509 /* HolyGrailGameEngineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolyGrailGameEngineUITests.swift; sourceTree = "<group>"; };
+		C60A11BE22B257A200B3F509 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C60A119522B257A200B3F509 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60A11AA22B257A200B3F509 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60A11B522B257A200B3F509 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C60A118F22B257A200B3F509 = {
+			isa = PBXGroup;
+			children = (
+				C60A119A22B257A200B3F509 /* HolyGrailGameEngine */,
+				C60A11B022B257A200B3F509 /* HolyGrailGameEngineTests */,
+				C60A11BB22B257A200B3F509 /* HolyGrailGameEngineUITests */,
+				C60A119922B257A200B3F509 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C60A119922B257A200B3F509 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C60A119822B257A200B3F509 /* HolyGrailGameEngine.app */,
+				C60A11AD22B257A200B3F509 /* HolyGrailGameEngineTests.xctest */,
+				C60A11B822B257A200B3F509 /* HolyGrailGameEngineUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C60A119A22B257A200B3F509 /* HolyGrailGameEngine */ = {
+			isa = PBXGroup;
+			children = (
+				C60A119B22B257A200B3F509 /* AppDelegate.swift */,
+				C60A119D22B257A200B3F509 /* ViewController.swift */,
+				C60A11A222B257A200B3F509 /* Assets.xcassets */,
+				C60A11A422B257A200B3F509 /* Main.storyboard */,
+				C60A11A722B257A200B3F509 /* Info.plist */,
+				C60A11A822B257A200B3F509 /* HolyGrailGameEngine.entitlements */,
+				C60A119F22B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld */,
+			);
+			path = HolyGrailGameEngine;
+			sourceTree = "<group>";
+		};
+		C60A11B022B257A200B3F509 /* HolyGrailGameEngineTests */ = {
+			isa = PBXGroup;
+			children = (
+				C60A11B122B257A200B3F509 /* HolyGrailGameEngineTests.swift */,
+				C60A11B322B257A200B3F509 /* Info.plist */,
+			);
+			path = HolyGrailGameEngineTests;
+			sourceTree = "<group>";
+		};
+		C60A11BB22B257A200B3F509 /* HolyGrailGameEngineUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C60A11BC22B257A200B3F509 /* HolyGrailGameEngineUITests.swift */,
+				C60A11BE22B257A200B3F509 /* Info.plist */,
+			);
+			path = HolyGrailGameEngineUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C60A119722B257A200B3F509 /* HolyGrailGameEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C60A11C122B257A200B3F509 /* Build configuration list for PBXNativeTarget "HolyGrailGameEngine" */;
+			buildPhases = (
+				C60A119422B257A200B3F509 /* Sources */,
+				C60A119522B257A200B3F509 /* Frameworks */,
+				C60A119622B257A200B3F509 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HolyGrailGameEngine;
+			productName = HolyGrailGameEngine;
+			productReference = C60A119822B257A200B3F509 /* HolyGrailGameEngine.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C60A11AC22B257A200B3F509 /* HolyGrailGameEngineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C60A11C422B257A200B3F509 /* Build configuration list for PBXNativeTarget "HolyGrailGameEngineTests" */;
+			buildPhases = (
+				C60A11A922B257A200B3F509 /* Sources */,
+				C60A11AA22B257A200B3F509 /* Frameworks */,
+				C60A11AB22B257A200B3F509 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C60A11AF22B257A200B3F509 /* PBXTargetDependency */,
+			);
+			name = HolyGrailGameEngineTests;
+			productName = HolyGrailGameEngineTests;
+			productReference = C60A11AD22B257A200B3F509 /* HolyGrailGameEngineTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C60A11B722B257A200B3F509 /* HolyGrailGameEngineUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C60A11C722B257A200B3F509 /* Build configuration list for PBXNativeTarget "HolyGrailGameEngineUITests" */;
+			buildPhases = (
+				C60A11B422B257A200B3F509 /* Sources */,
+				C60A11B522B257A200B3F509 /* Frameworks */,
+				C60A11B622B257A200B3F509 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C60A11BA22B257A200B3F509 /* PBXTargetDependency */,
+			);
+			name = HolyGrailGameEngineUITests;
+			productName = HolyGrailGameEngineUITests;
+			productReference = C60A11B822B257A200B3F509 /* HolyGrailGameEngineUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C60A119022B257A200B3F509 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Rick Twohy Jr";
+				TargetAttributes = {
+					C60A119722B257A200B3F509 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					C60A11AC22B257A200B3F509 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = C60A119722B257A200B3F509;
+					};
+					C60A11B722B257A200B3F509 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = C60A119722B257A200B3F509;
+					};
+				};
+			};
+			buildConfigurationList = C60A119322B257A200B3F509 /* Build configuration list for PBXProject "HolyGrailGameEngine" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C60A118F22B257A200B3F509;
+			productRefGroup = C60A119922B257A200B3F509 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C60A119722B257A200B3F509 /* HolyGrailGameEngine */,
+				C60A11AC22B257A200B3F509 /* HolyGrailGameEngineTests */,
+				C60A11B722B257A200B3F509 /* HolyGrailGameEngineUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C60A119622B257A200B3F509 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C60A11A322B257A200B3F509 /* Assets.xcassets in Resources */,
+				C60A11A622B257A200B3F509 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60A11AB22B257A200B3F509 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60A11B622B257A200B3F509 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C60A119422B257A200B3F509 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C60A11A122B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld in Sources */,
+				C60A119E22B257A200B3F509 /* ViewController.swift in Sources */,
+				C60A119C22B257A200B3F509 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60A11A922B257A200B3F509 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C60A11B222B257A200B3F509 /* HolyGrailGameEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60A11B422B257A200B3F509 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C60A11BD22B257A200B3F509 /* HolyGrailGameEngineUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C60A11AF22B257A200B3F509 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C60A119722B257A200B3F509 /* HolyGrailGameEngine */;
+			targetProxy = C60A11AE22B257A200B3F509 /* PBXContainerItemProxy */;
+		};
+		C60A11BA22B257A200B3F509 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C60A119722B257A200B3F509 /* HolyGrailGameEngine */;
+			targetProxy = C60A11B922B257A200B3F509 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C60A11A422B257A200B3F509 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C60A11A522B257A200B3F509 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C60A11BF22B257A200B3F509 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C60A11C022B257A200B3F509 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		C60A11C222B257A200B3F509 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HolyGrailGameEngine/HolyGrailGameEngine.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9QQ2JZFGTQ;
+				INFOPLIST_FILE = HolyGrailGameEngine/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricktwohy.HolyGrailGameEngine;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C60A11C322B257A200B3F509 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HolyGrailGameEngine/HolyGrailGameEngine.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9QQ2JZFGTQ;
+				INFOPLIST_FILE = HolyGrailGameEngine/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricktwohy.HolyGrailGameEngine;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C60A11C522B257A200B3F509 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9QQ2JZFGTQ;
+				INFOPLIST_FILE = HolyGrailGameEngineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricktwohy.HolyGrailGameEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HolyGrailGameEngine.app/Contents/MacOS/HolyGrailGameEngine";
+			};
+			name = Debug;
+		};
+		C60A11C622B257A200B3F509 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9QQ2JZFGTQ;
+				INFOPLIST_FILE = HolyGrailGameEngineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricktwohy.HolyGrailGameEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HolyGrailGameEngine.app/Contents/MacOS/HolyGrailGameEngine";
+			};
+			name = Release;
+		};
+		C60A11C822B257A200B3F509 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9QQ2JZFGTQ;
+				INFOPLIST_FILE = HolyGrailGameEngineUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricktwohy.HolyGrailGameEngineUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = HolyGrailGameEngine;
+			};
+			name = Debug;
+		};
+		C60A11C922B257A200B3F509 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9QQ2JZFGTQ;
+				INFOPLIST_FILE = HolyGrailGameEngineUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ricktwohy.HolyGrailGameEngineUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = HolyGrailGameEngine;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C60A119322B257A200B3F509 /* Build configuration list for PBXProject "HolyGrailGameEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C60A11BF22B257A200B3F509 /* Debug */,
+				C60A11C022B257A200B3F509 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C60A11C122B257A200B3F509 /* Build configuration list for PBXNativeTarget "HolyGrailGameEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C60A11C222B257A200B3F509 /* Debug */,
+				C60A11C322B257A200B3F509 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C60A11C422B257A200B3F509 /* Build configuration list for PBXNativeTarget "HolyGrailGameEngineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C60A11C522B257A200B3F509 /* Debug */,
+				C60A11C622B257A200B3F509 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C60A11C722B257A200B3F509 /* Build configuration list for PBXNativeTarget "HolyGrailGameEngineUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C60A11C822B257A200B3F509 /* Debug */,
+				C60A11C922B257A200B3F509 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C60A119F22B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C60A11A022B257A200B3F509 /* HolyGrailGameEngine.xcdatamodel */,
+			);
+			currentVersion = C60A11A022B257A200B3F509 /* HolyGrailGameEngine.xcdatamodel */;
+			path = HolyGrailGameEngine.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C60A119022B257A200B3F509 /* Project object */;
+}
