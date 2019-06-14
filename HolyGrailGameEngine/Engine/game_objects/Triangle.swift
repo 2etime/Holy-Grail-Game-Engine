@@ -9,7 +9,7 @@
 class Triangle: GameObject {
     
     init() {
-        super.init(name: "Triangle")
+        super.init(name: "Triangle", meshKey: MeshKeys.Triangle)
     }
     
 }

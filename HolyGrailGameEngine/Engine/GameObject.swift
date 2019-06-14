@@ -9,36 +9,16 @@
 import MetalKit
 
 class GameObject: GameNode {
-    private var _vertices: [Vertex] = []
-    private var _vertexBuffer: MTLBuffer!
     private var _vertexDescriptor: MTLVertexDescriptor!
     private var _renderPipelineState: MTLRenderPipelineState!
     
-    override init(name: String) {
+    private var _mesh: Mesh!
+    
+    init(name: String, meshKey: String) {
         super.init(name: name)
-        
-        createVertices()
-        buildBuffers()
         createVertexDescriptor()
         createRenderPipelineState()
-    }
-    
-    internal func addVertex(_ position: float3) {
-        self._vertices.append(Vertex(position: position))
-    }
-    
-    private func createVertices() {
-        addVertex(float3(0,1,0))
-        addVertex(float3(-1,-1,0))
-        addVertex(float3(1,-1,0))
-    }
-    
-    private func buildBuffers() {
-        if(self._vertices.count > 0) {
-            self._vertexBuffer = Engine.Device.makeBuffer(bytes: _vertices,
-                                                          length: Vertex.size(_vertices.count),
-                                                          options: .storageModeManaged)
-        }
+        self._mesh = Entities.Meshes[meshKey]
     }
     
     private func createVertexDescriptor() {
@@ -73,13 +53,12 @@ class GameObject: GameNode {
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
         renderCommandEncoder.setRenderPipelineState(_renderPipelineState)
-        renderCommandEncoder.setVertexBuffer(_vertexBuffer, offset: 0, index: 0)
     }
     
 }
 
 extension GameObject: Renderable {
     func doRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        renderCommandEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: _vertices.count)
+        _mesh.draw(renderCommandEncoder)
     }
 }
