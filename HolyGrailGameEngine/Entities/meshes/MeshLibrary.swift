@@ -13,11 +13,9 @@ struct MeshKeys {
 }
 
 class MeshLibrary: Library<Mesh> {
-    
     override func createDefaultLibraryItems() {
         addItem(key: MeshKeys.Triangle, value: Triangle_CustomMesh())
     }
-    
 }
 
 protocol Mesh {

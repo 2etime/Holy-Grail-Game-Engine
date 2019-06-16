@@ -34,6 +34,9 @@
 		C6441EAF22B5CCD600CAA3FE /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EAE22B5CCD600CAA3FE /* Shader.swift */; };
 		C6441EB322B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */; };
 		C6441EB522B5D3CD00CAA3FE /* Graphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EB422B5D3CD00CAA3FE /* Graphics.swift */; };
+		C6441EBA22B673D000CAA3FE /* MetalTypes.metal in Sources */ = {isa = PBXBuildFile; fileRef = C6441EB922B673D000CAA3FE /* MetalTypes.metal */; };
+		C6441EBC22B675DD00CAA3FE /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EBB22B675DD00CAA3FE /* GameCamera.swift */; };
+		C6441EBF22B6767800CAA3FE /* DebugCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EBE22B6767800CAA3FE /* DebugCamera.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,9 @@
 		C6441EAE22B5CCD600CAA3FE /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
 		C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPipelineStateLibrary.swift; sourceTree = "<group>"; };
 		C6441EB422B5D3CD00CAA3FE /* Graphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graphics.swift; sourceTree = "<group>"; };
+		C6441EB922B673D000CAA3FE /* MetalTypes.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MetalTypes.metal; sourceTree = "<group>"; };
+		C6441EBB22B675DD00CAA3FE /* GameCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCamera.swift; sourceTree = "<group>"; };
+		C6441EBE22B6767800CAA3FE /* DebugCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCamera.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +219,7 @@
 		C60A11D422B2A4A700B3F509 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				C6441EB922B673D000CAA3FE /* MetalTypes.metal */,
 				C60A11D522B2A4C900B3F509 /* Shaders.metal */,
 			);
 			path = shaders;
@@ -232,6 +239,8 @@
 				C60A11DF22B2B0BA00B3F509 /* GameNode.swift */,
 				C60A11E622B2B32E00B3F509 /* GameScene.swift */,
 				C60A11E822B2B45200B3F509 /* GameObject.swift */,
+				C6441EBB22B675DD00CAA3FE /* GameCamera.swift */,
+				C6441EBD22B6766300CAA3FE /* game_cameras */,
 				C60A11EA22B2B47900B3F509 /* game_scenes */,
 				C60A11EB22B2B48500B3F509 /* game_objects */,
 			);
@@ -297,6 +306,14 @@
 				C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */,
 			);
 			path = libraries;
+			sourceTree = "<group>";
+		};
+		C6441EBD22B6766300CAA3FE /* game_cameras */ = {
+			isa = PBXGroup;
+			children = (
+				C6441EBE22B6767800CAA3FE /* DebugCamera.swift */,
+			);
+			path = game_cameras;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,12 +447,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6441EAF22B5CCD600CAA3FE /* Shader.swift in Sources */,
+				C6441EBA22B673D000CAA3FE /* MetalTypes.metal in Sources */,
 				C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */,
 				C60A11E022B2B0BA00B3F509 /* GameNode.swift in Sources */,
 				C60A11D622B2A4C900B3F509 /* Shaders.metal in Sources */,
 				C6441EB322B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift in Sources */,
 				C60A11E522B2B2DB00B3F509 /* Renderable.swift in Sources */,
 				C60A11E722B2B32E00B3F509 /* GameScene.swift in Sources */,
+				C6441EBF22B6767800CAA3FE /* DebugCamera.swift in Sources */,
 				C60A11A122B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld in Sources */,
 				C60A11DA22B2A68C00B3F509 /* MetalTypes.swift in Sources */,
 				C60A11F822B3B59D00B3F509 /* Library.swift in Sources */,
@@ -449,6 +468,7 @@
 				C60A11CD22B2597F00B3F509 /* Renderer.swift in Sources */,
 				C60A119E22B257A200B3F509 /* MainView.swift in Sources */,
 				C60A119C22B257A200B3F509 /* AppDelegate.swift in Sources */,
+				C6441EBC22B675DD00CAA3FE /* GameCamera.swift in Sources */,
 				C60A11ED22B2B49A00B3F509 /* SandboxScene.swift in Sources */,
 				C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */,
 				C60A11EF22B2B4A500B3F509 /* Triangle.swift in Sources */,

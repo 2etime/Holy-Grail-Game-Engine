@@ -36,15 +36,15 @@ class GameNode {
     }
     
     public func update() {
+        onUpdate()
         for child in self._children {
             child.update()
         }
     }
     
+    public func onUpdate() { } // Override with inheriting classes
     
-    internal func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        // Override with inheriting classes
-    }
+    internal func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) { } // Override with inheriting classes
 
     public func render(_ renderCommandEncoder: MTLRenderCommandEncoder) {
         setRenderPipelineValues(renderCommandEncoder)

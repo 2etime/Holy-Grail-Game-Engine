@@ -7,11 +7,18 @@
 //
 
 class SandboxScene: GameScene {
-    
     let triangle = Triangle()
+    let debugCamera = DebugCamera()
+    
     override func buildScene() {
+        debugCamera.setPosition(0,0,8)
+        setCamera(debugCamera)
+        
         triangle.setScale(0.5)
-        addChild(triangle)
+        addGameObject(triangle)
     }
-
+    
+    override func onUpdate() {
+        
+    }
 }
