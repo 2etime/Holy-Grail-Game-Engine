@@ -24,6 +24,7 @@ class Engine {
         self._commandQueue = device.makeCommandQueue()
         self._defaultLibrary = device.makeDefaultLibrary()
         
+        Graphics.Initialize()
         Entities.Initialize()
     }
     

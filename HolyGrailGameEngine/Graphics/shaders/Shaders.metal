@@ -27,7 +27,6 @@ vertex RasterizerData vertex_shader(const Vertex vIn [[ stage_in ]]) {
 
 fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]]) {
     float4 color = float4(1,0,0,1);
-    
     return half4(color);
 }
 
