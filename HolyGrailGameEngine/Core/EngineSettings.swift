@@ -10,4 +10,5 @@ class EngineSettings {
     public static var MainPixelFormat: MTLPixelFormat = .bgra8Unorm_srgb
     public static var MainDepthPixelFormat: MTLPixelFormat = .depth32Float
     public static var SampleCount: Int = 2
+    public static var StartingSceneType: SceneTypes = .Sandbox
 }

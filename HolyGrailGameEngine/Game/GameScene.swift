@@ -10,15 +10,16 @@ import MetalKit
 
 class GameScene: GameNode {
     private var _sceneConstants = SceneConstants()
-    private var _currentCamera: GameCamera!
+    private var _cameraManager = CameraManager()
+
     override init(name: String) {
         super.init(name: name)
         
         buildScene()
     }
     
-    func setCamera(_ camera: GameCamera) {
-        self._currentCamera = camera
+    func addCamera(_ camera: GameCamera) {
+        self._cameraManager.registerCamera(camera: camera)
     }
     
     func addGameObject(_ gameObject: GameObject) {
@@ -32,9 +33,13 @@ class GameScene: GameNode {
         super.update()
     }
     
+    func updateCameras(){
+        _cameraManager.update()
+    }
+    
     private func updateSceneConstants() {
-        self._sceneConstants.viewMatrix = self._currentCamera.viewMatrix
-        self._sceneConstants.projectionMatrix = self._currentCamera.projectionMatrix
+        self._sceneConstants.viewMatrix = self._cameraManager.currentCamera.viewMatrix
+        self._sceneConstants.projectionMatrix = self._cameraManager.currentCamera.projectionMatrix
     }
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {

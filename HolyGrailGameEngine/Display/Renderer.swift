@@ -10,15 +10,11 @@ import MetalKit
 
 class Renderer: NSObject {
     public static var ScreenSize = float2(0,0)
-    public static var AspectRatio: Float {
-        return ScreenSize.x / ScreenSize.y
-    }
-    
-    private var _scene: GameScene!
+    public static var AspectRatio: Float { return ScreenSize.x / ScreenSize.y }
+
     init(mtkView: MTKView) {
         super.init()
         updateScreenSize(view: mtkView)
-        _scene = SandboxScene(name: "Sandbox Scene")
     }
     
     public func updateScreenSize(view: MTKView){
@@ -33,15 +29,13 @@ extension Renderer: MTKViewDelegate {
     }
     
     func draw(in view: MTKView) {
-        GameTime.UpdateGameTime( 1.0 / Float(view.preferredFramesPerSecond ))
-        
-        _scene.update()
+        SceneManager.Update(deltaTime: 1.0 / Float(view.preferredFramesPerSecond ))
         
         guard let drawable = view.currentDrawable, let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
         let commandBuffer = Engine.CommandQueue.makeCommandBuffer()
         let renderCommandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
         
-        _scene.render(renderCommandEncoder!)
+        SceneManager.MainRenderPass(renderCommandEncoder: renderCommandEncoder!)
         
         renderCommandEncoder?.endEncoding()
         commandBuffer?.present(drawable)

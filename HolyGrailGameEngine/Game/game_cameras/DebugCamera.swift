@@ -19,7 +19,7 @@ class DebugCamera: GameCamera {
     }
     
     init() {
-        super.init(name: "Debug Camera")
+        super.init(name: "Debug Camera", cameraType: .Debug)
     }
 
 }

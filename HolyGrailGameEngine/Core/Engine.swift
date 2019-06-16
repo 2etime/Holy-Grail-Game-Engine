@@ -26,6 +26,7 @@ class Engine {
         
         Graphics.Initialize()
         Entities.Initialize()
+        SceneManager.Initialize(EngineSettings.StartingSceneType)
     }
     
 }
