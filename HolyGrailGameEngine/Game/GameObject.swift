@@ -9,31 +9,34 @@
 import MetalKit
 
 class GameObject: GameNode {
-    private var _modelConstants: [ModelConstants]!
+    private var _modelBufferConstants: BufferManager<ModelConstants>!
     private var _currentBufferIndex: Int = 0
     
     private var _mesh: Mesh!
 
     init(name: String, meshKey: String) {
         super.init(name: name)
-        self._modelConstants = [ModelConstants].init(repeating: ModelConstants(), count: EngineSettings.MaxBuffersInFlight)
+        self._modelBufferConstants = BufferManager(proto: ModelConstants(),
+                                                   bufferCount: EngineSettings.MaxBuffersInFlight)
         self._mesh = Entities.Meshes[meshKey]
     }
     
     override func update(currentBufferIndex: Int) {
         self._currentBufferIndex = currentBufferIndex
-        
-        updateModelConstants()
+        updateModelConstants(currentBufferIndex: currentBufferIndex)
         super.update(currentBufferIndex: currentBufferIndex)
     }
     
-    private func updateModelConstants() {
-        self._modelConstants[self._currentBufferIndex].modelMatrix = self.modelMatrix
+    private func updateModelConstants(currentBufferIndex: Int) {
+        var modelConstants = self._modelBufferConstants.getBuffer(index: _currentBufferIndex)
+        modelConstants.modelMatrix = self.modelMatrix
+        self._modelBufferConstants.setBuffer(index: _currentBufferIndex, modelConstants)
     }
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+        var modelConstants = self._modelBufferConstants.getBuffer(index: _currentBufferIndex)
         renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic])
-        renderCommandEncoder.setVertexBytes(&self._modelConstants[self._currentBufferIndex],
+        renderCommandEncoder.setVertexBytes(&modelConstants,
                                             length: ModelConstants.stride,
                                             index: 2)
     }

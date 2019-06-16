@@ -9,13 +9,14 @@
 import MetalKit
 
 class GameScene: GameNode {
-    private var _sceneConstants: [SceneConstants]!
     private var _cameraManager = CameraManager()
+    private var _sceneBuffers: BufferManager<SceneConstants>!
     private var _currentBufferIndex: Int = 0
 
     override init(name: String) {
         super.init(name: name)
-        self._sceneConstants = [SceneConstants].init(repeating: SceneConstants(), count: EngineSettings.MaxBuffersInFlight)
+        self._sceneBuffers = BufferManager(proto: SceneConstants(),
+                                           bufferCount: EngineSettings.MaxBuffersInFlight)
         buildScene()
     }
     
@@ -31,7 +32,6 @@ class GameScene: GameNode {
     
     override func update(currentBufferIndex: Int) {
         self._currentBufferIndex = currentBufferIndex
-        
         updateSceneConstants()
         super.update(currentBufferIndex: currentBufferIndex)
     }
@@ -41,11 +41,14 @@ class GameScene: GameNode {
     }
     
     private func updateSceneConstants() {
-        self._sceneConstants[self._currentBufferIndex].viewMatrix = self._cameraManager.currentCamera.viewMatrix
-        self._sceneConstants[self._currentBufferIndex].projectionMatrix = self._cameraManager.currentCamera.projectionMatrix
+        var sceneConstants = self._sceneBuffers.getBuffer(index: _currentBufferIndex)
+        sceneConstants.viewMatrix = self._cameraManager.currentCamera.viewMatrix
+        sceneConstants.projectionMatrix = self._cameraManager.currentCamera.projectionMatrix
+        self._sceneBuffers.setBuffer(index: _currentBufferIndex, sceneConstants)
     }
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        renderCommandEncoder.setVertexBytes(&self._sceneConstants[self._currentBufferIndex], length: SceneConstants.size, index: 1)
+        var sceneConstants = self._sceneBuffers.getBuffer(index: _currentBufferIndex)
+        renderCommandEncoder.setVertexBytes(&sceneConstants, length: SceneConstants.size, index: 1)
     }
 }

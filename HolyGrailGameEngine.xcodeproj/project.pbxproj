@@ -39,6 +39,7 @@
 		C6441EBF22B6767800CAA3FE /* DebugCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EBE22B6767800CAA3FE /* DebugCamera.swift */; };
 		C6441EC222B67D5A00CAA3FE /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EC122B67D5A00CAA3FE /* SceneManager.swift */; };
 		C6441EC422B67F2000CAA3FE /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EC322B67F2000CAA3FE /* CameraManager.swift */; };
+		C6441EC622B68AB900CAA3FE /* BufferManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EC522B68AB900CAA3FE /* BufferManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		C6441EBE22B6767800CAA3FE /* DebugCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugCamera.swift; sourceTree = "<group>"; };
 		C6441EC122B67D5A00CAA3FE /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		C6441EC322B67F2000CAA3FE /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		C6441EC522B68AB900CAA3FE /* BufferManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BufferManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +326,7 @@
 		C6441EC022B67D4600CAA3FE /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				C6441EC522B68AB900CAA3FE /* BufferManager.swift */,
 				C6441EC122B67D5A00CAA3FE /* SceneManager.swift */,
 				C6441EC322B67F2000CAA3FE /* CameraManager.swift */,
 			);
@@ -464,6 +467,7 @@
 				C6441EBA22B673D000CAA3FE /* MetalTypes.metal in Sources */,
 				C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */,
 				C60A11E022B2B0BA00B3F509 /* GameNode.swift in Sources */,
+				C6441EC622B68AB900CAA3FE /* BufferManager.swift in Sources */,
 				C60A11D622B2A4C900B3F509 /* Shaders.metal in Sources */,
 				C6441EB322B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift in Sources */,
 				C60A11E522B2B2DB00B3F509 /* Renderable.swift in Sources */,
