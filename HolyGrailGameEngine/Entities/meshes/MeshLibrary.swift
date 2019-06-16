@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rick Twohy Jr. All rights reserved.
 //
 
-import MetalKit
+import Metal
 
 struct MeshKeys {
     public static let Triangle = "Triangle"

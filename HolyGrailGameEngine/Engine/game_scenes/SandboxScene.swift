@@ -10,6 +10,7 @@ class SandboxScene: GameScene {
     
     let triangle = Triangle()
     override func buildScene() {
+        triangle.setScale(0.5)
         addChild(triangle)
     }
 

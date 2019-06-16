@@ -17,8 +17,16 @@ class CustomMesh: Mesh {
         buildBuffers()
     }
     
-    internal func addVertex(_ position: float3) {
-        self._vertices.append(Vertex(position: position))
+    internal func addVertex(_ position: float3,
+                            textureCoordinates: float2 = float2(0,0),
+                            normal: float3 = float3(0,1,0),
+                            tangent: float3 = float3(1,0,0),
+                            bitangent: float3 = float3(0,0,1)) {
+        self._vertices.append(Vertex(position: position,
+                                     textureCoordinates: textureCoordinates,
+                                     normal: normal,
+                                     tangent: tangent,
+                                     bitangent: bitangent))
     }
     
     internal func createVertices() { } // Override in subclasses

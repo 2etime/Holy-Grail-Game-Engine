@@ -9,9 +9,7 @@
 import MetalKit
 
 class GameObject: GameNode {
-    private var _vertexDescriptor: MTLVertexDescriptor!
-    private var _renderPipelineState: MTLRenderPipelineState!
-    
+    private var _modelConstants = ModelConstants()
     private var _mesh: Mesh!
     
     init(name: String, meshKey: String) {
@@ -19,8 +17,20 @@ class GameObject: GameNode {
         self._mesh = Entities.Meshes[meshKey]
     }
     
+    override func update() {
+        updateModelConstants()
+        super.update()
+    }
+    
+    private func updateModelConstants() {
+        self._modelConstants.modelMatrix = self.modelMatrix
+    }
+    
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
         renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic])
+        renderCommandEncoder.setVertexBytes(&_modelConstants,
+                                            length: ModelConstants.stride,
+                                            index: 2)
     }
     
 }

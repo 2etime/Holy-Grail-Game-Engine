@@ -24,6 +24,8 @@ class MainView: MTKView {
         
         self.colorPixelFormat = EngineSettings.MainPixelFormat
         
+        self.depthStencilPixelFormat = EngineSettings.MainDepthPixelFormat
+        
         self.delegate = _renderer
     }
     

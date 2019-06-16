@@ -6,9 +6,10 @@
 //  Copyright © 2019 Rick Twohy Jr. All rights reserved.
 //
 
-import Metal
+import MetalKit
 
 enum RenderPipelineStateTypes {
+    case None
     case Basic
 }
 
@@ -53,10 +54,31 @@ private class Basic_RenderPipelineState: RenderPipelineState {
         vertexDescriptor.attributes[0].bufferIndex = 0
         vertexDescriptor.attributes[0].offset = 0
         
+        //Texture Coordinates
+        vertexDescriptor.attributes[1].format = .float2
+        vertexDescriptor.attributes[1].bufferIndex = 0
+        vertexDescriptor.attributes[1].offset = float3.size
+        
+        //Normal
+        vertexDescriptor.attributes[2].format = .float3
+        vertexDescriptor.attributes[2].bufferIndex = 0
+        vertexDescriptor.attributes[2].offset = float3.size + float2.size
+        
+        //Tangent
+        vertexDescriptor.attributes[3].format = .float3
+        vertexDescriptor.attributes[3].bufferIndex = 0
+        vertexDescriptor.attributes[3].offset = float3.size + float2.size + float3.size
+        
+        //Bitangent
+        vertexDescriptor.attributes[4].format = .float3
+        vertexDescriptor.attributes[4].bufferIndex = 0
+        vertexDescriptor.attributes[4].offset = float3.size + float2.size + float3.size + float3.size
+        
         vertexDescriptor.layouts[0].stride = Vertex.stride
         
         let renderPipelineDescriptor = MTLRenderPipelineDescriptor()
         renderPipelineDescriptor.colorAttachments[0].pixelFormat = EngineSettings.MainPixelFormat
+        renderPipelineDescriptor.depthAttachmentPixelFormat = EngineSettings.MainDepthPixelFormat
         renderPipelineDescriptor.vertexFunction = vertexFunction
         renderPipelineDescriptor.fragmentFunction = fragmentFunction
         renderPipelineDescriptor.vertexDescriptor = vertexDescriptor
