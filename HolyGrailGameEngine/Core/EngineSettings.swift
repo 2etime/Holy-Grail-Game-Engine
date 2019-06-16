@@ -9,4 +9,5 @@ class EngineSettings {
     public static var ClearColor: MTLClearColor = ClearColors.Black
     public static var MainPixelFormat: MTLPixelFormat = .bgra8Unorm_srgb
     public static var MainDepthPixelFormat: MTLPixelFormat = .depth32Float
+    public static var SampleCount: Int = 2
 }

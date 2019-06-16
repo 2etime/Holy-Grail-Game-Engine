@@ -30,6 +30,8 @@ class MainView: MTKView {
         
         self.depthStencilPixelFormat = EngineSettings.MainDepthPixelFormat
         
+        self.sampleCount = EngineSettings.SampleCount
+        
         self.delegate = _renderer
     }
     

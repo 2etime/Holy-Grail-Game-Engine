@@ -19,6 +19,6 @@ class SandboxScene: GameScene {
     }
     
     override func onUpdate() {
-        
+        triangle.rotateY(GameTime.DeltaTime)
     }
 }

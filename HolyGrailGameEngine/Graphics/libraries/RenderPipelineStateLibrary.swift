@@ -79,6 +79,7 @@ private class Basic_RenderPipelineState: RenderPipelineState {
         let renderPipelineDescriptor = MTLRenderPipelineDescriptor()
         renderPipelineDescriptor.colorAttachments[0].pixelFormat = EngineSettings.MainPixelFormat
         renderPipelineDescriptor.depthAttachmentPixelFormat = EngineSettings.MainDepthPixelFormat
+        renderPipelineDescriptor.sampleCount = EngineSettings.SampleCount
         renderPipelineDescriptor.vertexFunction = vertexFunction
         renderPipelineDescriptor.fragmentFunction = fragmentFunction
         renderPipelineDescriptor.vertexDescriptor = vertexDescriptor
