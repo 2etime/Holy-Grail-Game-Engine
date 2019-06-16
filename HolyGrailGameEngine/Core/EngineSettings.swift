@@ -6,6 +6,7 @@ enum ClearColors {
 }
 
 class EngineSettings {
+    public static var MaxBuffersInFlight: Int = 3
     public static var ClearColor: MTLClearColor = ClearColors.Black
     public static var MainPixelFormat: MTLPixelFormat = .bgra8Unorm_srgb
     public static var MainDepthPixelFormat: MTLPixelFormat = .depth32Float

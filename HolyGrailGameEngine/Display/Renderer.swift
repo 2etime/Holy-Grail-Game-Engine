@@ -11,10 +11,15 @@ import MetalKit
 class Renderer: NSObject {
     public static var ScreenSize = float2(0,0)
     public static var AspectRatio: Float { return ScreenSize.x / ScreenSize.y }
+    
+    private var _sceneManager: SceneManager!
+    private var _inFlightSemaphore: DispatchSemaphore!
 
     init(mtkView: MTKView) {
         super.init()
         updateScreenSize(view: mtkView)
+        self._sceneManager = SceneManager(startingSceneType: EngineSettings.StartingSceneType)
+        self._inFlightSemaphore = DispatchSemaphore.init(value: EngineSettings.MaxBuffersInFlight)
     }
     
     public func updateScreenSize(view: MTKView){
@@ -29,13 +34,21 @@ extension Renderer: MTKViewDelegate {
     }
     
     func draw(in view: MTKView) {
-        SceneManager.Update(deltaTime: 1.0 / Float(view.preferredFramesPerSecond ))
+        _ = _inFlightSemaphore.wait(timeout: .distantFuture)
         
         guard let drawable = view.currentDrawable, let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
         let commandBuffer = Engine.CommandQueue.makeCommandBuffer()
-        let renderCommandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
         
-        SceneManager.MainRenderPass(renderCommandEncoder: renderCommandEncoder!)
+        let blockSemaphore = _inFlightSemaphore
+        commandBuffer?.addCompletedHandler({ _  in
+            blockSemaphore!.signal()
+        })
+        
+        self._sceneManager.update(deltaTime: 1.0 / Float(view.preferredFramesPerSecond ))
+                
+        let renderCommandEncoder = commandBuffer?.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
+
+        self._sceneManager.mainRenderPass(renderCommandEncoder: renderCommandEncoder!)
         
         renderCommandEncoder?.endEncoding()
         commandBuffer?.present(drawable)

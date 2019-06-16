@@ -11,9 +11,7 @@ enum CameraTypes {
 }
 
 class CameraManager {
-    
     private var _cameras: [CameraTypes : GameCamera] = [:]
-    
     public var currentCamera: GameCamera!
     
     public func registerCamera(camera: GameCamera){
@@ -25,13 +23,13 @@ class CameraManager {
         }
     }
     
-    public func setCamera(_ cameraType: CameraTypes){
+    func setCamera(_ cameraType: CameraTypes){
         self.currentCamera = _cameras[cameraType]
     }
     
-    internal func update(){
+    func update(currentBufferIndex: Int){
         for camera in _cameras.values {
-            camera.update()
+            camera.update(currentBufferIndex: currentBufferIndex)
         }
     }
     

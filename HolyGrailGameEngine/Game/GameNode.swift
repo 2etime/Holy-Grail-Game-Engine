@@ -35,10 +35,10 @@ class GameNode {
         self._children.append(node)
     }
     
-    public func update() {
+    public func update(currentBufferIndex: Int) {
         onUpdate()
         for child in self._children {
-            child.update()
+            child.update(currentBufferIndex: currentBufferIndex)
         }
     }
     

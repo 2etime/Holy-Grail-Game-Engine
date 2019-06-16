@@ -13,29 +13,31 @@ enum SceneTypes{
 }
 
 class SceneManager {
+    private var _currentScene: GameScene!
+    private var _currentBufferIndex: Int = 0
     
-    private static var _currentScene: GameScene!
-    
-    public static func Initialize(_ sceneType: SceneTypes){
-        SetScene(sceneType)
+    init(startingSceneType: SceneTypes) {
+        setScene(startingSceneType)
     }
     
-    public static func SetScene(_ sceneType: SceneTypes){
+    public func setScene(_ sceneType: SceneTypes){
         switch sceneType {
         case .Sandbox:
             self._currentScene = SandboxScene(name: "Sandbox Scene")
         }
     }
     
-    public static func Update(deltaTime: Float) {
+    public func update(deltaTime: Float) {
         GameTime.UpdateGameTime(deltaTime)
         
-        _currentScene.updateCameras()
+        self._currentBufferIndex = (self._currentBufferIndex + 1) % EngineSettings.MaxBuffersInFlight
         
-        _currentScene.update()
+        self._currentScene.updateCameras()
+        
+        self._currentScene.update(currentBufferIndex: self._currentBufferIndex)
     }
     
-    public static func MainRenderPass(renderCommandEncoder: MTLRenderCommandEncoder){
+    public func mainRenderPass(renderCommandEncoder: MTLRenderCommandEncoder){
         _currentScene.render(renderCommandEncoder)
     }
     
