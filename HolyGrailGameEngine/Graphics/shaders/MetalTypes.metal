@@ -19,24 +19,49 @@ struct Vertex {
     float3 bitangent [[ attribute(4) ]];
 };
 
-struct RasterizerData {
+struct RasterizerData{
     float4 position [[ position ]];
     float2 textureCoordinate;
+    float3 worldPosition;
+    float3 surfaceNormal;
+    float3 surfaceTangent;
+    float3 surfaceBitangent;
+    float3 toCameraVector;
 };
 
-struct SceneConstants {
-    float4x4 viewMatrix;
-    float4x4 projectionMatrix;
-};
-
-struct ModelConstants {
+struct ModelConstants{
     float4x4 modelMatrix;
+};
+
+struct SceneConstants{
+    float4x4 viewMatrix;
+    float4x4 inverseViewMatrix;
+    float4x4 projectionMatrix;
 };
 
 struct MaterialConstants {
     float4 color;
     bool useMaterialColor;
     bool useBaseTexture;
+    bool useNormalMap;
+    bool useSpecularMap;
+    bool isLightable;
+    float specularMapIntensity;
+    
+    float3 ambient;
+    float3 diffuse;
+    float3 specular;
+    float shininess;
+};
+
+struct LightData {
+    float3 position;
+    float3 color;
+    float brightness;
+    
+    float ambientIntensity;
+    float diffuseIntensity;
+    float specularIntensity;
 };
 
 #endif

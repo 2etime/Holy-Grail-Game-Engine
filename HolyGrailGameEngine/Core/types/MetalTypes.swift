@@ -42,17 +42,37 @@ struct Vertex: sizeable {
     var bitangent: float3
 }
 
-struct SceneConstants: sizeable {
-    var viewMatrix = matrix_identity_float4x4
-    var projectionMatrix = matrix_identity_float4x4
-}
-
-struct ModelConstants: sizeable {
+struct ModelConstants: sizeable{
     var modelMatrix = matrix_identity_float4x4
 }
 
+struct SceneConstants: sizeable {
+    var viewMatrix = matrix_identity_float4x4
+    var inverseViewMatrix = matrix_identity_float4x4
+    var projectionMatrix = matrix_identity_float4x4
+}
+
 struct MaterialConstants: sizeable {
-    var color: float4 = float4(0.5,0.5,0.5,1.0)
+    var color = float4(0.8, 0.8, 0.8, 1.0)
     var useMaterialColor: Bool = false
     var useBaseTexture: Bool = false
+    var useNormalMap: Bool = false
+    var useSpecularMap: Bool = false
+    var isLightable: Bool = true
+    var specularMapIntensity: Float = 1.0
+    
+    var ambient: float3 = float3(1,1,1)
+    var diffuse: float3 = float3(1,1,1)
+    var specular: float3 = float3(1,1,1)
+    var shininess: Float = 0.1 * 128
+}
+
+struct LightData: sizeable {
+    var position: float3 = float3(0,0,0)
+    var color: float3 = float3(1,1,1)
+    var brightness: Float = 1.0
+    
+    var ambientIntesity: Float = 1.0
+    var diffuseIntensity: Float = 1.0
+    var specularIntensity: Float = 1.0
 }

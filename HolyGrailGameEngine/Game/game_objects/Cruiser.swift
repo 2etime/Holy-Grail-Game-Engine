@@ -9,6 +9,6 @@
 class Cruiser: GameObject {
     init() {
         super.init(name: "Cruiser", meshType: .Cruiser)
-        setBaseTexture(.Cruiser_Base)
+//        setBaseTexture(.Cruiser_Base)
     }
 }

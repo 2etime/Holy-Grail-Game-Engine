@@ -11,6 +11,7 @@ import MetalKit
 class GameScene: GameNode {
     private var _sceneConstants = SceneConstants()
     private var _cameraManager = CameraManager()
+    private var _lightManager = LightManager()
 
     override init(name: String) {
         super.init(name: name)
@@ -26,6 +27,11 @@ class GameScene: GameNode {
         self.addChild(gameObject)
     }
     
+    func addLight(_ lightObject: LightObject) {
+        self.addChild(lightObject)
+        _lightManager.addLightObject(lightObject)
+    }
+    
     internal func buildScene() { } // Override with inheriting classes
     
     override func update() {
@@ -39,10 +45,12 @@ class GameScene: GameNode {
     
     private func updateSceneConstants() {
         self._sceneConstants.viewMatrix = self._cameraManager.currentCamera.viewMatrix
+        self._sceneConstants.inverseViewMatrix = self._sceneConstants.viewMatrix
         self._sceneConstants.projectionMatrix = self._cameraManager.currentCamera.projectionMatrix
     }
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
         renderCommandEncoder.setVertexBytes(&_sceneConstants, length: SceneConstants.size, index: 1)
+        self._lightManager.setLightData(renderCommandEncoder)
     }
 }

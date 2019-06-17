@@ -13,8 +13,10 @@ class GameObject: GameNode {
     private var _modelConstants = ModelConstants()
     
     private var _mesh: Mesh!
-    private var _baseTextureType: TextureTypes!
-    
+    private var _baseTextureType: TextureTypes! = .None
+    private var _normalTextureType: TextureTypes! = .None
+    private var _specularTextureType: TextureTypes! = .None
+ 
     init(name: String, meshType: MeshTypes) {
         super.init(name: name)
         self._mesh = Entities.Meshes[meshType]
@@ -32,17 +34,20 @@ class GameObject: GameNode {
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
         renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic])
         renderCommandEncoder.setDepthStencilState(Graphics.DepthStencilStates[.Less])
-        renderCommandEncoder.setVertexBytes(&_modelConstants,
-                                            length: ModelConstants.stride,
-                                            index: 2)
-        renderCommandEncoder.setFragmentBytes(&_materialConstants,
-                                              length: MaterialConstants.stride,
-                                              index: 0)
-        renderCommandEncoder.setFragmentSamplerState(Graphics.SamplerStates[.Linear],
-                                                     index: 0)
+        
+        renderCommandEncoder.setVertexBytes(&_modelConstants, length: ModelConstants.stride, index: 2)
+        
+        renderCommandEncoder.setFragmentBytes(&_materialConstants, length: MaterialConstants.stride, index: 0)
+        renderCommandEncoder.setFragmentSamplerState(Graphics.SamplerStates[.Linear], index: 0)
+        
         if(_materialConstants.useBaseTexture) {
-            renderCommandEncoder.setFragmentTexture(Entities.Textures[_baseTextureType],
-                                                    index: 0)
+            renderCommandEncoder.setFragmentTexture(Entities.Textures[_baseTextureType], index: 0)
+        }
+        if(_materialConstants.useNormalMap) {
+            renderCommandEncoder.setFragmentTexture(Entities.Textures[_normalTextureType], index: 1)
+        }
+        if(_materialConstants.useSpecularMap) {
+            renderCommandEncoder.setFragmentTexture(Entities.Textures[_specularTextureType], index: 2)
         }
     }
 }
@@ -67,4 +72,25 @@ extension GameObject {
         self._materialConstants.useBaseTexture = true
         self._materialConstants.useMaterialColor = false
     }
+    
+    public func setNormalMap(_ textureType: TextureTypes) {
+        self._normalTextureType = textureType
+        self._materialConstants.useNormalMap = true
+    }
+    
+    public func setSpecularMap(_ textureType: TextureTypes) {
+        self._specularTextureType = textureType
+        self._materialConstants.useSpecularMap = true
+    }
+    
+    public func setMaterialIsLightable(_ isLightable: Bool) { self._materialConstants.isLightable = isLightable }
+    public func setMaterialAmbient(_ ambient: float3) { self._materialConstants.ambient = ambient }
+    public func setMaterialAmbient(_ ambient: Float) { self._materialConstants.ambient = float3(ambient, ambient, ambient) }
+    public func setMaterialDiffuse(_ diffuse: float3) { self._materialConstants.diffuse = diffuse }
+    public func setMaterialDiffuse(_ diffuse: Float) { self._materialConstants.diffuse = float3(diffuse, diffuse, diffuse) }
+    public func setMaterialSpecular(_ specular: float3) { self._materialConstants.specular = specular }
+    public func setMaterialSpecular(_ specular: Float) { self._materialConstants.specular = float3(specular, specular, specular) }
+    public func setMaterialShininess(_ shininess: Float) { self._materialConstants.shininess = shininess }
+    public func setSpecularMapIntensity(_ intensity: Float) { self._materialConstants.specularMapIntensity = intensity }
+    public func getSpecularMapIntensity()->Float { return self._materialConstants.specularMapIntensity }
 }
