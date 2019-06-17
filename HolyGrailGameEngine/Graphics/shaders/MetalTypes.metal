@@ -45,13 +45,16 @@ struct MaterialConstants {
     bool useBaseTexture;
     bool useNormalMap;
     bool useSpecularMap;
+    bool useAmbientMap;
     bool isLightable;
-    float specularMapIntensity;
     
     float3 ambient;
     float3 diffuse;
     float3 specular;
     float shininess;
+    
+    float ambientMapIntensity;
+    float specularMapIntensity;
 };
 
 struct LightData {

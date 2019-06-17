@@ -16,6 +16,7 @@ class GameObject: GameNode {
     private var _baseTextureType: TextureTypes! = .None
     private var _normalTextureType: TextureTypes! = .None
     private var _specularTextureType: TextureTypes! = .None
+    private var _ambientTextureType: TextureTypes! = .None
  
     init(name: String, meshType: MeshTypes) {
         super.init(name: name)
@@ -49,6 +50,9 @@ class GameObject: GameNode {
         if(_materialConstants.useSpecularMap) {
             renderCommandEncoder.setFragmentTexture(Entities.Textures[_specularTextureType], index: 2)
         }
+        if(_materialConstants.useAmbientMap) {
+            renderCommandEncoder.setFragmentTexture(Entities.Textures[_ambientTextureType], index: 3)
+        }
     }
 }
 
@@ -69,18 +73,23 @@ extension GameObject {
     
     public func setBaseTexture(_ textureType: TextureTypes) {
         self._baseTextureType = textureType
-        self._materialConstants.useBaseTexture = true
-        self._materialConstants.useMaterialColor = false
+        self._materialConstants.useBaseTexture = textureType != .None
+        self._materialConstants.useMaterialColor = textureType == .None
     }
     
     public func setNormalMap(_ textureType: TextureTypes) {
         self._normalTextureType = textureType
-        self._materialConstants.useNormalMap = true
+        self._materialConstants.useNormalMap = textureType != .None
     }
     
     public func setSpecularMap(_ textureType: TextureTypes) {
         self._specularTextureType = textureType
-        self._materialConstants.useSpecularMap = true
+        self._materialConstants.useSpecularMap = textureType != .None
+    }
+    
+    public func setAmbientMap(_ textureType: TextureTypes) {
+        self._ambientTextureType = textureType
+        self._materialConstants.useAmbientMap = textureType != .None
     }
     
     public func setMaterialIsLightable(_ isLightable: Bool) { self._materialConstants.isLightable = isLightable }
@@ -93,4 +102,6 @@ extension GameObject {
     public func setMaterialShininess(_ shininess: Float) { self._materialConstants.shininess = shininess }
     public func setSpecularMapIntensity(_ intensity: Float) { self._materialConstants.specularMapIntensity = intensity }
     public func getSpecularMapIntensity()->Float { return self._materialConstants.specularMapIntensity }
+    public func setAmbientMapIntensity(_ intensity: Float) { self._materialConstants.ambientMapIntensity = intensity }
+    public func getAmbientMapIntensity()->Float { return self._materialConstants.ambientMapIntensity }
 }

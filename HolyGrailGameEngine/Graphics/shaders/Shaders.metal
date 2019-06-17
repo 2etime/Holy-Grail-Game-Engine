@@ -36,7 +36,8 @@ fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]],
                                sampler sampler2d [[ sampler(0) ]],
                                texture2d<float> baseTexture [[ texture(0) ]],
                                texture2d<float> normalsTexture [[ texture(1) ]],
-                               texture2d<float> specularTexture [[ texture(2) ]]) {
+                               texture2d<float> specularTexture [[ texture(2) ]],
+                               texture2d<float> ambientTexture [[ texture(3) ]]) {
     float2 texCoord = rd.textureCoordinate;
     
     float4 color;
@@ -45,13 +46,13 @@ fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]],
     }else if(material.useMaterialColor) {
         color = material.color;
     }else{
-        color = float4(0,1,0,1);
+        color = float4(1,1,1,1);
     }
     
     if(material.isLightable){
         float3 unitNormal = normalize(rd.surfaceNormal);
         // Start with the identity matrix
-        float3x3 TBN = { 1,0,0, 0,1,0, 0,0,1 };
+        float3x3 TBN = { float3(1,0,0), float3(0,1,0), float3(0,0,1) };
         if(material.useNormalMap){
             float4 normalsColor = normalsTexture.sample(sampler2d, texCoord);
             float3 T = normalize(rd.surfaceTangent);
@@ -70,6 +71,11 @@ fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]],
             specularMapValue = specularTexture.sample(sampler2d, texCoord).r;
         }
         
+        float3 ambientMapValue = 1.0;
+        if(material.useAmbientMap){
+            ambientMapValue = ambientTexture.sample(sampler2d, texCoord).r;
+        }
+        
         float3 unitToCameraVector = normalize(TBN * rd.toCameraVector);
         float3 totalAmbient = float3(0);
         float3 totalDiffuse = float3(0);
@@ -82,7 +88,8 @@ fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]],
             
             float3 ambientess = material.ambient * lightData.ambientIntensity;
             float3 ambientColor = clamp(ambientess * lightData.color * lightData.brightness, 0.0, 1.0);
-            totalAmbient += ambientColor;
+            float3 ambientFactor = ambientColor * ambientMapValue;
+            totalAmbient += max(ambientFactor * material.ambientMapIntensity, ambientFactor);
             
             float3 diffuseness = material.diffuse * lightData.diffuseIntensity;
             float diffuseFactor = max(dot(unitNormal, unitToLightVector), 0.0);
@@ -91,8 +98,9 @@ fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]],
             
             float3 specularness = material.specular * lightData.specularIntensity;
             float specularFactor = pow(max(dot(unitLightReflection, unitToCameraVector), 0.0), material.shininess);
+            specularFactor = max(specularFactor * material.specularMapIntensity, specularFactor);
             float3 specularColor = clamp(specularness * specularFactor * lightData.color * lightData.brightness, 0.0, 1.0);
-            totalSpecular += specularColor * specularMapValue * material.specularMapIntensity;
+            totalSpecular += specularColor * specularMapValue;
         }
         
         float3 phongIntensity = totalAmbient + totalDiffuse + totalSpecular;

@@ -58,13 +58,17 @@ struct MaterialConstants: sizeable {
     var useBaseTexture: Bool = false
     var useNormalMap: Bool = false
     var useSpecularMap: Bool = false
+    var useAmbientMap: Bool = false
     var isLightable: Bool = true
-    var specularMapIntensity: Float = 1.0
+    
     
     var ambient: float3 = float3(1,1,1)
     var diffuse: float3 = float3(1,1,1)
     var specular: float3 = float3(1,1,1)
     var shininess: Float = 0.1 * 128
+    
+    var ambientMapIntensity: Float = 1.0
+    var specularMapIntensity: Float = 1.0
 }
 
 struct LightData: sizeable {
