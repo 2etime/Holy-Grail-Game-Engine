@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rick Twohy Jr. All rights reserved.
 //
 
-import simd
+import MetalKit
 
 protocol sizeable{ }
 extension sizeable{
@@ -27,6 +27,7 @@ extension sizeable{
     }
 }
 
+extension uint32: sizeable { }
 extension Int32: sizeable { }
 extension Float: sizeable { }
 extension float2: sizeable { }
