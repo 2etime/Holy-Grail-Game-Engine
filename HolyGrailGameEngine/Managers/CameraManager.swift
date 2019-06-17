@@ -27,9 +27,9 @@ class CameraManager {
         self.currentCamera = _cameras[cameraType]
     }
     
-    func update(currentBufferIndex: Int){
+    func update(){
         for camera in _cameras.values {
-            camera.update(currentBufferIndex: currentBufferIndex)
+            camera.update()
         }
     }
     

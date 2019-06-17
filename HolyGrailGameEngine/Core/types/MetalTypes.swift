@@ -49,3 +49,9 @@ struct SceneConstants: sizeable {
 struct ModelConstants: sizeable {
     var modelMatrix = matrix_identity_float4x4
 }
+
+struct MaterialConstants: sizeable {
+    var color: float4 = float4(0.5,0.5,0.5,1.0)
+    var useMaterialColor: Bool = false
+    var useBaseTexture: Bool = false
+}

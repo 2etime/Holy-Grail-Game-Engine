@@ -11,7 +11,15 @@ class Graphics {
     private static var _renderPipelineStateLibrary: RenderPipelineStateLibrary!
     public static var RenderPipelineStates: RenderPipelineStateLibrary { return self._renderPipelineStateLibrary }
     
+    private static var _samplerStateLibrary: SamplerStateLibrary!
+    public static var SamplerStates: SamplerStateLibrary { return self._samplerStateLibrary }
+    
+    private static var _depthStencilStateLibrary: DepthStencilStateLibrary!
+    public static var DepthStencilStates: DepthStencilStateLibrary { return _depthStencilStateLibrary }
+    
     public static func Initialize() {
+        self._samplerStateLibrary = SamplerStateLibrary()
+        self._depthStencilStateLibrary = DepthStencilStateLibrary()
         self._renderPipelineStateLibrary = RenderPipelineStateLibrary()
     }
     

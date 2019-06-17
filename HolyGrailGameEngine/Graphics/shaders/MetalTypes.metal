@@ -21,6 +21,7 @@ struct Vertex {
 
 struct RasterizerData {
     float4 position [[ position ]];
+    float2 textureCoordinate;
 };
 
 struct SceneConstants {
@@ -30,6 +31,12 @@ struct SceneConstants {
 
 struct ModelConstants {
     float4x4 modelMatrix;
+};
+
+struct MaterialConstants {
+    float4 color;
+    bool useMaterialColor;
+    bool useBaseTexture;
 };
 
 #endif

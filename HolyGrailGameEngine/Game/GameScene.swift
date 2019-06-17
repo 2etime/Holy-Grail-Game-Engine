@@ -9,14 +9,12 @@
 import MetalKit
 
 class GameScene: GameNode {
+    private var _sceneConstants = SceneConstants()
     private var _cameraManager = CameraManager()
-    private var _sceneBuffers: BufferManager<SceneConstants>!
-    private var _currentBufferIndex: Int = 0
 
     override init(name: String) {
         super.init(name: name)
-        self._sceneBuffers = BufferManager(proto: SceneConstants(),
-                                           bufferCount: EngineSettings.MaxBuffersInFlight)
+        
         buildScene()
     }
     
@@ -30,25 +28,21 @@ class GameScene: GameNode {
     
     internal func buildScene() { } // Override with inheriting classes
     
-    override func update(currentBufferIndex: Int) {
-        self._currentBufferIndex = currentBufferIndex
+    override func update() {
         updateSceneConstants()
-        super.update(currentBufferIndex: currentBufferIndex)
+        super.update()
     }
     
     func updateCameras(){
-        _cameraManager.update(currentBufferIndex: self._currentBufferIndex)
+        _cameraManager.update()
     }
     
     private func updateSceneConstants() {
-        var sceneConstants = self._sceneBuffers.getBuffer(index: _currentBufferIndex)
-        sceneConstants.viewMatrix = self._cameraManager.currentCamera.viewMatrix
-        sceneConstants.projectionMatrix = self._cameraManager.currentCamera.projectionMatrix
-        self._sceneBuffers.setBuffer(index: _currentBufferIndex, sceneConstants)
+        self._sceneConstants.viewMatrix = self._cameraManager.currentCamera.viewMatrix
+        self._sceneConstants.projectionMatrix = self._cameraManager.currentCamera.projectionMatrix
     }
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        var sceneConstants = self._sceneBuffers.getBuffer(index: _currentBufferIndex)
-        renderCommandEncoder.setVertexBytes(&sceneConstants, length: SceneConstants.size, index: 1)
+        renderCommandEncoder.setVertexBytes(&_sceneConstants, length: SceneConstants.size, index: 1)
     }
 }

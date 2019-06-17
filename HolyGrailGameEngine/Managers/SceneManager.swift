@@ -14,7 +14,6 @@ enum SceneTypes{
 
 class SceneManager {
     private var _currentScene: GameScene!
-    private var _currentBufferIndex: Int = 0
     
     init(startingSceneType: SceneTypes) {
         setScene(startingSceneType)
@@ -29,12 +28,10 @@ class SceneManager {
     
     public func update(deltaTime: Float) {
         GameTime.UpdateGameTime(deltaTime)
-        
-        self._currentBufferIndex = (self._currentBufferIndex + 1) % EngineSettings.MaxBuffersInFlight
-        
+
         self._currentScene.updateCameras()
         
-        self._currentScene.update(currentBufferIndex: self._currentBufferIndex)
+        self._currentScene.update()
     }
     
     public func mainRenderPass(renderCommandEncoder: MTLRenderCommandEncoder){

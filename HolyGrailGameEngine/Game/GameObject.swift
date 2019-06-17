@@ -9,41 +9,62 @@
 import MetalKit
 
 class GameObject: GameNode {
-    private var _modelBufferConstants: BufferManager<ModelConstants>!
-    private var _currentBufferIndex: Int = 0
+    private var _materialConstants = MaterialConstants()
+    private var _modelConstants = ModelConstants()
     
     private var _mesh: Mesh!
-
-    init(name: String, meshKey: String) {
+    private var _baseTextureType: TextureTypes!
+    
+    init(name: String, meshType: MeshTypes) {
         super.init(name: name)
-        self._modelBufferConstants = BufferManager(proto: ModelConstants(),
-                                                   bufferCount: EngineSettings.MaxBuffersInFlight)
-        self._mesh = Entities.Meshes[meshKey]
+        self._mesh = Entities.Meshes[meshType]
     }
     
-    override func update(currentBufferIndex: Int) {
-        self._currentBufferIndex = currentBufferIndex
-        updateModelConstants(currentBufferIndex: currentBufferIndex)
-        super.update(currentBufferIndex: currentBufferIndex)
+    override func update() {
+        updateModelConstants()
+        super.update()
     }
     
-    private func updateModelConstants(currentBufferIndex: Int) {
-        var modelConstants = self._modelBufferConstants.getBuffer(index: _currentBufferIndex)
-        modelConstants.modelMatrix = self.modelMatrix
-        self._modelBufferConstants.setBuffer(index: _currentBufferIndex, modelConstants)
+    private func updateModelConstants() {
+        self._modelConstants.modelMatrix = self.modelMatrix
     }
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        var modelConstants = self._modelBufferConstants.getBuffer(index: _currentBufferIndex)
         renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic])
-        renderCommandEncoder.setVertexBytes(&modelConstants,
+        renderCommandEncoder.setDepthStencilState(Graphics.DepthStencilStates[.Less])
+        renderCommandEncoder.setVertexBytes(&_modelConstants,
                                             length: ModelConstants.stride,
                                             index: 2)
+        renderCommandEncoder.setFragmentBytes(&_materialConstants,
+                                              length: MaterialConstants.stride,
+                                              index: 0)
+        renderCommandEncoder.setFragmentSamplerState(Graphics.SamplerStates[.Linear],
+                                                     index: 0)
+        if(_materialConstants.useBaseTexture) {
+            renderCommandEncoder.setFragmentTexture(Entities.Textures[_baseTextureType],
+                                                    index: 0)
+        }
     }
 }
 
 extension GameObject: Renderable {
     func doRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
         _mesh.draw(renderCommandEncoder)
+    }
+}
+
+extension GameObject {
+    public func getMaterialColor()->float4 { return self._materialConstants.color }
+    public func setMaterialColor(_ r: Float, _ g: Float, _ b: Float,_ a: Float) { self.setMaterialColor(float4(r,g,b,a)) }
+    public func setMaterialColor(_ color: float4) {
+        self._materialConstants.color = color
+        self._materialConstants.useMaterialColor = true
+        self._materialConstants.useBaseTexture = false
+    }
+    
+    public func setBaseTexture(_ textureType: TextureTypes) {
+        self._baseTextureType = textureType
+        self._materialConstants.useBaseTexture = true
+        self._materialConstants.useMaterialColor = false
     }
 }

@@ -15,7 +15,7 @@ class GameNode {
     
     private var _position: float3 = float3(0,0,0)
     private var _rotation: float3 = float3(0,0,0)
-    private var _scale: float3 = float3(0,0,0)
+    private var _scale: float3 = float3(1,1,1)
     var modelMatrix: matrix_float4x4 {
         var modelMatrix = matrix_identity_float4x4
         modelMatrix.translate(direction: self._position)
@@ -35,10 +35,10 @@ class GameNode {
         self._children.append(node)
     }
     
-    public func update(currentBufferIndex: Int) {
+    public func update() {
         onUpdate()
         for child in self._children {
-            child.update(currentBufferIndex: currentBufferIndex)
+            child.update()
         }
     }
     

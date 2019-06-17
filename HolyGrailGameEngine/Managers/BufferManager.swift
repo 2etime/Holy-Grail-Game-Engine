@@ -13,7 +13,7 @@ class BufferManager<T> {
         self._buffers = [T].init(repeating: proto, count: bufferCount)
     }
     
-    func getBuffer(index: Int)->T {
+    subscript(_ index: Int)->T{
         return _buffers[index]
     }
     

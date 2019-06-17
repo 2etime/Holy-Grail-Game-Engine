@@ -7,18 +7,19 @@
 //
 
 class SandboxScene: GameScene {
-    let triangle = Triangle()
+    let cruiser = Cruiser()
     let debugCamera = DebugCamera()
-
     override func buildScene() {
-        debugCamera.setPosition(0,0,8)
+        debugCamera.setPosition(0,0,5)
         addCamera(debugCamera)
         
-        triangle.setScale(0.5)
-        addGameObject(triangle)
+        addGameObject(cruiser)
     }
     
     override func onUpdate() {
-        triangle.rotateY(GameTime.DeltaTime)
+        if(Mouse.IsMouseButtonPressed(button: .left)) {
+            cruiser.rotateX(Mouse.GetDY() * GameTime.DeltaTime)
+            cruiser.rotateY(Mouse.GetDX() * GameTime.DeltaTime)
+        }
     }
 }

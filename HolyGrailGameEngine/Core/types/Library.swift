@@ -8,22 +8,18 @@
 
 import MetalKit
 
-class Library<T> {
-    private var _library: [String: T] = [:]
+class Library<T,K> {
     
     init() {
-        createDefaultLibraryItems()
+        fillLibrary()
     }
     
-    internal func createDefaultLibraryItems() {
-        //TODO: Override with sub classes
+    func fillLibrary() {
+        //Override this function when filling the library with default values
     }
     
-    internal func addItem(key: String, value: T) {
-        self._library.updateValue(value, forKey: key)
+    subscript(_ type: T)->K? {
+        return nil
     }
     
-    subscript(_ key: String)->T {
-        return _library[key]!
-    }
 }
