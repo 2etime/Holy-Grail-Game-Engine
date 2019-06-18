@@ -13,8 +13,6 @@ class Mouse {
     private static var overallMousePosition = float2(0,0)
     private static var mousePositionDelta = float2(0,0)
     
-    private static var scrollWheelPosition: Float = 0
-    private static var lastWheelPosition: Float = 0.0
     private static var scrollWheelChange: Float = 0.0
     
     public static func SetMouseButtonPressed(button: Int, isOn: Bool){
@@ -36,8 +34,7 @@ class Mouse {
     }
     
     public static func ScrollMouse(deltaY: Float){
-        scrollWheelPosition += deltaY
-        scrollWheelChange += deltaY
+        scrollWheelChange = deltaY
     }
     
     //Returns the overall position of the mouse on the current window
@@ -47,8 +44,7 @@ class Mouse {
     
     ///Returns the movement of the wheel since last time getDWheel() was called
     public static func GetDWheel()->Float{
-        let position = scrollWheelChange
-        scrollWheelChange = 0
+        let position = -scrollWheelChange
         return position
     }
     

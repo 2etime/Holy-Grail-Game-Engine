@@ -93,15 +93,34 @@ extension GameObject {
     }
     
     public func setMaterialIsLightable(_ isLightable: Bool) { self._materialConstants.isLightable = isLightable }
+    
     public func setMaterialAmbient(_ ambient: float3) { self._materialConstants.ambient = ambient }
     public func setMaterialAmbient(_ ambient: Float) { self._materialConstants.ambient = float3(ambient, ambient, ambient) }
+    public func addMaterialAmbient(_ value: float3 ) { self._materialConstants.ambient += value}
+    public func addMaterialAmbient(_ value: Float ) { self._materialConstants.ambient += value}
+    public func getMaterialAmbient()->float3 { return self._materialConstants.ambient }
+    
     public func setMaterialDiffuse(_ diffuse: float3) { self._materialConstants.diffuse = diffuse }
     public func setMaterialDiffuse(_ diffuse: Float) { self._materialConstants.diffuse = float3(diffuse, diffuse, diffuse) }
+    public func addMaterialDiffuse(_ value: float3 ) { self._materialConstants.diffuse += value}
+    public func addMaterialDiffuse(_ value: Float ) { self._materialConstants.diffuse += value}
+    public func getMaterialDiffuse()->float3 { return self._materialConstants.diffuse }
+    
     public func setMaterialSpecular(_ specular: float3) { self._materialConstants.specular = specular }
     public func setMaterialSpecular(_ specular: Float) { self._materialConstants.specular = float3(specular, specular, specular) }
+    public func addMaterialSpecular(_ value: float3 ) { self._materialConstants.specular += value}
+    public func addMaterialSpecular(_ value: Float ) { self._materialConstants.specular += value}
+    public func getMaterialSpecular()->float3 { return self._materialConstants.specular }
+
     public func setMaterialShininess(_ shininess: Float) { self._materialConstants.shininess = shininess }
-    public func setSpecularMapIntensity(_ intensity: Float) { self._materialConstants.specularMapIntensity = intensity }
-    public func getSpecularMapIntensity()->Float { return self._materialConstants.specularMapIntensity }
-    public func setAmbientMapIntensity(_ intensity: Float) { self._materialConstants.ambientMapIntensity = intensity }
-    public func getAmbientMapIntensity()->Float { return self._materialConstants.ambientMapIntensity }
+    public func addMaterialShininess(_ value: Float) { self._materialConstants.shininess += value}
+    public func getMaterialShininess()->Float { return self._materialConstants.shininess }
+    
+    public func setMaterialSpecularMapIntensity(_ intensity: Float) { self._materialConstants.specularMapIntensity = intensity }
+    public func addMaterialSpecularMapIntensity(_ value: Float ) { self._materialConstants.specularMapIntensity += value}
+    public func getMaterialSpecularMapIntensity()->Float { return self._materialConstants.specularMapIntensity }
+    
+    public func setMaterialAmbientMapIntensity(_ intensity: Float) { self._materialConstants.ambientMapIntensity = intensity }
+    public func addMaterialAmbientMapIntensity(_ value: Float ) { self._materialConstants.specularMapIntensity += value}
+    public func getMaterialAmbientMapIntensity()->Float { return self._materialConstants.ambientMapIntensity }
 }
