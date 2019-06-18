@@ -29,6 +29,7 @@ class LightObject: GameObject {
 extension LightObject {
     public func setLightColor(_ lightColor: float3) { self.lightData.color = lightColor }
     public func setLightColor(_ r: Float,_ g: Float,_ b: Float) { self.lightData.color = float3(r,g,b) }
+    public func getLightColor()->float3{ return self.lightData.color }
     
     public func setLightAmbientIntensity(_ ambientIntensiy: Float){ self.lightData.ambientIntesity = ambientIntensiy }
     public func addLightAmbientIntensity(_ value: Float) { self.lightData.ambientIntesity += value }

@@ -11,9 +11,9 @@ import MetalKit
 class SandboxScene: GameScene {
     let sphere = Sphere()
     let debugCamera = DebugCamera()
-    let lampRight = Lamp()
-    let lampMiddle = Lamp()
-    let lampLeft = Lamp()
+    var lampRight = Lamp()
+    var lampMiddle = Lamp()
+    var lampLeft = Lamp()
     override func buildScene() {
         debugCamera.setPosition(0,1,6)
         addCamera(debugCamera)
@@ -53,66 +53,34 @@ class SandboxScene: GameScene {
         sphere.setMaterialSpecular(1)
         sphere.setMaterialShininess(0.8 * 128)
         sphere.setMaterialSpecularMapIntensity(15)
-        
         addGameObject(sphere)
     }
     
-    private var _currentAmbient: TextureTypes = .None
-    func toggleAmbientTexture() {
-        if(_currentAmbient == .None){
-            _currentAmbient = .Sand_Ambient
-            sphere.setAmbientMap(.Sand_Ambient)
-        }else{
-            _currentAmbient = .None
-            sphere.setAmbientMap(.None)
-        }
-    }
-    
-    private var _currentNormal: TextureTypes = .None
-    func toggleNormalTexture() {
-        if(_currentNormal == .None){
-            _currentNormal = .Sand_Normal
-            sphere.setNormalMap(.Sand_Normal)
-        }else{
-            _currentNormal = .None
-            sphere.setNormalMap(.None)
-        }
-    }
-    
-    private var _currentSpecular: TextureTypes = .None
-    func toggleSpecularTexture() {
-        if(_currentSpecular == .None){
-            _currentSpecular = .Sand_Specular
-            sphere.setSpecularMap(.Sand_Specular)
-        }else{
-            _currentSpecular = .None
-            sphere.setSpecularMap(.None)
-        }
-    }
-    
-    private var _currentBase: TextureTypes = .None
-    func toggleBaseTexture() {
-        if(_currentBase == .None){
-            _currentBase = .Sand_Base
-            sphere.setBaseTexture(.Sand_Base)
-        }else{
-            _currentBase = .None
-            sphere.setBaseTexture(.None)
-        }
-    }
     
     var selectedLight: [Bool] = [false, true, false]
     func setSelectedLight(_ code: KeyCodes) {
         switch code {
         case .one:
+            Console.LightColor = lampLeft.getLightColor()
+            Console.LightAmbientIntensity = lampLeft.getLightAmbientIntensity()
+            Console.LightDiffuseIntensity = lampLeft.getLightDiffuseIntensity()
+            Console.LightSpecularItensity = lampLeft.getLightSpecularIntensity()
             selectedLight[0] = true
             selectedLight[1] = false
             selectedLight[2] = false
         case .two:
+            Console.LightColor = lampMiddle.getLightColor()
+            Console.LightAmbientIntensity = lampMiddle.getLightAmbientIntensity()
+            Console.LightDiffuseIntensity = lampMiddle.getLightDiffuseIntensity()
+            Console.LightSpecularItensity = lampMiddle.getLightSpecularIntensity()
             selectedLight[0] = false
             selectedLight[1] = true
             selectedLight[2] = false
         case .three:
+            Console.LightColor = lampRight.getLightColor()
+            Console.LightAmbientIntensity = lampRight.getLightAmbientIntensity()
+            Console.LightDiffuseIntensity = lampRight.getLightDiffuseIntensity()
+            Console.LightSpecularItensity = lampRight.getLightSpecularIntensity()
             selectedLight[0] = false
             selectedLight[1] = false
             selectedLight[2] = true
@@ -121,51 +89,34 @@ class SandboxScene: GameScene {
         }
     }
     
-    private var timePassed: Int = 0
+    private func setUseBaseTexture(_ useIt: Bool) { sphere.setBaseTexture(useIt ? TextureTypes.Sand_Base : TextureTypes.None)}
+    private func setUseAmbientMap(_ useIt: Bool) { sphere.setAmbientMap(useIt ? TextureTypes.Sand_Ambient : TextureTypes.None)}
+    private func setUseNormalMap(_ useIt: Bool) { sphere.setNormalMap(useIt ? TextureTypes.Sand_Normal : TextureTypes.None)}
+    private func setUseSpecularMap(_ useIt: Bool) { sphere.setSpecularMap(useIt ? TextureTypes.Sand_Specular : TextureTypes.None)}
+    
+    private func setMaterialValues(){
+        sphere.setMaterialAmbient(Console.MaterialAmbient)
+        sphere.setMaterialDiffuse(Console.MaterialDiffuse)
+        sphere.setMaterialSpecular(Console.MaterialSpecular)
+        sphere.setMaterialShininess(Console.MaterialShininess)
+        sphere.setMaterialAmbientMapIntensity(Console.MaterialAmbientMapIntensity)
+        sphere.setMaterialSpecularMapIntensity(Console.MaterialSpecularMapIntensity)
+    }
+    
+    private func setLightIntensities(light: inout Lamp) {
+        light.setLightBrightness(Console.LightBrightness)
+        light.setLightAmbientIntensity(Console.LightAmbientIntensity)
+        light.setLightDiffuseIntensity(Console.LightDiffuseIntensity)
+        light.setLightSpecularIntensity(Console.LightSpecularItensity)
+    }
+    
+    private func setLightColor(light: inout Lamp){
+        let color = Console.LightColor
+        light.setLightColor(color)
+        light.setMaterialColor(color.x, color.y, color.z, 1.0)
+    }
+    
     override func onUpdate() {
-        timePassed += 1
-        if(timePassed > 10){
-            if(Keyboard.IsKeyPressed(.a)){
-                timePassed = 0
-                toggleBaseTexture()
-            }
-            if(Keyboard.IsKeyPressed(.s)){
-                timePassed = 0
-                toggleAmbientTexture()
-            }
-            if(Keyboard.IsKeyPressed(.d)){
-                timePassed = 0
-                toggleNormalTexture()
-            }
-            if(Keyboard.IsKeyPressed(.f)){
-                timePassed = 0
-                toggleSpecularTexture()
-            }
-        }
-        
-        sphere.rotateY(GameTime.DeltaTime)
-        
-        if(Mouse.IsMouseButtonPressed(button: .left)){
-            if(selectedLight[0]) {
-                lampLeft.moveX(Mouse.GetDX() * GameTime.DeltaTime * 0.3)
-                lampLeft.moveY(-Mouse.GetDY() * GameTime.DeltaTime * 0.3)
-            } else if(selectedLight[1]) {
-                lampMiddle.moveX(Mouse.GetDX() * GameTime.DeltaTime * 0.3)
-                lampMiddle.moveY(-Mouse.GetDY() * GameTime.DeltaTime * 0.3)
-            } else if(selectedLight[2]) {
-                lampRight.moveX(Mouse.GetDX() * GameTime.DeltaTime * 0.3)
-                lampRight.moveY(-Mouse.GetDY() * GameTime.DeltaTime * 0.3)
-            }
-        }
-        
-        if(selectedLight[0]) {
-            lampLeft.addLightBrightness(Mouse.GetDWheel() * GameTime.DeltaTime)
-        } else if(selectedLight[1]) {
-            lampMiddle.addLightBrightness(Mouse.GetDWheel() * GameTime.DeltaTime)
-        } else if(selectedLight[2]) {
-            lampRight.addLightBrightness(Mouse.GetDWheel() * GameTime.DeltaTime)
-        }
-        
         if(Keyboard.IsKeyPressed(.one)) {
             setSelectedLight(.one)
         }else if(Keyboard.IsKeyPressed(.two)) {
@@ -173,6 +124,41 @@ class SandboxScene: GameScene {
         }else if(Keyboard.IsKeyPressed(.three)) {
             setSelectedLight(.three)
         }
-
+        
+        if(Mouse.IsMouseButtonPressed(button: .left)){
+            if(selectedLight[0]) {
+                lampLeft.moveX(Mouse.GetDX() * GameTime.DeltaTime)
+                lampLeft.moveY(-Mouse.GetDY() * GameTime.DeltaTime)
+            } else if(selectedLight[1]) {
+                lampMiddle.moveX(Mouse.GetDX() * GameTime.DeltaTime)
+                lampMiddle.moveY(-Mouse.GetDY() * GameTime.DeltaTime)
+            } else if(selectedLight[2]) {
+                lampRight.moveX(Mouse.GetDX() * GameTime.DeltaTime)
+                lampRight.moveY(-Mouse.GetDY() * GameTime.DeltaTime)
+            }
+        }
+        
+        if(selectedLight[0]) {
+            setLightIntensities(light: &lampLeft)
+            setLightColor(light: &lampLeft)
+        } else if(selectedLight[1]) {
+            setLightIntensities(light: &lampMiddle)
+            setLightColor(light: &lampMiddle)
+        } else if(selectedLight[2]) {
+            setLightIntensities(light: &lampRight)
+            setLightColor(light: &lampRight)
+        }
+        
+        setUseBaseTexture(Console.UseBaseTexture)
+        setUseNormalMap(Console.UseNormalMap)
+        setUseSpecularMap(Console.UseSpecularMap)
+        setUseAmbientMap(Console.UseAmbientMap)
+        setMaterialValues()
+        
+        if(Keyboard.IsKeyPressed(.space)){
+            sphere.rotateX(Mouse.GetDY() * GameTime.DeltaTime)
+            sphere.rotateY(Mouse.GetDX() * GameTime.DeltaTime)
+        }
+        
     }
 }

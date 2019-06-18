@@ -63,6 +63,7 @@
 		C6441F0A22B7FDF400CAA3FE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0322B7FDF400CAA3FE /* README.md */; };
 		C6441F0B22B7FDF400CAA3FE /* sand_basecolor.png in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0422B7FDF400CAA3FE /* sand_basecolor.png */; };
 		C6441F0C22B7FDF400CAA3FE /* sand_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0522B7FDF400CAA3FE /* sand_preview.png */; };
+		C655C6B322B86FE900280C82 /* ConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C655C6B222B86FE900280C82 /* ConsoleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,7 @@
 		C6441F0322B7FDF400CAA3FE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C6441F0422B7FDF400CAA3FE /* sand_basecolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand_basecolor.png; sourceTree = "<group>"; };
 		C6441F0522B7FDF400CAA3FE /* sand_preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand_preview.png; sourceTree = "<group>"; };
+		C655C6B222B86FE900280C82 /* ConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 				C60A119D22B257A200B3F509 /* MainView.swift */,
 				C60A11CC22B2597F00B3F509 /* Renderer.swift */,
 				C60A11A422B257A200B3F509 /* Main.storyboard */,
+				C655C6B222B86FE900280C82 /* ConsoleView.swift */,
 			);
 			path = Display;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				C6441EE022B7321A00CAA3FE /* SamperStateLibrary.swift in Sources */,
 				C6441EAF22B5CCD600CAA3FE /* Shader.swift in Sources */,
 				C6441EBA22B673D000CAA3FE /* MetalTypes.metal in Sources */,
+				C655C6B322B86FE900280C82 /* ConsoleView.swift in Sources */,
 				C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */,
 				C60A11E022B2B0BA00B3F509 /* GameNode.swift in Sources */,
 				C6441EC622B68AB900CAA3FE /* BufferManager.swift in Sources */,
