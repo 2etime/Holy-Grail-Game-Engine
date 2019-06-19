@@ -1084,6 +1084,16 @@
                                                     <action selector="check_ambientMapUpdate:" target="h2K-IN-TVD" id="cVy-r0-aQX"/>
                                                 </connections>
                                             </button>
+                                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BD8-2o-SVx">
+                                                <rect key="frame" x="8" y="6" width="114" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Show Triangles" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DID-PS-RXf">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="check_showTriangles:" target="h2K-IN-TVD" id="358-be-q6a"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="ygi-jB-wlb" firstAttribute="centerX" secondItem="Gsk-bD-X9W" secondAttribute="centerX" id="0Uu-bj-Des"/>
@@ -1114,6 +1124,7 @@
                                             <constraint firstAttribute="trailing" secondItem="eDr-Rz-IOg" secondAttribute="trailing" constant="30" id="Chq-xu-po7"/>
                                             <constraint firstItem="eDr-Rz-IOg" firstAttribute="leading" secondItem="1uo-GB-Hlh" secondAttribute="leading" id="D7x-jX-K3n"/>
                                             <constraint firstAttribute="trailing" secondItem="AbO-AY-ug9" secondAttribute="trailing" constant="96" id="DDB-sS-DeV"/>
+                                            <constraint firstItem="BD8-2o-SVx" firstAttribute="top" secondItem="but-Je-dyD" secondAttribute="bottom" constant="8" symbolic="YES" id="DLf-dU-IVL"/>
                                             <constraint firstItem="a6I-2G-eEK" firstAttribute="leading" secondItem="5Le-uf-X7H" secondAttribute="trailing" constant="23" id="DeX-CW-S87"/>
                                             <constraint firstItem="TYm-yh-Bgh" firstAttribute="leading" secondItem="KFc-0H-CwT" secondAttribute="trailing" constant="8" symbolic="YES" id="Die-iy-OQk"/>
                                             <constraint firstItem="bCb-gE-ATs" firstAttribute="top" secondItem="HoF-d8-VrP" secondAttribute="bottom" constant="34" id="DzE-rU-s9C"/>
@@ -1137,6 +1148,7 @@
                                             <constraint firstItem="AbO-AY-ug9" firstAttribute="leading" secondItem="h2K-IN-TVD" secondAttribute="leading" constant="70" id="O7Q-CW-xmH"/>
                                             <constraint firstItem="paU-Kd-VMh" firstAttribute="trailing" secondItem="Cwl-ty-l8U" secondAttribute="trailing" id="OBB-Rp-PAK"/>
                                             <constraint firstItem="eDr-Rz-IOg" firstAttribute="top" secondItem="VFF-4N-fWw" secondAttribute="bottom" constant="7" id="OEb-2I-FcN"/>
+                                            <constraint firstItem="BD8-2o-SVx" firstAttribute="leading" secondItem="but-Je-dyD" secondAttribute="leading" id="PHy-Id-Epw"/>
                                             <constraint firstItem="paU-Kd-VMh" firstAttribute="top" secondItem="N0W-x0-i7h" secondAttribute="bottom" constant="58" id="PTp-mX-L4D"/>
                                             <constraint firstItem="3VF-Kt-Hif" firstAttribute="leading" secondItem="but-Je-dyD" secondAttribute="leading" id="Pp1-ey-0Qw"/>
                                             <constraint firstItem="d18-Tb-yhR" firstAttribute="baseline" secondItem="OYN-il-eie" secondAttribute="baseline" id="PxH-sB-XRy"/>
@@ -1260,6 +1272,7 @@
                         </constraints>
                         <connections>
                             <outlet property="check_normalMap" destination="VRx-ol-3m3" id="sWP-jO-6IV"/>
+                            <outlet property="check_showTriangle" destination="BD8-2o-SVx" id="4sv-vg-pfz"/>
                             <outlet property="check_specularMap" destination="atx-ZS-V14" id="uUH-yw-gQI"/>
                             <outlet property="check_useAmbientMap" destination="atx-ZS-V14" id="koi-II-vy1"/>
                             <outlet property="check_useBaseTexture" destination="VRx-ol-3m3" id="0Lb-mj-geY"/>

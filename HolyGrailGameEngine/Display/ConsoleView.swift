@@ -43,6 +43,8 @@ class ConsoleView: MTKView {
     @IBOutlet weak var label_ambientMapIntensity: NSTextField!
     @IBOutlet weak var label_specularMapIntensity: NSTextField!
     
+    @IBOutlet weak var check_showTriangle: NSButton!
+    
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         reset()
@@ -117,6 +119,9 @@ class ConsoleView: MTKView {
         Console.UseSpecularMap = !Console.UseSpecularMap
     }
     
+    @IBAction func check_showTriangles(_ sender: NSButton) {
+        Console.ShowTriangles = !Console.ShowTriangles
+    }
     
     // ############# LIGHT VALUES ############################
     @IBAction func slider_updateLightBrightness(_ sender: NSSlider) {
@@ -218,4 +223,6 @@ class Console {
     public static var MaterialSpecularMapIntensity: Float = 1.0
     
     public static var ShouldReset: Bool = true
+    
+    public static var ShowTriangles: Bool = false
 }

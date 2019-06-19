@@ -58,7 +58,9 @@ class GameObject: GameNode {
 
 extension GameObject: Renderable {
     func doRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        renderCommandEncoder.setTriangleFillMode(.lines)
+        if(Console.ShowTriangles){
+            renderCommandEncoder.setTriangleFillMode(.lines)
+        }
         _mesh.draw(renderCommandEncoder)
     }
 }
