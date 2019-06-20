@@ -46,6 +46,7 @@ struct MaterialConstants {
     bool useNormalMap;
     bool useSpecularMap;
     bool useAmbientMap;
+    bool useHeightMap;
     bool isLightable;
     
     float3 ambient;

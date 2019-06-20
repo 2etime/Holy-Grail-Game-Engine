@@ -17,6 +17,7 @@ class GameObject: GameNode {
     private var _normalTextureType: TextureTypes! = .None
     private var _specularTextureType: TextureTypes! = .None
     private var _ambientTextureType: TextureTypes! = .None
+    private var _heightMapTextureType: TextureTypes! = .None
  
     init(name: String, meshType: MeshTypes) {
         super.init(name: name)
@@ -41,6 +42,9 @@ class GameObject: GameNode {
         renderCommandEncoder.setFragmentBytes(&_materialConstants, length: MaterialConstants.stride, index: 0)
         renderCommandEncoder.setFragmentSamplerState(Graphics.SamplerStates[.Linear], index: 0)
         
+        if(_materialConstants.useHeightMap) {
+            renderCommandEncoder.setVertexTexture(Entities.Textures[_heightMapTextureType], index: 0)
+        }
         if(_materialConstants.useBaseTexture) {
             renderCommandEncoder.setFragmentTexture(Entities.Textures[_baseTextureType], index: 0)
         }
@@ -53,11 +57,14 @@ class GameObject: GameNode {
         if(_materialConstants.useAmbientMap) {
             renderCommandEncoder.setFragmentTexture(Entities.Textures[_ambientTextureType], index: 3)
         }
+        
     }
 }
 
 extension GameObject: Renderable {
     func doRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+        renderCommandEncoder.setFrontFacing(.counterClockwise)
+        renderCommandEncoder.setCullMode(.back)
         _mesh.draw(renderCommandEncoder)
     }
 }
@@ -90,6 +97,11 @@ extension GameObject {
     public func setAmbientMap(_ textureType: TextureTypes) {
         self._ambientTextureType = textureType
         self._materialConstants.useAmbientMap = textureType != .None
+    }
+    
+    public func setHeightMap(_ textureType: TextureTypes) {
+        self._heightMapTextureType = textureType
+        self._materialConstants.useHeightMap = textureType != .None
     }
     
     public func setMaterialIsLightable(_ isLightable: Bool) { self._materialConstants.isLightable = isLightable }
