@@ -17,7 +17,6 @@ class CustomMesh: Mesh {
     private var _indexBuffer: MTLBuffer!
     private var _indexCount: Int { return _indices.count }
     
-    
     init() {
         createVertices()
         buildBuffers()
@@ -86,5 +85,27 @@ class Triangle_CustomMesh: CustomMesh {
         addVertex(float3(1,-1,0))
         
         addIndices([0,1,2])
+    }
+}
+
+class Quad_CustomMesh: CustomMesh {
+    private var _scale: Float = 3
+    override func createVertices() {
+        let rightVec = float3(1,0,0)
+        let normal = float3(0,0,1)
+        let tangent = cross(rightVec, normal)
+        let bitangent = cross(tangent, normal)
+        
+        addVertex(float3( _scale, _scale, 0), textureCoordinates: float2(1,0), normal: normal, tangent: tangent, bitangent: bitangent) // Top Right
+        addVertex(float3(-_scale, _scale, 0), textureCoordinates: float2(0,0), normal: normal, tangent: tangent, bitangent: bitangent) // Top Left
+        addVertex(float3(-_scale,-_scale, 0), textureCoordinates: float2(0,1), normal: normal, tangent: tangent, bitangent: bitangent) // Bottom Left
+        addVertex(float3( _scale,-_scale, 0), textureCoordinates: float2(1,1), normal: normal, tangent: tangent, bitangent: bitangent) // Bottom Right
+        
+        addIndices(
+            [
+                0, 1, 2,
+                0, 2, 3
+            ]
+        )
     }
 }

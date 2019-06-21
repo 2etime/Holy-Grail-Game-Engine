@@ -59,7 +59,6 @@ struct MaterialConstants: sizeable {
     var useNormalMap: Bool = false
     var useSpecularMap: Bool = false
     var useAmbientMap: Bool = false
-    var useHeightMap: Bool = false
     var isLightable: Bool = true
     
     

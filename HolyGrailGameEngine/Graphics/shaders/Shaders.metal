@@ -10,29 +10,22 @@
 #include "MetalTypes.metal"
 using namespace metal;
 
-constexpr sampler heightSampler(compare_func::less);
-
 vertex RasterizerData vertex_shader(const Vertex vIn [[ stage_in ]],
                                     constant SceneConstants &sceneConstants [[ buffer(1) ]],
-                                    constant ModelConstants &modelConstants [[ buffer(2) ]],
-                                    const texture2d<float> heightMap [[ texture(0) ]]) {
+                                    constant ModelConstants &modelConstants [[ buffer(2) ]]) {
     RasterizerData rd;
     
     float4x4 modelViewMatrix = sceneConstants.viewMatrix * modelConstants.modelMatrix;
-    rd.surfaceNormal = (modelViewMatrix * float4(vIn.normal, 0.0)).xyz;
-    rd.textureCoordinate = vIn.textureCoordinate;
-    
-    float height = heightMap.sample(heightSampler, rd.textureCoordinate).r;
-    float3 position = vIn.position + height / 25;
-    
-    float4 worldPosition = modelConstants.modelMatrix * float4(position, 1);
+    float4 worldPosition = modelConstants.modelMatrix * float4(vIn.position, 1);
     rd.position = sceneConstants.projectionMatrix * sceneConstants.viewMatrix * worldPosition;
     rd.worldPosition = worldPosition.xyz;
     rd.toCameraVector = (sceneConstants.inverseViewMatrix * float4(0,0,0,1)).xyz - worldPosition.xyz;
+    rd.textureCoordinate = vIn.textureCoordinate;
     
-    
+    rd.surfaceNormal = (modelViewMatrix * float4(vIn.normal, 0.0)).xyz;
     rd.surfaceTangent = normalize(modelViewMatrix * float4(vIn.tangent, 1.0)).xyz;
     rd.surfaceBitangent = normalize(modelViewMatrix * float4(vIn.bitangent, 1.0)).xyz;
+    
     return rd;
 }
 

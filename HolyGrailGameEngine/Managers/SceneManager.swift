@@ -10,6 +10,7 @@ import Metal
 
 enum SceneTypes{
     case Sandbox
+    case Quad
 }
 
 class SceneManager {
@@ -23,6 +24,8 @@ class SceneManager {
         switch sceneType {
         case .Sandbox:
             self._currentScene = SandboxScene(name: "Sandbox Scene")
+        case .Quad:
+            self._currentScene = QuadScene(name: "Quad Scene")
         }
     }
     

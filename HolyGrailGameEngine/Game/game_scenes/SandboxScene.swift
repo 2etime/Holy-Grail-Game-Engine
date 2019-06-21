@@ -30,7 +30,6 @@ class SandboxScene: GameScene {
         sphere.setMaterialDiffuse(0.8)
         sphere.setMaterialSpecular(0.5)
         sphere.setMaterialShininess(0.1 * 128)
-        sphere.setHeightMap(.Sand_Height)
         sphere.setBaseTexture(.Sand_Base)
         
         addGameObject(sphere)

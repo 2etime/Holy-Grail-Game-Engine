@@ -62,17 +62,17 @@ private class Basic_RenderPipelineState: RenderPipelineState {
         //Normal
         vertexDescriptor.attributes[2].format = .float3
         vertexDescriptor.attributes[2].bufferIndex = 0
-        vertexDescriptor.attributes[2].offset = float3.size + float2.size
+        vertexDescriptor.attributes[2].offset = float3.size + float3.size
         
         //Tangent
         vertexDescriptor.attributes[3].format = .float3
         vertexDescriptor.attributes[3].bufferIndex = 0
-        vertexDescriptor.attributes[3].offset = float3.size + float2.size + float3.size
+        vertexDescriptor.attributes[3].offset = float3.size + float3.size + float3.size
         
         //Bitangent
         vertexDescriptor.attributes[4].format = .float3
         vertexDescriptor.attributes[4].bufferIndex = 0
-        vertexDescriptor.attributes[4].offset = float3.size + float2.size + float3.size + float3.size
+        vertexDescriptor.attributes[4].offset = float3.size + float3.size + float3.size + float3.size
         
         vertexDescriptor.layouts[0].stride = Vertex.stride
         

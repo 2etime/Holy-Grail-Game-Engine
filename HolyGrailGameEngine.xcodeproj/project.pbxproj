@@ -63,6 +63,8 @@
 		C6441F0A22B7FDF400CAA3FE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0322B7FDF400CAA3FE /* README.md */; };
 		C6441F0B22B7FDF400CAA3FE /* sand_basecolor.png in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0422B7FDF400CAA3FE /* sand_basecolor.png */; };
 		C6441F0C22B7FDF400CAA3FE /* sand_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0522B7FDF400CAA3FE /* sand_preview.png */; };
+		C68D076322BC6812006B6583 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D076222BC6812006B6583 /* Quad.swift */; };
+		C68D076522BC6836006B6583 /* QuadScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D076422BC6836006B6583 /* QuadScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +148,8 @@
 		C6441F0322B7FDF400CAA3FE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C6441F0422B7FDF400CAA3FE /* sand_basecolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand_basecolor.png; sourceTree = "<group>"; };
 		C6441F0522B7FDF400CAA3FE /* sand_preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand_preview.png; sourceTree = "<group>"; };
+		C68D076222BC6812006B6583 /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
+		C68D076422BC6836006B6583 /* QuadScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				C60A11EC22B2B49A00B3F509 /* SandboxScene.swift */,
+				C68D076422BC6836006B6583 /* QuadScene.swift */,
 			);
 			path = game_scenes;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				C60A11EE22B2B4A500B3F509 /* Triangle.swift */,
 				C6441ED322B7126700CAA3FE /* Cruiser.swift */,
 				C6441EFC22B7FD6C00CAA3FE /* Sphere.swift */,
+				C68D076222BC6812006B6583 /* Quad.swift */,
 			);
 			path = game_objects;
 			sourceTree = "<group>";
@@ -626,7 +632,9 @@
 				C6441EBC22B675DD00CAA3FE /* GameCamera.swift in Sources */,
 				C60A11ED22B2B49A00B3F509 /* SandboxScene.swift in Sources */,
 				C6441EE422B7F4F400CAA3FE /* LightManager.swift in Sources */,
+				C68D076522BC6836006B6583 /* QuadScene.swift in Sources */,
 				C6441EDB22B712EE00CAA3FE /* Keyboard.swift in Sources */,
+				C68D076322BC6812006B6583 /* Quad.swift in Sources */,
 				C6441EFD22B7FD6C00CAA3FE /* Sphere.swift in Sources */,
 				C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */,
 				C6441ED422B7126700CAA3FE /* Cruiser.swift in Sources */,

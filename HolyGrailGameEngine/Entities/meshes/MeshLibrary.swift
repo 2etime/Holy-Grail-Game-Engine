@@ -11,6 +11,8 @@ import Metal
 enum MeshTypes {
     case None
     case Triangle
+    case Quad
+    
     case Cruiser
     case Sphere
 }
@@ -23,6 +25,8 @@ class MeshLibrary: Library<MeshTypes, Mesh> {
         _library.updateValue(NoMesh(), forKey: .None)
         
         _library.updateValue(Triangle_CustomMesh(), forKey: .Triangle)
+        _library.updateValue(Quad_CustomMesh(), forKey: .Quad)
+        
         _library.updateValue(ModelMesh(modelName: "cruiser"), forKey: .Cruiser)
         _library.updateValue(ModelMesh(modelName: "sphere"), forKey: .Sphere)
     }
