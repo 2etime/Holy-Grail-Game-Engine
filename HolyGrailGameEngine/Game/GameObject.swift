@@ -60,7 +60,6 @@ class GameObject: GameNode {
     }
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-//        renderCommandEncoder.setTriangleFillMode(.lines)
         if(_useTessellation){
             renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.QuadTessellation])
             renderCommandEncoder.setTessellationFactorBuffer(_tessellationFactorsBuffer, offset: 0, instanceStride: 0)

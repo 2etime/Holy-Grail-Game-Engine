@@ -15,6 +15,8 @@ enum MeshTypes {
     
     case Cruiser
     case Sphere
+    
+    case Quad_Tessellated
 }
 
 class MeshLibrary: Library<MeshTypes, Mesh> {
@@ -29,6 +31,8 @@ class MeshLibrary: Library<MeshTypes, Mesh> {
         
         _library.updateValue(ModelMesh(modelName: "cruiser"), forKey: .Cruiser)
         _library.updateValue(ModelMesh(modelName: "sphere"), forKey: .Sphere)
+        
+        _library.updateValue(QuadTessellated_CustomMesh(), forKey: .Quad_Tessellated)
     }
     
     override subscript(_ type: MeshTypes)->Mesh {
@@ -44,6 +48,7 @@ class NoMesh: Mesh {
 }
 
 protocol Mesh {
+    func setInstanceCount(_ count: Int)
     func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder)
     func drawPatches(_ renderCommandEncoder: MTLRenderCommandEncoder)
 }

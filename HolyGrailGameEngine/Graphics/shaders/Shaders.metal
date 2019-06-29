@@ -142,8 +142,8 @@ vertex RasterizerData quad_tessellation_vertex_shader(PatchIn patchIn [[stage_in
     float height = heightTexture.sample(heightSampler, texCoords).r;
 
     // Linear interpolation.
-    float2 const upper_middle_position = mix(patchIn.controlPoints[0].position.xy, patchIn.controlPoints[1].position.xy, u);
-    float2 const lower_middle_position = mix(patchIn.controlPoints[2].position.xy, patchIn.controlPoints[3].position.xy, 1-u);
+//    float2 const upper_middle_position = mix(patchIn.controlPoints[0].position.xy, patchIn.controlPoints[1].position.xy, u);
+//    float2 const lower_middle_position = mix(patchIn.controlPoints[2].position.xy, patchIn.controlPoints[3].position.xy, 1-u);
 
     RasterizerData rd;
     

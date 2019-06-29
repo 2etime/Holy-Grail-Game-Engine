@@ -22,6 +22,7 @@ class QuadScene: GameScene {
         addLight(light)
         
         quad.setMaterialColor(float4(0.0, 0.5, 0.0, 1.0))
+        quad.setScale(10)
         quad.rotateX(Float(90).toRadians)
         quad.setUseTessellation(true)
         addGameObject(quad)

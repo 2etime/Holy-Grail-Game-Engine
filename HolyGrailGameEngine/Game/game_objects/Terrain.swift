@@ -6,8 +6,8 @@
 //  Copyright © 2019 Rick Twohy Jr. All rights reserved.
 //
 
-class Quad: GameObject {
+class Terrain: GameObject {
     init() {
-        super.init(name: "Quad", meshType: .Quad)
+        super.init(name: "Terrain", meshType: .Quad_Tessellated)
     }
 }

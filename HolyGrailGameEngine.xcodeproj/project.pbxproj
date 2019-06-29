@@ -31,6 +31,7 @@
 		C60A11F822B3B59D00B3F509 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11F722B3B59D00B3F509 /* Library.swift */; };
 		C60A11FA22B3B9BD00B3F509 /* CustomMeshes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11F922B3B9BD00B3F509 /* CustomMeshes.swift */; };
 		C60A11FC22B3BAE700B3F509 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11FB22B3BAE700B3F509 /* Entities.swift */; };
+		C642C1AE22C7027F009493D6 /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642C1AD22C7027F009493D6 /* Terrain.swift */; };
 		C6441EAF22B5CCD600CAA3FE /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EAE22B5CCD600CAA3FE /* Shader.swift */; };
 		C6441EB322B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */; };
 		C6441EB522B5D3CD00CAA3FE /* Graphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EB422B5D3CD00CAA3FE /* Graphics.swift */; };
@@ -63,8 +64,8 @@
 		C6441F0A22B7FDF400CAA3FE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0322B7FDF400CAA3FE /* README.md */; };
 		C6441F0B22B7FDF400CAA3FE /* sand_basecolor.png in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0422B7FDF400CAA3FE /* sand_basecolor.png */; };
 		C6441F0C22B7FDF400CAA3FE /* sand_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0522B7FDF400CAA3FE /* sand_preview.png */; };
-		C68D076322BC6812006B6583 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D076222BC6812006B6583 /* Quad.swift */; };
-		C68D076522BC6836006B6583 /* QuadScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D076422BC6836006B6583 /* QuadScene.swift */; };
+		C68D076322BC6812006B6583 /* Quad_Tessellated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D076222BC6812006B6583 /* Quad_Tessellated.swift */; };
+		C68D076522BC6836006B6583 /* TessellationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D076422BC6836006B6583 /* TessellationScene.swift */; };
 		C6AAEA9722BC79A600DF7AC0 /* ComputePipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AAEA9622BC79A600DF7AC0 /* ComputePipelineStateLibrary.swift */; };
 		C6AAEA9922BC7CE500DF7AC0 /* Computable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AAEA9822BC7CE500DF7AC0 /* Computable.swift */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,7 @@
 		C60A11F722B3B59D00B3F509 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		C60A11F922B3B9BD00B3F509 /* CustomMeshes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMeshes.swift; sourceTree = "<group>"; };
 		C60A11FB22B3BAE700B3F509 /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		C642C1AD22C7027F009493D6 /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
 		C6441EAE22B5CCD600CAA3FE /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
 		C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPipelineStateLibrary.swift; sourceTree = "<group>"; };
 		C6441EB422B5D3CD00CAA3FE /* Graphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graphics.swift; sourceTree = "<group>"; };
@@ -150,8 +152,8 @@
 		C6441F0322B7FDF400CAA3FE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C6441F0422B7FDF400CAA3FE /* sand_basecolor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand_basecolor.png; sourceTree = "<group>"; };
 		C6441F0522B7FDF400CAA3FE /* sand_preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand_preview.png; sourceTree = "<group>"; };
-		C68D076222BC6812006B6583 /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
-		C68D076422BC6836006B6583 /* QuadScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadScene.swift; sourceTree = "<group>"; };
+		C68D076222BC6812006B6583 /* Quad_Tessellated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad_Tessellated.swift; sourceTree = "<group>"; };
+		C68D076422BC6836006B6583 /* TessellationScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TessellationScene.swift; sourceTree = "<group>"; };
 		C6AAEA9622BC79A600DF7AC0 /* ComputePipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputePipelineStateLibrary.swift; sourceTree = "<group>"; };
 		C6AAEA9822BC7CE500DF7AC0 /* Computable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computable.swift; sourceTree = "<group>"; };
 		C6B6552022C598B300F99990 /* HolyGrailFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HolyGrailFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/HolyGrailFramework-gukgdgkpxfdvwdbxhqgqgguleaed/Build/Products/Debug/HolyGrailFramework.framework"; sourceTree = "<group>"; };
@@ -327,7 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				C60A11EC22B2B49A00B3F509 /* SandboxScene.swift */,
-				C68D076422BC6836006B6583 /* QuadScene.swift */,
+				C68D076422BC6836006B6583 /* TessellationScene.swift */,
 			);
 			path = game_scenes;
 			sourceTree = "<group>";
@@ -338,7 +340,8 @@
 				C60A11EE22B2B4A500B3F509 /* Triangle.swift */,
 				C6441ED322B7126700CAA3FE /* Cruiser.swift */,
 				C6441EFC22B7FD6C00CAA3FE /* Sphere.swift */,
-				C68D076222BC6812006B6583 /* Quad.swift */,
+				C68D076222BC6812006B6583 /* Quad_Tessellated.swift */,
+				C642C1AD22C7027F009493D6 /* Terrain.swift */,
 			);
 			path = game_objects;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				C6441EE822B7F9C800CAA3FE /* Lamp.swift in Sources */,
 				C60A11DA22B2A68C00B3F509 /* MetalTypes.swift in Sources */,
 				C60A11F822B3B59D00B3F509 /* Library.swift in Sources */,
+				C642C1AE22C7027F009493D6 /* Terrain.swift in Sources */,
 				C60A11DD22B2B03A00B3F509 /* math.swift in Sources */,
 				C6441EC222B67D5A00CAA3FE /* SceneManager.swift in Sources */,
 				C6441EE622B7F89000CAA3FE /* GameLightObject.swift in Sources */,
@@ -650,9 +654,9 @@
 				C60A11ED22B2B49A00B3F509 /* SandboxScene.swift in Sources */,
 				C6441EE422B7F4F400CAA3FE /* LightManager.swift in Sources */,
 				C6AAEA9722BC79A600DF7AC0 /* ComputePipelineStateLibrary.swift in Sources */,
-				C68D076522BC6836006B6583 /* QuadScene.swift in Sources */,
+				C68D076522BC6836006B6583 /* TessellationScene.swift in Sources */,
 				C6441EDB22B712EE00CAA3FE /* Keyboard.swift in Sources */,
-				C68D076322BC6812006B6583 /* Quad.swift in Sources */,
+				C68D076322BC6812006B6583 /* Quad_Tessellated.swift in Sources */,
 				C6441EFD22B7FD6C00CAA3FE /* Sphere.swift in Sources */,
 				C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */,
 				C6441ED422B7126700CAA3FE /* Cruiser.swift in Sources */,
