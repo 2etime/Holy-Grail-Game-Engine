@@ -18,6 +18,7 @@ enum TextureTypes{
     case Sand_Specular
     case Sand_Ambient
     case Sand_Height
+    case Sand_Height_Inverted
 }
 
 class TextureLibrary: Library<TextureTypes, MTLTexture> {
@@ -32,6 +33,7 @@ class TextureLibrary: Library<TextureTypes, MTLTexture> {
         library.updateValue(Texture("sand_glossiness", origin: .bottomLeft), forKey: .Sand_Specular)
         library.updateValue(Texture("sand_ambient_occlusion", origin: .bottomLeft), forKey: .Sand_Ambient)
         library.updateValue(Texture("sand_height", origin: .bottomLeft), forKey: .Sand_Height)
+        library.updateValue(Texture("sand_height", origin: .topLeft), forKey: .Sand_Height_Inverted)
     }
     
     override subscript(_ type: TextureTypes) -> MTLTexture? {

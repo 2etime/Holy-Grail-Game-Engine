@@ -34,6 +34,8 @@ class SceneManager {
 
         self._currentScene.updateCameras()
         
+        self._currentScene.doComputePass()
+        
         self._currentScene.update()
     }
     

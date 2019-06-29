@@ -92,7 +92,7 @@ class ModelMesh: Mesh {
         self._instanceCount = count
     }
     
-    func draw(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+    func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
         guard let meshes = self._meshes as? [MTKMesh] else { return }
         for mesh in meshes {
             for vertexBuffer in mesh.vertexBuffers {
@@ -108,4 +108,6 @@ class ModelMesh: Mesh {
             }
         }
     }
+    
+    func drawPatches(_ renderCommandEncoder: MTLRenderCommandEncoder) { }
 }

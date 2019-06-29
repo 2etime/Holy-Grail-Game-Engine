@@ -28,6 +28,7 @@ class MainView: MTKView {
         self.sampleCount = EngineSettings.SampleCount
         
         self.delegate = _renderer
+
     }
     
 }

@@ -8,6 +8,9 @@
 
 class Graphics {
     
+    private static var _computePipelineStateLibrary: ComputePipelineStateLibrary!
+    public static var ComputePipelineStates: ComputePipelineStateLibrary { return self._computePipelineStateLibrary }
+    
     private static var _renderPipelineStateLibrary: RenderPipelineStateLibrary!
     public static var RenderPipelineStates: RenderPipelineStateLibrary { return self._renderPipelineStateLibrary }
     
@@ -18,6 +21,7 @@ class Graphics {
     public static var DepthStencilStates: DepthStencilStateLibrary { return _depthStencilStateLibrary }
     
     public static func Initialize() {
+        self._computePipelineStateLibrary = ComputePipelineStateLibrary()
         self._samplerStateLibrary = SamplerStateLibrary()
         self._depthStencilStateLibrary = DepthStencilStateLibrary()
         self._renderPipelineStateLibrary = RenderPipelineStateLibrary()

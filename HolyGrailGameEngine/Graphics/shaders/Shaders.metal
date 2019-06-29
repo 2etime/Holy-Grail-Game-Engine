@@ -38,7 +38,7 @@ fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]],
                                texture2d<float> normalsTexture [[ texture(1) ]],
                                texture2d<float> specularTexture [[ texture(2) ]],
                                texture2d<float> ambientTexture [[ texture(3) ]]) {
-    float2 texCoord = rd.textureCoordinate;
+    float2 texCoord = rd.textureCoordinate * 20;
     
     float4 color;
     if(material.useBaseTexture){
@@ -111,3 +111,80 @@ fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]],
 }
 
 
+
+struct PatchIn {
+    patch_control_point<Vertex> controlPoints;
+};
+
+constexpr sampler heightSampler(compare_func::less, address::clamp_to_zero);
+
+[[patch(quad, 16)]]
+vertex RasterizerData quad_tessellation_vertex_shader(PatchIn patchIn [[stage_in]],
+                                                      constant SceneConstants &sceneConstants [[ buffer(1) ]],
+                                                      constant ModelConstants &modelConstants [[ buffer(2) ]],
+                                                      texture2d<float> heightTexture [[ texture(0) ]],
+                                                      float2 patch_coord [[ position_in_patch ]]) {
+    // Parameter coordinates.
+    float const u = patch_coord.x;
+    float const v = patch_coord.y;
+    
+    float3 position =
+    ((1 - u) * (1 - v) * patchIn.controlPoints[12].position +
+     u * (1 - v) * patchIn.controlPoints[0].position +
+     u * v * patchIn.controlPoints[3].position +
+     (1 - u) * v * patchIn.controlPoints[15].position);
+    
+    
+    float2 const upper_middle_textureCoordinates = mix(patchIn.controlPoints[0].textureCoordinate, patchIn.controlPoints[1].textureCoordinate, u);
+    float2 const lower_middle_textureCoordinates = mix(patchIn.controlPoints[0].textureCoordinate, patchIn.controlPoints[1].textureCoordinate, 1-u);
+    
+    float2 texCoords = mix(upper_middle_textureCoordinates, lower_middle_textureCoordinates, v);
+    float height = heightTexture.sample(heightSampler, texCoords).r;
+
+    // Linear interpolation.
+    float2 const upper_middle_position = mix(patchIn.controlPoints[0].position.xy, patchIn.controlPoints[1].position.xy, u);
+    float2 const lower_middle_position = mix(patchIn.controlPoints[2].position.xy, patchIn.controlPoints[3].position.xy, 1-u);
+
+    RasterizerData rd;
+    
+//    float2 uv = mix(upper_middle_position, lower_middle_position, v);
+//    float4 position = float4(uv.x, uv.y, height * 2, 1.0);
+    
+    position.y = height;
+    
+    float4x4 modelViewMatrix = sceneConstants.viewMatrix * modelConstants.modelMatrix;
+    float4 worldPosition = modelConstants.modelMatrix * float4(position, 1.0);
+    rd.position = sceneConstants.projectionMatrix * sceneConstants.viewMatrix * worldPosition;
+    rd.worldPosition = worldPosition.xyz;
+    rd.toCameraVector = (sceneConstants.inverseViewMatrix * float4(0,0,0,1)).xyz - worldPosition.xyz;
+    rd.textureCoordinate = float2(u,v);
+    
+    float3 normal = float3(0,0,1);
+    
+    float3 tangent = float3(0,1,0);
+    float3 bitangent = float3(1,0,0);
+    rd.surfaceNormal = (modelViewMatrix * float4(normal, 0.0)).xyz;
+    rd.surfaceTangent = normalize(modelViewMatrix * float4(tangent, 1.0)).xyz;
+    rd.surfaceBitangent = normalize(modelViewMatrix * float4(bitangent, 1.0)).xyz;
+    
+    return rd;
+}
+
+kernel void quad_tessellation(constant float &edgeFactor [[ buffer(0) ]],
+                              constant float &insideFactor [[ buffer(1) ]],
+                              device MTLQuadTessellationFactorsHalf *factors [[ buffer(2) ]],
+                              uint tpig [[ thread_position_in_grid ]]) {
+    
+    const int AB = 2;
+    const int BC = 3;
+    const int CD = 0;
+    const int DA = 1;
+    
+    factors[tpig].edgeTessellationFactor[AB] = edgeFactor;
+    factors[tpig].edgeTessellationFactor[BC] = edgeFactor;
+    factors[tpig].edgeTessellationFactor[CD] = edgeFactor;
+    factors[tpig].edgeTessellationFactor[DA] = edgeFactor;
+    
+    factors[tpig].insideTessellationFactor[0] = insideFactor;
+    factors[tpig].insideTessellationFactor[1] = insideFactor;
+}

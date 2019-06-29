@@ -17,10 +17,21 @@ class GameObject: GameNode {
     private var _normalTextureType: TextureTypes! = .None
     private var _specularTextureType: TextureTypes! = .None
     private var _ambientTextureType: TextureTypes! = .None
+    private var _heightTextureType: TextureTypes! = .None
+    private var _useTessellation: Bool = false
+    private var _tessellationFactorsBuffer: MTLBuffer!
+    var edgeFactor: Float = 1.0
+    var insideFactor: Float = 1.0
  
     init(name: String, meshType: MeshTypes) {
         super.init(name: name)
         self._mesh = Entities.Meshes[meshType]
+        createTesselationFactorsBuffer()
+    }
+    
+    private func createTesselationFactorsBuffer() {
+        _tessellationFactorsBuffer = Engine.Device.makeBuffer(length: 256, options: [MTLResourceOptions.storageModeManaged])
+        _tessellationFactorsBuffer.label = "Tessellation Factors"
     }
     
     override func update() {
@@ -32,15 +43,39 @@ class GameObject: GameNode {
         self._modelConstants.modelMatrix = self.modelMatrix
     }
     
+    private func getTesselationFactors() {
+
+        let commandBuffer = Engine.CommandQueue.makeCommandBuffer()
+        let computeCommandEncoder = commandBuffer?.makeComputeCommandEncoder()
+        computeCommandEncoder?.setComputePipelineState(Graphics.ComputePipelineStates[.QuadTessellation])
+
+        computeCommandEncoder?.setBytes(&edgeFactor, length: Float.size, index: 0)
+        computeCommandEncoder?.setBytes(&insideFactor, length: Float.size, index: 1)
+        computeCommandEncoder?.setBuffer(_tessellationFactorsBuffer, offset: 0, index: 2)
+        computeCommandEncoder?.dispatchThreadgroups(MTLSize(width: 1, height: 1, depth: 1), threadsPerThreadgroup: MTLSize(width: 1, height: 1, depth: 1))
+
+        computeCommandEncoder?.endEncoding()
+        commandBuffer?.commit()
+    
+    }
+    
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic])
+//        renderCommandEncoder.setTriangleFillMode(.lines)
+        if(_useTessellation){
+            renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.QuadTessellation])
+            renderCommandEncoder.setTessellationFactorBuffer(_tessellationFactorsBuffer, offset: 0, instanceStride: 0)
+        }else{
+            renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic])
+        }
         renderCommandEncoder.setDepthStencilState(Graphics.DepthStencilStates[.Less])
         
         renderCommandEncoder.setVertexBytes(&_modelConstants, length: ModelConstants.stride, index: 2)
         
         renderCommandEncoder.setFragmentBytes(&_materialConstants, length: MaterialConstants.stride, index: 0)
         renderCommandEncoder.setFragmentSamplerState(Graphics.SamplerStates[.Linear], index: 0)
-        
+        if(_materialConstants.useHeightMap) {
+            renderCommandEncoder.setVertexTexture(Entities.Textures[_heightTextureType], index: 0)
+        }
         if(_materialConstants.useBaseTexture) {
             renderCommandEncoder.setFragmentTexture(Entities.Textures[_baseTextureType], index: 0)
         }
@@ -53,18 +88,35 @@ class GameObject: GameNode {
         if(_materialConstants.useAmbientMap) {
             renderCommandEncoder.setFragmentTexture(Entities.Textures[_ambientTextureType], index: 3)
         }
-        
     }
 }
 
-extension GameObject: Renderable {
+extension GameObject: Renderable, Computable {
+    func doCompute() {
+        getTesselationFactors()
+    }
+    
     func doRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        renderCommandEncoder.setFrontFacing(.counterClockwise)
-        renderCommandEncoder.setCullMode(.back)
-        _mesh.draw(renderCommandEncoder)
+        renderCommandEncoder.setTriangleFillMode(.lines)
+        if(self._useTessellation) {
+            _mesh.drawPatches(renderCommandEncoder)
+        }else{
+            _mesh.drawRender(renderCommandEncoder)            
+        }
     }
 }
 
+extension GameObject {
+    public func setUseTessellation(_ useTessellation: Bool) { self._useTessellation = useTessellation }
+    
+    public func setEdgeFactor(_ edgeFactor: Float) { self.edgeFactor = edgeFactor }
+    public func addEdgeFactor(_ value: Float) { self.edgeFactor = min(max(edgeFactor + value, 1), 64) }
+    
+    public func setInsideFactor(_ insideFactor: Float) { self.insideFactor = insideFactor }
+    public func addInsideFactor(_ value: Float) { self.insideFactor = min(max(insideFactor + value, 1), 64) }
+}
+
+//MATERIALS
 extension GameObject {
     public func getMaterialColor()->float4 { return self._materialConstants.color }
     public func setMaterialColor(_ r: Float, _ g: Float, _ b: Float,_ a: Float) { self.setMaterialColor(float4(r,g,b,a)) }
@@ -93,6 +145,11 @@ extension GameObject {
     public func setAmbientMap(_ textureType: TextureTypes) {
         self._ambientTextureType = textureType
         self._materialConstants.useAmbientMap = textureType != .None
+    }
+    
+    public func setHeightMap(_ textureType: TextureTypes) {
+        self._heightTextureType = textureType
+        self._materialConstants.useHeightMap = textureType != .None
     }
     
     public func setMaterialIsLightable(_ isLightable: Bool) { self._materialConstants.isLightable = isLightable }

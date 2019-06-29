@@ -39,9 +39,11 @@ class MeshLibrary: Library<MeshTypes, Mesh> {
 
 class NoMesh: Mesh {
     func setInstanceCount(_ count: Int) { }
-    func draw(_ renderCommandEncoder: MTLRenderCommandEncoder) {}
+    func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {}
+    func drawPatches(_ renderCommandEncoder: MTLRenderCommandEncoder) {}
 }
 
 protocol Mesh {
-    func draw(_ renderCommandEncoder: MTLRenderCommandEncoder)
+    func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder)
+    func drawPatches(_ renderCommandEncoder: MTLRenderCommandEncoder)
 }

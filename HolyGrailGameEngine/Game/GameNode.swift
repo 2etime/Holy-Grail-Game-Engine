@@ -44,6 +44,15 @@ class GameNode {
     
     public func onUpdate() { } // Override with inheriting classes
     
+    func doComputePass() {
+        if let computable = self as? Computable {
+            computable.doCompute()
+        }
+        for child in _children {
+            child.doComputePass()
+        }
+    }
+    
     internal func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) { } // Override with inheriting classes
 
     public func render(_ renderCommandEncoder: MTLRenderCommandEncoder) {

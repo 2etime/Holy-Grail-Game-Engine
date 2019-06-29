@@ -58,7 +58,7 @@ class CustomMesh: Mesh {
         }
     }
     
-    func draw(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+    func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
         if(self._vertexCount > 0) {
             renderCommandEncoder.setVertexBuffer(self._vertexBuffer,
                                                  offset: 0,
@@ -76,6 +76,22 @@ class CustomMesh: Mesh {
             }
         }
     }
+    
+    func drawPatches(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+        let numPatchPoints = 16
+        renderCommandEncoder.setVertexBuffer(self._vertexBuffer,
+                                             offset: 0,
+                                             index: 0)
+        
+        renderCommandEncoder.drawPatches(numberOfPatchControlPoints: numPatchPoints,
+                                         patchStart: 0,
+                                         patchCount: _vertexCount, //For 6 sides, 2 triangles each
+            patchIndexBuffer: _indexBuffer,
+            patchIndexBufferOffset: 0,
+            instanceCount: 1,
+            baseInstance: 0)
+    }
+    
 }
 
 class Triangle_CustomMesh: CustomMesh {
@@ -89,23 +105,36 @@ class Triangle_CustomMesh: CustomMesh {
 }
 
 class Quad_CustomMesh: CustomMesh {
-    private var _scale: Float = 3
+    private var _scale: Float = 10
     override func createVertices() {
-        let rightVec = float3(1,0,0)
-        let normal = float3(0,0,1)
-        let tangent = cross(rightVec, normal)
-        let bitangent = cross(tangent, normal)
+//        let rightVec = float3(1,0,0)
+//        let normal = float3(0,0,1)
+//        let tangent = cross(rightVec, normal)
+//        let bitangent = cross(tangent, normal)
+//        
+//        addVertex(float3( _scale, _scale, 0), textureCoordinates: float2(0,0), normal: normal, tangent: tangent, bitangent: bitangent) // Top Right
+//        addVertex(float3(-_scale, _scale, 0), textureCoordinates: float2(0,0), normal: normal, tangent: tangent, bitangent: bitangent) // Top Left
+//        addVertex(float3(-_scale,-_scale, 0), textureCoordinates: float2(0,0), normal: normal, tangent: tangent, bitangent: bitangent) // Bottom Left
+//        addVertex(float3( _scale,-_scale, 0), textureCoordinates: float2(1,1), normal: normal, tangent: tangent, bitangent: bitangent) // Bottom Right
         
-        addVertex(float3( _scale, _scale, 0), textureCoordinates: float2(1,0), normal: normal, tangent: tangent, bitangent: bitangent) // Top Right
-        addVertex(float3(-_scale, _scale, 0), textureCoordinates: float2(0,0), normal: normal, tangent: tangent, bitangent: bitangent) // Top Left
-        addVertex(float3(-_scale,-_scale, 0), textureCoordinates: float2(0,1), normal: normal, tangent: tangent, bitangent: bitangent) // Bottom Left
-        addVertex(float3( _scale,-_scale, 0), textureCoordinates: float2(1,1), normal: normal, tangent: tangent, bitangent: bitangent) // Bottom Right
+        addVertex(float3(0.0,   0.0, 0.0) * _scale - (0.5 * _scale))
+        addVertex(float3(0.333, 0.0, 0.0) * _scale - (0.5 * _scale))
+        addVertex(float3(0.666, 0.0, 0.0) * _scale - (0.5 * _scale))
+        addVertex(float3(1.0,   0.0, 0.0) * _scale - (0.5 * _scale))
         
-        addIndices(
-            [
-                0, 1, 2,
-                0, 2, 3
-            ]
-        )
+        addVertex(float3(0.0,   0.0, 0.333) * _scale - (0.5 * _scale))
+        addVertex(float3(0.333, 0.0, 0.333) * _scale - (0.5 * _scale))
+        addVertex(float3(0.666, 0.0, 0.333) * _scale - (0.5 * _scale))
+        addVertex(float3(1.0,   0.0, 0.333) * _scale - (0.5 * _scale))
+
+        addVertex(float3(0.0,   0.0, 0.666) * _scale - (0.5 * _scale))
+        addVertex(float3(0.333, 0.0, 0.666) * _scale - (0.5 * _scale))
+        addVertex(float3(0.666, 0.0, 0.666) * _scale - (0.5 * _scale))
+        addVertex(float3(1.0,   0.0, 0.666) * _scale - (0.5 * _scale))
+
+        addVertex(float3(0.0,   0.0, 1.0) * _scale - (0.5 * _scale))
+        addVertex(float3(0.333, 0.0, 1.0) * _scale - (0.5 * _scale))
+        addVertex(float3(0.666, 0.0, 1.0) * _scale - (0.5 * _scale))
+        addVertex(float3(1.0,   0.0, 1.0) * _scale - (0.5 * _scale))
     }
 }

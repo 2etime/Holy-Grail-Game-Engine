@@ -65,6 +65,8 @@
 		C6441F0C22B7FDF400CAA3FE /* sand_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = C6441F0522B7FDF400CAA3FE /* sand_preview.png */; };
 		C68D076322BC6812006B6583 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D076222BC6812006B6583 /* Quad.swift */; };
 		C68D076522BC6836006B6583 /* QuadScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68D076422BC6836006B6583 /* QuadScene.swift */; };
+		C6AAEA9722BC79A600DF7AC0 /* ComputePipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AAEA9622BC79A600DF7AC0 /* ComputePipelineStateLibrary.swift */; };
+		C6AAEA9922BC7CE500DF7AC0 /* Computable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AAEA9822BC7CE500DF7AC0 /* Computable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +152,9 @@
 		C6441F0522B7FDF400CAA3FE /* sand_preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sand_preview.png; sourceTree = "<group>"; };
 		C68D076222BC6812006B6583 /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
 		C68D076422BC6836006B6583 /* QuadScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuadScene.swift; sourceTree = "<group>"; };
+		C6AAEA9622BC79A600DF7AC0 /* ComputePipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputePipelineStateLibrary.swift; sourceTree = "<group>"; };
+		C6AAEA9822BC7CE500DF7AC0 /* Computable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computable.swift; sourceTree = "<group>"; };
+		C6B6552022C598B300F99990 /* HolyGrailFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HolyGrailFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/HolyGrailFramework-gukgdgkpxfdvwdbxhqgqgguleaed/Build/Products/Debug/HolyGrailFramework.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +189,7 @@
 				C60A11B022B257A200B3F509 /* HolyGrailGameEngineTests */,
 				C60A11BB22B257A200B3F509 /* HolyGrailGameEngineUITests */,
 				C60A119922B257A200B3F509 /* Products */,
+				C6B6551F22C598B300F99990 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -312,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				C60A11E422B2B2DB00B3F509 /* Renderable.swift */,
+				C6AAEA9822BC7CE500DF7AC0 /* Computable.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -371,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */,
+				C6AAEA9622BC79A600DF7AC0 /* ComputePipelineStateLibrary.swift */,
 				C6441EDF22B7321A00CAA3FE /* SamperStateLibrary.swift */,
 				C6441EE122B7327700CAA3FE /* DepthStencilStateLibrary.swift */,
 			);
@@ -454,6 +462,14 @@
 				C6441F0522B7FDF400CAA3FE /* sand_preview.png */,
 			);
 			path = "sand textures";
+			sourceTree = "<group>";
+		};
+		C6B6551F22C598B300F99990 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6B6552022C598B300F99990 /* HolyGrailFramework.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -606,6 +622,7 @@
 				C6441EC622B68AB900CAA3FE /* BufferManager.swift in Sources */,
 				C60A11D622B2A4C900B3F509 /* Shaders.metal in Sources */,
 				C6441EDA22B712EE00CAA3FE /* Mouse.swift in Sources */,
+				C6AAEA9922BC7CE500DF7AC0 /* Computable.swift in Sources */,
 				C6441ECA22B710FD00CAA3FE /* ModelMeshes.swift in Sources */,
 				C6441EB322B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift in Sources */,
 				C60A11E522B2B2DB00B3F509 /* Renderable.swift in Sources */,
@@ -632,6 +649,7 @@
 				C6441EBC22B675DD00CAA3FE /* GameCamera.swift in Sources */,
 				C60A11ED22B2B49A00B3F509 /* SandboxScene.swift in Sources */,
 				C6441EE422B7F4F400CAA3FE /* LightManager.swift in Sources */,
+				C6AAEA9722BC79A600DF7AC0 /* ComputePipelineStateLibrary.swift in Sources */,
 				C68D076522BC6836006B6583 /* QuadScene.swift in Sources */,
 				C6441EDB22B712EE00CAA3FE /* Keyboard.swift in Sources */,
 				C68D076322BC6812006B6583 /* Quad.swift in Sources */,
