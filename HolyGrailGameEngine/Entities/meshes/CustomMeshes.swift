@@ -88,3 +88,15 @@ class Triangle_CustomMesh: CustomMesh {
         addIndices([0,1,2])
     }
 }
+
+class Quad_CustomMesh: CustomMesh {
+    override func createVertices() {
+        addVertex(float3( 1, 1,0), textureCoordinates: float2(1,0)) //Top Right
+        addVertex(float3(-1, 1,0), textureCoordinates: float2(0,0)) //Top Left
+        addVertex(float3(-1,-1,0), textureCoordinates: float2(0,1)) //Bottom Left
+        
+        addVertex(float3( 1, 1,0), textureCoordinates: float2(1,0)) //Top Right
+        addVertex(float3(-1,-1,0), textureCoordinates: float2(0,1)) //Bottom Left
+        addVertex(float3( 1,-1,0), textureCoordinates: float2(1,1)) //Bottom Right
+    }
+}

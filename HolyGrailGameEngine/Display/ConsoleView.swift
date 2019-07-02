@@ -61,7 +61,7 @@ class ConsoleView: MTKView {
         label_lightDiffuseIntensity.stringValue = getString(Console.LightDiffuseIntensity)
         label_lightSpecularIntensity.stringValue = getString(Console.LightSpecularItensity)
         
-        color_lightColor.color = NSColor(calibratedRed: 1, green: 1, blue: 1, alpha: 1)
+//        color_lightColor.color = NSColor(calibratedRed: 1, green: 1, blue: 1, alpha: 1)
         
         color_materialAmbient.color = NSColor(calibratedRed: CGFloat(Console.MaterialAmbient.x),
                                               green: CGFloat(Console.MaterialAmbient.y),

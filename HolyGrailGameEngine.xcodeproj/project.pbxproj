@@ -31,6 +31,13 @@
 		C60A11F822B3B59D00B3F509 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11F722B3B59D00B3F509 /* Library.swift */; };
 		C60A11FA22B3B9BD00B3F509 /* CustomMeshes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11F922B3B9BD00B3F509 /* CustomMeshes.swift */; };
 		C60A11FC22B3BAE700B3F509 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11FB22B3BAE700B3F509 /* Entities.swift */; };
+		C642C1C722C8FB6E009493D6 /* pikachu.obj in Resources */ = {isa = PBXBuildFile; fileRef = C642C1C622C8FB6E009493D6 /* pikachu.obj */; };
+		C642C1C922C8FBC1009493D6 /* Pikachu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642C1C822C8FBC1009493D6 /* Pikachu.swift */; };
+		C642C1CD22C8FDB2009493D6 /* Rocket_Ship_Diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = C642C1CB22C8FDB2009493D6 /* Rocket_Ship_Diffuse.png */; };
+		C642C1CE22C8FDB2009493D6 /* Rocket_Ship.obj in Resources */ = {isa = PBXBuildFile; fileRef = C642C1CC22C8FDB2009493D6 /* Rocket_Ship.obj */; };
+		C642C1D022C8FE0A009493D6 /* RocketShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642C1CF22C8FE0A009493D6 /* RocketShip.swift */; };
+		C642C1D222C90141009493D6 /* 2k_sun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C642C1D122C90141009493D6 /* 2k_sun.jpg */; };
+		C642C1D422C901FA009493D6 /* Quad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642C1D322C901FA009493D6 /* Quad.swift */; };
 		C6441EAF22B5CCD600CAA3FE /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EAE22B5CCD600CAA3FE /* Shader.swift */; };
 		C6441EB322B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */; };
 		C6441EB522B5D3CD00CAA3FE /* Graphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EB422B5D3CD00CAA3FE /* Graphics.swift */; };
@@ -115,6 +122,13 @@
 		C60A11F722B3B59D00B3F509 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		C60A11F922B3B9BD00B3F509 /* CustomMeshes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMeshes.swift; sourceTree = "<group>"; };
 		C60A11FB22B3BAE700B3F509 /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		C642C1C622C8FB6E009493D6 /* pikachu.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pikachu.obj; sourceTree = "<group>"; };
+		C642C1C822C8FBC1009493D6 /* Pikachu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pikachu.swift; sourceTree = "<group>"; };
+		C642C1CB22C8FDB2009493D6 /* Rocket_Ship_Diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rocket_Ship_Diffuse.png; sourceTree = "<group>"; };
+		C642C1CC22C8FDB2009493D6 /* Rocket_Ship.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rocket_Ship.obj; sourceTree = "<group>"; };
+		C642C1CF22C8FE0A009493D6 /* RocketShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketShip.swift; sourceTree = "<group>"; };
+		C642C1D122C90141009493D6 /* 2k_sun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2k_sun.jpg; sourceTree = "<group>"; };
+		C642C1D322C901FA009493D6 /* Quad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quad.swift; sourceTree = "<group>"; };
 		C6441EAE22B5CCD600CAA3FE /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
 		C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPipelineStateLibrary.swift; sourceTree = "<group>"; };
 		C6441EB422B5D3CD00CAA3FE /* Graphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graphics.swift; sourceTree = "<group>"; };
@@ -329,6 +343,9 @@
 				C60A11EE22B2B4A500B3F509 /* Triangle.swift */,
 				C6441ED322B7126700CAA3FE /* Cruiser.swift */,
 				C6441EFC22B7FD6C00CAA3FE /* Sphere.swift */,
+				C642C1C822C8FBC1009493D6 /* Pikachu.swift */,
+				C642C1CF22C8FE0A009493D6 /* RocketShip.swift */,
+				C642C1D322C901FA009493D6 /* Quad.swift */,
 			);
 			path = game_objects;
 			sourceTree = "<group>";
@@ -364,6 +381,15 @@
 			path = types;
 			sourceTree = "<group>";
 		};
+		C642C1CA22C8FDB2009493D6 /* RocketShip */ = {
+			isa = PBXGroup;
+			children = (
+				C642C1CB22C8FDB2009493D6 /* Rocket_Ship_Diffuse.png */,
+				C642C1CC22C8FDB2009493D6 /* Rocket_Ship.obj */,
+			);
+			path = RocketShip;
+			sourceTree = "<group>";
+		};
 		C6441EAD22B5CC3D00CAA3FE /* libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +422,9 @@
 		C6441ECB22B7122100CAA3FE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C642C1D122C90141009493D6 /* 2k_sun.jpg */,
+				C642C1CA22C8FDB2009493D6 /* RocketShip */,
+				C642C1C622C8FB6E009493D6 /* pikachu.obj */,
 				C6441EEB22B7FAF200CAA3FE /* sphere.obj */,
 				C6441EFE22B7FDF400CAA3FE /* sand textures */,
 				C6441ECC22B7122B00CAA3FE /* cruiser */,
@@ -560,6 +589,10 @@
 				C60A11A322B257A200B3F509 /* Assets.xcassets in Resources */,
 				C6441ED122B7124900CAA3FE /* cruiser.obj in Resources */,
 				C6441F0822B7FDF400CAA3FE /* sand_height.png in Resources */,
+				C642C1CE22C8FDB2009493D6 /* Rocket_Ship.obj in Resources */,
+				C642C1D222C90141009493D6 /* 2k_sun.jpg in Resources */,
+				C642C1C722C8FB6E009493D6 /* pikachu.obj in Resources */,
+				C642C1CD22C8FDB2009493D6 /* Rocket_Ship_Diffuse.png in Resources */,
 				C6441F0C22B7FDF400CAA3FE /* sand_preview.png in Resources */,
 				C6441F0622B7FDF400CAA3FE /* sand_ambient_occlusion.png in Resources */,
 				C6441F0B22B7FDF400CAA3FE /* sand_basecolor.png in Resources */,
@@ -608,6 +641,7 @@
 				C6441EB322B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift in Sources */,
 				C60A11E522B2B2DB00B3F509 /* Renderable.swift in Sources */,
 				C60A11E722B2B32E00B3F509 /* GameScene.swift in Sources */,
+				C642C1C922C8FBC1009493D6 /* Pikachu.swift in Sources */,
 				C6441EBF22B6767800CAA3FE /* DebugCamera.swift in Sources */,
 				C60A11A122B257A200B3F509 /* HolyGrailGameEngine.xcdatamodeld in Sources */,
 				C6441EE822B7F9C800CAA3FE /* Lamp.swift in Sources */,
@@ -624,6 +658,7 @@
 				C6441EB522B5D3CD00CAA3FE /* Graphics.swift in Sources */,
 				C60A11E922B2B45200B3F509 /* GameObject.swift in Sources */,
 				C60A11CD22B2597F00B3F509 /* Renderer.swift in Sources */,
+				C642C1D022C8FE0A009493D6 /* RocketShip.swift in Sources */,
 				C60A119E22B257A200B3F509 /* MainView.swift in Sources */,
 				C6441EC422B67F2000CAA3FE /* CameraManager.swift in Sources */,
 				C60A119C22B257A200B3F509 /* AppDelegate.swift in Sources */,
@@ -634,6 +669,7 @@
 				C6441EFD22B7FD6C00CAA3FE /* Sphere.swift in Sources */,
 				C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */,
 				C6441ED422B7126700CAA3FE /* Cruiser.swift in Sources */,
+				C642C1D422C901FA009493D6 /* Quad.swift in Sources */,
 				C60A11EF22B2B4A500B3F509 /* Triangle.swift in Sources */,
 				C6441EE222B7327700CAA3FE /* DepthStencilStateLibrary.swift in Sources */,
 			);

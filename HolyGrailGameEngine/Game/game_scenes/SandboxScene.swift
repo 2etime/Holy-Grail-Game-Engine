@@ -9,7 +9,7 @@
 import MetalKit
 
 class SandboxScene: GameScene {
-    let sphere = Sphere()
+    let sphere = RocketShip()
     let debugCamera = DebugCamera()
     var lampRight = Lamp()
     var lampMiddle = Lamp()
@@ -18,42 +18,17 @@ class SandboxScene: GameScene {
         debugCamera.setPosition(0,1,6)
         addCamera(debugCamera)
         
-        let midColor = float3(1,1,1)
-        lampMiddle.setPosition(0, 2, 2)
-        lampMiddle.setLightColor(midColor)
-        lampMiddle.setMaterialColor(midColor.x, midColor.y, midColor.z, 1.0)
-        lampMiddle.setMaterialIsLightable(false)
-        lampMiddle.setLightAmbientIntensity(1.0)
-        lampMiddle.setLightDiffuseIntensity(1.0)
-        lampMiddle.setLightSpecularIntensity(1.0)
-        addLight(lampMiddle)
-        
-        let rightColor = float3(1,0,0)
-        lampRight.setPosition(2, 2, 2)
-        lampRight.setLightColor(rightColor)
-        lampRight.setMaterialColor(rightColor.x, rightColor.y, rightColor.z, 1.0)
-        lampRight.setMaterialIsLightable(false)
-        lampRight.setLightAmbientIntensity(1.0)
-        lampRight.setLightDiffuseIntensity(1.0)
-        lampRight.setLightSpecularIntensity(1.0)
-        addLight(lampRight)
-        
-        let leftColor = float3(0,0,1)
-        lampLeft.setPosition(-2, 2, 2)
-        lampLeft.setLightColor(leftColor)
-        lampLeft.setMaterialColor(leftColor.x, leftColor.y, leftColor.z, 1.0)
-        lampLeft.setMaterialIsLightable(false)
-        lampLeft.setLightAmbientIntensity(1.0)
-        lampLeft.setLightDiffuseIntensity(1.0)
-        lampLeft.setLightSpecularIntensity(1.0)
-        addLight(lampLeft)
-        
         sphere.setMaterialAmbient(0.03)
         sphere.setMaterialDiffuse(0.8)
         sphere.setMaterialSpecular(1)
         sphere.setMaterialShininess(0.8 * 128)
         sphere.setMaterialSpecularMapIntensity(15)
         addGameObject(sphere)
+        
+        let background = Quad()
+//        background.setScale(10)
+//        background.moveZ(-10)
+        addGameObject(background)
     }
     
     
@@ -89,7 +64,7 @@ class SandboxScene: GameScene {
         }
     }
     
-    private func setUseBaseTexture(_ useIt: Bool) { sphere.setBaseTexture(useIt ? TextureTypes.Sand_Base : TextureTypes.None)}
+    private func setUseBaseTexture(_ useIt: Bool) { sphere.setBaseTexture(useIt ? TextureTypes.RocketShip : TextureTypes.None)}
     private func setUseAmbientMap(_ useIt: Bool) { sphere.setAmbientMap(useIt ? TextureTypes.Sand_Ambient : TextureTypes.None)}
     private func setUseNormalMap(_ useIt: Bool) { sphere.setNormalMap(useIt ? TextureTypes.Sand_Normal : TextureTypes.None)}
     private func setUseSpecularMap(_ useIt: Bool) { sphere.setSpecularMap(useIt ? TextureTypes.Sand_Specular : TextureTypes.None)}
@@ -105,15 +80,15 @@ class SandboxScene: GameScene {
     
     private func setLightIntensities(light: inout Lamp) {
         light.setLightBrightness(Console.LightBrightness)
-        light.setLightAmbientIntensity(Console.LightAmbientIntensity)
-        light.setLightDiffuseIntensity(Console.LightDiffuseIntensity)
-        light.setLightSpecularIntensity(Console.LightSpecularItensity)
+//        light.setLightAmbientIntensity(Console.LightAmbientIntensity)
+//        light.setLightDiffuseIntensity(Console.LightDiffuseIntensity)
+//        light.setLightSpecularIntensity(Console.LightSpecularItensity)
     }
     
     private func setLightColor(light: inout Lamp){
         let color = Console.LightColor
         light.setLightColor(color)
-        light.setMaterialColor(color.x, color.y, color.z, 1.0)
+//        light.setMaterialColor(color.x, color.y, color.z, 1.0)
     }
     
     override func onUpdate() {
@@ -159,6 +134,8 @@ class SandboxScene: GameScene {
             sphere.rotateX(Mouse.GetDY() * GameTime.DeltaTime)
             sphere.rotateY(Mouse.GetDX() * GameTime.DeltaTime)
         }
+        
+                                           
         
     }
 }
