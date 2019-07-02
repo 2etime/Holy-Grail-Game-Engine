@@ -124,34 +124,45 @@ class Quad_CustomMesh: CustomMesh {
         let tangent = cross(rightVec, normal)
         let bitangent = cross(tangent, normal)
 
-        addVertex(float3( 0.5, 0.5, 0)) // Top Right
+        addVertex(float3( 0.5, 0.5, 0), textureCoordinates: float2(1,0), normal: normal, tangent: tangent, bitangent: bitangent) // Top Right
         addVertex(float3(-0.5, 0.5, 0), textureCoordinates: float2(0,0), normal: normal, tangent: tangent, bitangent: bitangent) // Top Left
-        addVertex(float3(-0.5,-0.5, 0), textureCoordinates: float2(0,0), normal: normal, tangent: tangent, bitangent: bitangent) // Bottom Left
+        addVertex(float3(-0.5,-0.5, 0), textureCoordinates: float2(0,1), normal: normal, tangent: tangent, bitangent: bitangent) // Bottom Left
         addVertex(float3( 0.5,-0.5, 0), textureCoordinates: float2(1,1), normal: normal, tangent: tangent, bitangent: bitangent) // Bottom Right
+        
+        addIndices([
+            0,1,2,
+            0,2,3
+        ])
     }
 }
 
 class QuadTessellated_CustomMesh: CustomMesh {
+    
     override func createVertices() {
-        addVertex(float3(0.0,   0.0, 0.0) - 0.5)
-        addVertex(float3(0.333, 0.0, 0.0) - 0.5)
-        addVertex(float3(0.666, 0.0, 0.0) - 0.5)
-        addVertex(float3(1.0,   0.0, 0.0) - 0.5)
+        let rightVec = float3(1,0,0)
+        let normal = float3(0,1,0)
+        let tangent = cross(rightVec, normal)
+        let bitangent = cross(tangent, normal)
         
-        addVertex(float3(0.0,   0.0, 0.333) - 0.5)
-        addVertex(float3(0.333, 0.0, 0.333) - 0.5)
-        addVertex(float3(0.666, 0.0, 0.333) - 0.5)
-        addVertex(float3(1.0,   0.0, 0.333) - 0.5)
+        addVertex(float3(-0.5,   0.0,-0.5), textureCoordinates: float2(0,    0), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3(-0.167, 0.0,-0.5), textureCoordinates: float2(0.333,0), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3( 0.166, 0.0,-0.5), textureCoordinates: float2(0.666,0), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3( 0.5,   0.0,-0.5), textureCoordinates: float2(1.00, 0), normal: normal, tangent: tangent, bitangent: bitangent)
+     
+        addVertex(float3(-0.5,   0.0,-0.167), textureCoordinates: float2(0,    0.333), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3(-0.167, 0.0,-0.167), textureCoordinates: float2(0.333,0.333), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3( 0.166, 0.0,-0.167), textureCoordinates: float2(0.666,0.333), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3( 0.5,   0.0,-0.167), textureCoordinates: float2(1.00, 0.333), normal: normal, tangent: tangent, bitangent: bitangent)
 
-        addVertex(float3(0.0,   0.0, 0.666) - 0.5)
-        addVertex(float3(0.333, 0.0, 0.666) - 0.5)
-        addVertex(float3(0.666, 0.0, 0.666) - 0.5)
-        addVertex(float3(1.0,   0.0, 0.666) - 0.5)
+        addVertex(float3(-0.5,   0.0, 0.166), textureCoordinates:  float2(0,    0.666), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3(-0.167, 0.0, 0.166), textureCoordinates:  float2(0.333,0.666), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3( 0.166, 0.0, 0.166), textureCoordinates:  float2(0.666,0.666), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3( 0.5,   0.0, 0.166), textureCoordinates:  float2(1.00, 0.666), normal: normal, tangent: tangent, bitangent: bitangent)
 
-        addVertex(float3(0.0,   0.0, 1.0) - 0.5)
-        addVertex(float3(0.333, 0.0, 1.0) - 0.5)
-        addVertex(float3(0.666, 0.0, 1.0) - 0.5)
-        addVertex(float3(1.0,   0.0, 1.0) - 0.5)
+        addVertex(float3(-0.5,   0.0, 0.5), textureCoordinates: float2(0,    1.0), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3(-0.167, 0.0, 0.5), textureCoordinates: float2(0.333,1.0), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3( 0.166, 0.0, 0.5), textureCoordinates: float2(0.666,1.0), normal: normal, tangent: tangent, bitangent: bitangent)
+        addVertex(float3( 0.5,   0.0, 0.5), textureCoordinates: float2(1.00, 1.0), normal: normal, tangent: tangent, bitangent: bitangent)
         
         setPatchControlPointCount(16)
         setPatchCount(16)

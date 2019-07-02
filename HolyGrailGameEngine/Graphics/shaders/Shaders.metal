@@ -33,12 +33,13 @@ fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]],
                                constant MaterialConstants &material [[ buffer(0) ]],
                                constant int &lightCount [[ buffer(1) ]],
                                constant LightData *lightDatas [[ buffer(2) ]],
+                               constant float2 &textureTileCounts [[ buffer(3) ]],
                                sampler sampler2d [[ sampler(0) ]],
                                texture2d<float> baseTexture [[ texture(0) ]],
                                texture2d<float> normalsTexture [[ texture(1) ]],
                                texture2d<float> specularTexture [[ texture(2) ]],
                                texture2d<float> ambientTexture [[ texture(3) ]]) {
-    float2 texCoord = rd.textureCoordinate * 20;
+    float2 texCoord = rd.textureCoordinate * textureTileCounts;
     
     float4 color;
     if(material.useBaseTexture){
@@ -134,38 +135,34 @@ vertex RasterizerData quad_tessellation_vertex_shader(PatchIn patchIn [[stage_in
      u * v * patchIn.controlPoints[3].position +
      (1 - u) * v * patchIn.controlPoints[15].position);
     
+    float2 texCoords =
+    ((1 - u) * (1 - v) * patchIn.controlPoints[12].textureCoordinate +
+     u * (1 - v) * patchIn.controlPoints[0].textureCoordinate +
+     u * v * patchIn.controlPoints[3].textureCoordinate +
+     (1 - u) * v * patchIn.controlPoints[15].textureCoordinate);
     
-    float2 const upper_middle_textureCoordinates = mix(patchIn.controlPoints[0].textureCoordinate, patchIn.controlPoints[1].textureCoordinate, u);
-    float2 const lower_middle_textureCoordinates = mix(patchIn.controlPoints[0].textureCoordinate, patchIn.controlPoints[1].textureCoordinate, 1-u);
+    float3 normal =
+    ((1 - u) * (1 - v) * patchIn.controlPoints[12].normal +
+     u * (1 - v) * patchIn.controlPoints[0].normal +
+     u * v * patchIn.controlPoints[3].normal +
+     (1 - u) * v * patchIn.controlPoints[15].normal);
     
-    float2 texCoords = mix(upper_middle_textureCoordinates, lower_middle_textureCoordinates, v);
-    float height = heightTexture.sample(heightSampler, texCoords).r;
-
-    // Linear interpolation.
-//    float2 const upper_middle_position = mix(patchIn.controlPoints[0].position.xy, patchIn.controlPoints[1].position.xy, u);
-//    float2 const lower_middle_position = mix(patchIn.controlPoints[2].position.xy, patchIn.controlPoints[3].position.xy, 1-u);
-
     RasterizerData rd;
-    
-//    float2 uv = mix(upper_middle_position, lower_middle_position, v);
-//    float4 position = float4(uv.x, uv.y, height * 2, 1.0);
-    
-    position.y = height;
     
     float4x4 modelViewMatrix = sceneConstants.viewMatrix * modelConstants.modelMatrix;
     float4 worldPosition = modelConstants.modelMatrix * float4(position, 1.0);
     rd.position = sceneConstants.projectionMatrix * sceneConstants.viewMatrix * worldPosition;
     rd.worldPosition = worldPosition.xyz;
     rd.toCameraVector = (sceneConstants.inverseViewMatrix * float4(0,0,0,1)).xyz - worldPosition.xyz;
-    rd.textureCoordinate = float2(u,v);
+    rd.textureCoordinate = texCoords;
     
-    float3 normal = float3(0,0,1);
-    
-    float3 tangent = float3(0,1,0);
-    float3 bitangent = float3(1,0,0);
+    float3 rightVec = float3(1,0,0);
+    float3 tangent = cross(rightVec, normal);
+    float3 bitangent = cross(tangent, normal);
+
     rd.surfaceNormal = (modelViewMatrix * float4(normal, 0.0)).xyz;
-    rd.surfaceTangent = normalize(modelViewMatrix * float4(tangent, 1.0)).xyz;
-    rd.surfaceBitangent = normalize(modelViewMatrix * float4(bitangent, 1.0)).xyz;
+    rd.surfaceTangent = normalize(modelViewMatrix * float4(tangent, 0.0)).xyz;
+    rd.surfaceBitangent = normalize(modelViewMatrix * float4(bitangent, 0.0)).xyz;
     
     return rd;
 }

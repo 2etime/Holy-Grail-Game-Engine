@@ -8,6 +8,6 @@
 
 class Terrain: GameObject {
     init() {
-        super.init(name: "Terrain", meshType: .Quad_Tessellated)
+        super.init(name: "Terrain", meshType: .Quad_Tessellated, useTessellation: true)
     }
 }

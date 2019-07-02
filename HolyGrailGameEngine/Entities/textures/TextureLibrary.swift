@@ -10,6 +10,8 @@ import MetalKit
 
 enum TextureTypes{
     case None
+    case Test
+    
     case Cruiser_Base
     
     //Sand
@@ -25,6 +27,8 @@ class TextureLibrary: Library<TextureTypes, MTLTexture> {
     private var library: [TextureTypes : Texture] = [:]
     
     override func fillLibrary() {
+        library.updateValue(Texture("bird", origin: .topLeft), forKey: .Test)
+
         library.updateValue(Texture("cruiser", ext: "bmp", origin: .bottomLeft), forKey: .Cruiser_Base)
         
         // Sand

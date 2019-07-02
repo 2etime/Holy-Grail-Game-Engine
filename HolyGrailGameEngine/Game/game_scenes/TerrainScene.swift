@@ -8,30 +8,31 @@
 
 import MetalKit
 
-class QuadScene: GameScene {
-    let quad = Quad()
+class TerrainScene: GameScene {
+    let terrain = Terrain()
     let debugCamera = DebugCamera()
     let light = Lamp()
     override func buildScene() {
-        debugCamera.setPosition(0,0,15)
-//        debugCamera.setRotationX(0.4)
+        debugCamera.setPosition(0,0,2)
+        debugCamera.rotateX(0.2)
         addCamera(debugCamera)
         
-        light.setPosition(0, 100, 20)
+        light.setPosition(0, 0, 0)
         light.setLightBrightness(0.5)
         addLight(light)
         
-        quad.setMaterialColor(float4(0.0, 0.5, 0.0, 1.0))
-        quad.setScale(10)
-        quad.rotateX(Float(90).toRadians)
-        quad.setUseTessellation(true)
-        addGameObject(quad)
+        terrain.setMaterialColor(float4(0.0, 0.5, 0.0, 1.0))
+        terrain.setMaterialShininess(128)
+        terrain.setBaseTexture(.Test)
+        terrain.setNormalMap(.Sand_Normal)
+        terrain.setPosition(0,-0.5,0)
+        addGameObject(terrain)
     }
     
     override func onUpdate() {
         if(Mouse.IsMouseButtonPressed(button: .left)){
-            quad.rotateX(Mouse.GetDY() * GameTime.DeltaTime)
-            quad.rotateY(Mouse.GetDX() * GameTime.DeltaTime)
+            terrain.rotateX(Mouse.GetDY() * GameTime.DeltaTime)
+            terrain.rotateY(Mouse.GetDX() * GameTime.DeltaTime)
         }
         
         if(Keyboard.IsKeyPressed(.space)){
@@ -40,8 +41,8 @@ class QuadScene: GameScene {
         }
         
         let change = Mouse.GetDWheel()
-        quad.addEdgeFactor(-change)
-        quad.addInsideFactor(-change)
+        terrain.addEdgeFactor(-change)
+        terrain.addInsideFactor(-change)
         
         let speed: Float = 5
         if(Keyboard.IsKeyPressed(.upArrow)) {

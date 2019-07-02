@@ -16,7 +16,7 @@ class LightObject: GameObject {
         super.init(name: name, meshType: .None)
     }
     
-    override init(name: String, meshType: MeshTypes) {
+    init(name: String, meshType: MeshTypes) {
         super.init(name: name,  meshType: meshType)
     }
     

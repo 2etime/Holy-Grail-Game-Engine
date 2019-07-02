@@ -18,15 +18,19 @@ class GameObject: GameNode {
     private var _specularTextureType: TextureTypes! = .None
     private var _ambientTextureType: TextureTypes! = .None
     private var _heightTextureType: TextureTypes! = .None
+    private var _textureTileCounts: float2 = float2(1,1)
+    
     private var _useTessellation: Bool = false
     private var _tessellationFactorsBuffer: MTLBuffer!
-    var edgeFactor: Float = 1.0
-    var insideFactor: Float = 1.0
+    
+    private var edgeFactor: Float = 1.0
+    private var insideFactor: Float = 1.0
  
-    init(name: String, meshType: MeshTypes) {
+    init(name: String, meshType: MeshTypes, useTessellation: Bool = false) {
         super.init(name: name)
         self._mesh = Entities.Meshes[meshType]
         createTesselationFactorsBuffer()
+        setUseTessellation(useTessellation)
     }
     
     private func createTesselationFactorsBuffer() {
@@ -44,19 +48,18 @@ class GameObject: GameNode {
     }
     
     private func getTesselationFactors() {
-
         let commandBuffer = Engine.CommandQueue.makeCommandBuffer()
         let computeCommandEncoder = commandBuffer?.makeComputeCommandEncoder()
         computeCommandEncoder?.setComputePipelineState(Graphics.ComputePipelineStates[.QuadTessellation])
 
         computeCommandEncoder?.setBytes(&edgeFactor, length: Float.size, index: 0)
         computeCommandEncoder?.setBytes(&insideFactor, length: Float.size, index: 1)
-        computeCommandEncoder?.setBuffer(_tessellationFactorsBuffer, offset: 0, index: 2)
-        computeCommandEncoder?.dispatchThreadgroups(MTLSize(width: 1, height: 1, depth: 1), threadsPerThreadgroup: MTLSize(width: 1, height: 1, depth: 1))
+        computeCommandEncoder?.setBuffer(self._tessellationFactorsBuffer, offset: 0, index: 2)
+        computeCommandEncoder?.dispatchThreadgroups(MTLSize(width: 1, height: 1, depth: 1),
+                                                    threadsPerThreadgroup: MTLSize(width: 1, height: 1, depth: 1))
 
         computeCommandEncoder?.endEncoding()
         commandBuffer?.commit()
-    
     }
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
@@ -87,6 +90,8 @@ class GameObject: GameNode {
         if(_materialConstants.useAmbientMap) {
             renderCommandEncoder.setFragmentTexture(Entities.Textures[_ambientTextureType], index: 3)
         }
+        
+        renderCommandEncoder.setFragmentBytes(&_textureTileCounts, length: float2.stride, index: 3)
     }
 }
 
@@ -96,7 +101,6 @@ extension GameObject: Renderable, Computable {
     }
     
     func doRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        renderCommandEncoder.setTriangleFillMode(.lines)
         if(self._useTessellation) {
             _mesh.drawPatches(renderCommandEncoder)
         }else{
@@ -105,8 +109,11 @@ extension GameObject: Renderable, Computable {
     }
 }
 
+// Tessellation
 extension GameObject {
-    public func setUseTessellation(_ useTessellation: Bool) { self._useTessellation = useTessellation }
+    public func setUseTessellation(_ useTessellation: Bool) {
+        self._useTessellation = useTessellation
+    }
     
     public func setEdgeFactor(_ edgeFactor: Float) { self.edgeFactor = edgeFactor }
     public func addEdgeFactor(_ value: Float) { self.edgeFactor = min(max(edgeFactor + value, 1), 64) }
@@ -150,6 +157,10 @@ extension GameObject {
         self._heightTextureType = textureType
         self._materialConstants.useHeightMap = textureType != .None
     }
+    
+    public func setTextureTileCount(_ wide: Float, _ high: Float) { self._textureTileCounts = float2(wide, high) }
+    public func setTextureTileCountWide(_ count: Float) { self._textureTileCounts.x = count }
+    public func setTextureTileCountHigh(_ count: Float) { self._textureTileCounts.y = count }
     
     public func setMaterialIsLightable(_ isLightable: Bool) { self._materialConstants.isLightable = isLightable }
     

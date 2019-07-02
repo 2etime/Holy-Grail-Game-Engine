@@ -12,6 +12,6 @@ class Lamp: LightObject {
     init() {
         super.init(name: "Lamp", meshType: .Sphere)
         self.setMaterialColor(float4(1,1,1,1))
-        self.setScale(0.6)
+        self.setScale(0.3)
     }
 }

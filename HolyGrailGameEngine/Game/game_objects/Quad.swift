@@ -8,6 +8,6 @@
 
 class Quad: GameObject {
     init() {
-        super.init(name: "Quad", meshType: .Quad_Tessellated)
+        super.init(name: "Quad", meshType: .Quad)
     }
 }

@@ -12,6 +12,7 @@ class GameNode {
     private var _id: String!
     private var _name: String = "Node"
     private var _children: [GameNode] = []
+    private var _triangleFillMode: MTLTriangleFillMode = .fill
     
     private var _position: float3 = float3(0,0,0)
     private var _rotation: float3 = float3(0,0,0)
@@ -56,6 +57,7 @@ class GameNode {
     internal func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) { } // Override with inheriting classes
 
     public func render(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+        renderCommandEncoder.setTriangleFillMode(self._triangleFillMode)
         setRenderPipelineValues(renderCommandEncoder)
         if let renderable = self as? Renderable {
             renderable.doRender(renderCommandEncoder)
@@ -70,6 +72,10 @@ extension GameNode {
     // Labeling
     public var getId: String { return self._id }
     func getName()->String { return self._name }
+    
+    // Drawing
+    func showLines() { self._triangleFillMode = .lines }
+    func showTriangles() { self._triangleFillMode = .fill }
     
     // Positioning and Movement
     func setPosition(_ position: float3){ self._position = position }
