@@ -74,8 +74,7 @@ extension GameNode {
     func getName()->String { return self._name }
     
     // Drawing
-    func showLines() { self._triangleFillMode = .lines }
-    func showTriangles() { self._triangleFillMode = .fill }
+    func setTriangleFillMode(_ fillMode: MTLTriangleFillMode) { self._triangleFillMode = fillMode }
     
     // Positioning and Movement
     func setPosition(_ position: float3){ self._position = position }

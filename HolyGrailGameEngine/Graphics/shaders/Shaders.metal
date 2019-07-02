@@ -117,7 +117,7 @@ struct PatchIn {
     patch_control_point<Vertex> controlPoints;
 };
 
-constexpr sampler heightSampler(compare_func::less, address::clamp_to_zero);
+constexpr sampler heightSampler(compare_func::less);
 
 [[patch(quad, 16)]]
 vertex RasterizerData quad_tessellation_vertex_shader(PatchIn patchIn [[stage_in]],
@@ -147,6 +147,9 @@ vertex RasterizerData quad_tessellation_vertex_shader(PatchIn patchIn [[stage_in
      u * v * patchIn.controlPoints[3].normal +
      (1 - u) * v * patchIn.controlPoints[15].normal);
     
+    float height = heightTexture.sample(heightSampler, texCoords).r;
+    position.y += height / 10;
+    
     RasterizerData rd;
     
     float4x4 modelViewMatrix = sceneConstants.viewMatrix * modelConstants.modelMatrix;
@@ -160,7 +163,7 @@ vertex RasterizerData quad_tessellation_vertex_shader(PatchIn patchIn [[stage_in
     float3 tangent = cross(rightVec, normal);
     float3 bitangent = cross(tangent, normal);
 
-    rd.surfaceNormal = (modelViewMatrix * float4(normal, 0.0)).xyz;
+    rd.surfaceNormal = (modelConstants.modelMatrix * float4(normal, 0.0)).xyz;
     rd.surfaceTangent = normalize(modelViewMatrix * float4(tangent, 0.0)).xyz;
     rd.surfaceBitangent = normalize(modelViewMatrix * float4(bitangent, 0.0)).xyz;
     

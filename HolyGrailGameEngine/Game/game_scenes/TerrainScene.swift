@@ -13,8 +13,8 @@ class TerrainScene: GameScene {
     let debugCamera = DebugCamera()
     let light = Lamp()
     override func buildScene() {
-        debugCamera.setPosition(0,0,2)
-        debugCamera.rotateX(0.2)
+        debugCamera.setPosition(0,0,1)
+        debugCamera.rotateX(0.3)
         addCamera(debugCamera)
         
         light.setPosition(0, 0, 0)
@@ -23,9 +23,12 @@ class TerrainScene: GameScene {
         
         terrain.setMaterialColor(float4(0.0, 0.5, 0.0, 1.0))
         terrain.setMaterialShininess(128)
-        terrain.setBaseTexture(.Test)
-        terrain.setNormalMap(.Sand_Normal)
         terrain.setPosition(0,-0.5,0)
+//        terrain.setTriangleFillMode(.lines)
+        terrain.setHeightMap(.Sand_Height)
+        terrain.setBaseTexture(.Sand_Base)
+        terrain.setNormalMap(.Sand_Normal)
+        terrain.setMaterialAmbient(0.03)
         addGameObject(terrain)
     }
     
