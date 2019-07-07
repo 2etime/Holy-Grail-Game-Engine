@@ -81,15 +81,6 @@ class GameObject: GameNode {
         if(_materialConstants.useBaseTexture) {
             renderCommandEncoder.setFragmentTexture(Entities.Textures[_baseTextureType], index: 0)
         }
-        if(_materialConstants.useNormalMap) {
-            renderCommandEncoder.setFragmentTexture(Entities.Textures[_normalTextureType], index: 1)
-        }
-        if(_materialConstants.useSpecularMap) {
-            renderCommandEncoder.setFragmentTexture(Entities.Textures[_specularTextureType], index: 2)
-        }
-        if(_materialConstants.useAmbientMap) {
-            renderCommandEncoder.setFragmentTexture(Entities.Textures[_ambientTextureType], index: 3)
-        }
         
         renderCommandEncoder.setFragmentBytes(&_textureTileCounts, length: float2.stride, index: 3)
     }
@@ -136,21 +127,6 @@ extension GameObject {
         self._baseTextureType = textureType
         self._materialConstants.useBaseTexture = textureType != .None
         self._materialConstants.useMaterialColor = textureType == .None
-    }
-    
-    public func setNormalMap(_ textureType: TextureTypes) {
-        self._normalTextureType = textureType
-        self._materialConstants.useNormalMap = textureType != .None
-    }
-    
-    public func setSpecularMap(_ textureType: TextureTypes) {
-        self._specularTextureType = textureType
-        self._materialConstants.useSpecularMap = textureType != .None
-    }
-    
-    public func setAmbientMap(_ textureType: TextureTypes) {
-        self._ambientTextureType = textureType
-        self._materialConstants.useAmbientMap = textureType != .None
     }
     
     public func setHeightMap(_ textureType: TextureTypes) {

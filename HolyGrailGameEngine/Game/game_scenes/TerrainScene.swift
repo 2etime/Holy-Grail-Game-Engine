@@ -16,7 +16,7 @@ class TerrainScene: GameScene {
         debugCamera.setPosition(0,0,5)
         addCamera(debugCamera)
         
-        light.setPosition(0,20,0)
+        light.setPosition(30,30,30)
         light.setLightBrightness(0.5)
         addLight(light)
         
