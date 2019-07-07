@@ -15,8 +15,12 @@ class Entities {
     private static var _textureLibrary: TextureLibrary!
     public static var Textures: TextureLibrary { return self._textureLibrary }
     
+    private static var _cameraManager: CameraManager!
+    public static var Cameras: CameraManager { return self._cameraManager }
+    
     public static func Initialize() {
         self._meshLibrary = MeshLibrary()
         self._textureLibrary = TextureLibrary()
+        self._cameraManager = CameraManager()
     }
 }

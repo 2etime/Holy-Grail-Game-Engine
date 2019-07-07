@@ -32,7 +32,7 @@ class SceneManager {
     public func update(deltaTime: Float) {
         GameTime.UpdateGameTime(deltaTime)
 
-        self._currentScene.updateCameras()
+        Entities.Cameras.update()
         
         self._currentScene.doComputePass()
         

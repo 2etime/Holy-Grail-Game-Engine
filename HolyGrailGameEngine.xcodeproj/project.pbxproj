@@ -351,6 +351,7 @@
 		C60A11F022B3B36200B3F509 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				C642C1D522CAEEBC009493D6 /* bird.png */,
 				C60A11FB22B3BAE700B3F509 /* Entities.swift */,
 				C60A11F122B3B37000B3F509 /* meshes */,
 				C6441EDC22B7178600CAA3FE /* textures */,
@@ -412,7 +413,6 @@
 		C6441ECB22B7122100CAA3FE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C642C1D522CAEEBC009493D6 /* bird.png */,
 				C6441EEB22B7FAF200CAA3FE /* sphere.obj */,
 				C6441EFE22B7FDF400CAA3FE /* sand textures */,
 				C6441ECC22B7122B00CAA3FE /* cruiser */,

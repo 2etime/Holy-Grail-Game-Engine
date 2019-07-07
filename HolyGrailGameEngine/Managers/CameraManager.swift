@@ -14,7 +14,11 @@ class CameraManager {
     private var _cameras: [CameraTypes : GameCamera] = [:]
     public var currentCamera: GameCamera!
     
-    public func registerCamera(camera: GameCamera){
+    public func addCamera(camera: GameCamera) {
+        self.registerCamera(camera: camera)
+    }
+    
+    private func registerCamera(camera: GameCamera){
         self._cameras.updateValue(camera, forKey: camera.cameraType)
         
         // Always register the first camera

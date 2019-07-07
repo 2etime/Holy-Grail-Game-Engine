@@ -152,21 +152,16 @@ vertex RasterizerData quad_tessellation_vertex_shader(PatchIn patchIn [[stage_in
     
     RasterizerData rd;
     
-    float4x4 modelViewMatrix = sceneConstants.viewMatrix * modelConstants.modelMatrix;
     float4 worldPosition = modelConstants.modelMatrix * float4(position, 1.0);
     rd.position = sceneConstants.projectionMatrix * sceneConstants.viewMatrix * worldPosition;
     rd.worldPosition = worldPosition.xyz;
     rd.toCameraVector = (sceneConstants.inverseViewMatrix * float4(0,0,0,1)).xyz - worldPosition.xyz;
     rd.textureCoordinate = texCoords;
     
-    float3 rightVec = float3(1,0,0);
-    float3 tangent = cross(rightVec, normal);
-    float3 bitangent = cross(tangent, normal);
+    float3 surfaceNormal = (modelConstants.modelMatrix * float4(normal, 0.0)).xyz;
+    float3 norm = normalize(surfaceNormal);
+    rd.surfaceNormal = norm;
 
-    rd.surfaceNormal = (modelConstants.modelMatrix * float4(normal, 0.0)).xyz;
-    rd.surfaceTangent = normalize(modelViewMatrix * float4(tangent, 0.0)).xyz;
-    rd.surfaceBitangent = normalize(modelViewMatrix * float4(bitangent, 0.0)).xyz;
-    
     return rd;
 }
 
