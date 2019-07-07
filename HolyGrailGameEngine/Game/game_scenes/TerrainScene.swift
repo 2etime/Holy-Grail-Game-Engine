@@ -10,8 +10,24 @@ import MetalKit
 
 class TerrainScene: GameScene {
     let debugCamera = DebugCamera()
-    
+    let sphere = Cruiser()
+    let light = LightObject(name: "Light")
     override func buildScene() {
+        debugCamera.setPosition(0,0,5)
+        addCamera(debugCamera)
         
+        light.setPosition(0,20,0)
+        light.setLightBrightness(0.5)
+        addLight(light)
+        
+        sphere.setMaterialAmbient(0.2)
+        addGameObject(sphere)
+    }
+    
+    override func onUpdate() {
+        if(Mouse.IsMouseButtonPressed(button: .left)){
+            sphere.rotateX(Mouse.GetDY() * GameTime.DeltaTime)
+            sphere.rotateY(Mouse.GetDX() * GameTime.DeltaTime)
+        }
     }
 }

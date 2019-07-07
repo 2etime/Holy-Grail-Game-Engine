@@ -57,6 +57,7 @@ class GameNode {
     internal func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) { } // Override with inheriting classes
 
     public func render(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+        renderCommandEncoder.pushDebugGroup("Rendering \(self.getName())")
         renderCommandEncoder.setTriangleFillMode(self._triangleFillMode)
         setRenderPipelineValues(renderCommandEncoder)
         if let renderable = self as? Renderable {
@@ -65,6 +66,7 @@ class GameNode {
         for child in self._children {
             child.render(renderCommandEncoder)
         }
+        renderCommandEncoder.popDebugGroup()
     }
 }
 

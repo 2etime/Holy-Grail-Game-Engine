@@ -17,7 +17,7 @@
 		C60A11CD22B2597F00B3F509 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11CC22B2597F00B3F509 /* Renderer.swift */; };
 		C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11CE22B25A1500B3F509 /* Engine.swift */; };
 		C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D122B25C3200B3F509 /* EngineSettings.swift */; };
-		C60A11D622B2A4C900B3F509 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D522B2A4C900B3F509 /* Shaders.metal */; };
+		C60A11D622B2A4C900B3F509 /* BasicShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D522B2A4C900B3F509 /* BasicShaders.metal */; };
 		C60A11DA22B2A68C00B3F509 /* MetalTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11D922B2A68C00B3F509 /* MetalTypes.swift */; };
 		C60A11DD22B2B03A00B3F509 /* math.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11DC22B2B03A00B3F509 /* math.swift */; };
 		C60A11E022B2B0BA00B3F509 /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11DF22B2B0BA00B3F509 /* GameNode.swift */; };
@@ -31,6 +31,7 @@
 		C60A11F822B3B59D00B3F509 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11F722B3B59D00B3F509 /* Library.swift */; };
 		C60A11FA22B3B9BD00B3F509 /* CustomMeshes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11F922B3B9BD00B3F509 /* CustomMeshes.swift */; };
 		C60A11FC22B3BAE700B3F509 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60A11FB22B3BAE700B3F509 /* Entities.swift */; };
+		C617AF4322D1966000A14D10 /* Tessellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = C617AF4222D1966000A14D10 /* Tessellation.metal */; };
 		C642C1AE22C7027F009493D6 /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642C1AD22C7027F009493D6 /* Terrain.swift */; };
 		C642C1D622CAEEBC009493D6 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = C642C1D522CAEEBC009493D6 /* bird.png */; };
 		C6441EAF22B5CCD600CAA3FE /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EAE22B5CCD600CAA3FE /* Shader.swift */; };
@@ -106,7 +107,7 @@
 		C60A11CC22B2597F00B3F509 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		C60A11CE22B25A1500B3F509 /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		C60A11D122B25C3200B3F509 /* EngineSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineSettings.swift; sourceTree = "<group>"; };
-		C60A11D522B2A4C900B3F509 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		C60A11D522B2A4C900B3F509 /* BasicShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BasicShaders.metal; sourceTree = "<group>"; };
 		C60A11D922B2A68C00B3F509 /* MetalTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalTypes.swift; sourceTree = "<group>"; };
 		C60A11DC22B2B03A00B3F509 /* math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = math.swift; sourceTree = "<group>"; };
 		C60A11DF22B2B0BA00B3F509 /* GameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 		C60A11F722B3B59D00B3F509 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		C60A11F922B3B9BD00B3F509 /* CustomMeshes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMeshes.swift; sourceTree = "<group>"; };
 		C60A11FB22B3BAE700B3F509 /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		C617AF4222D1966000A14D10 /* Tessellation.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Tessellation.metal; sourceTree = "<group>"; };
 		C642C1AD22C7027F009493D6 /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
 		C642C1D522CAEEBC009493D6 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
 		C6441EAE22B5CCD600CAA3FE /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
@@ -289,7 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				C6441EB922B673D000CAA3FE /* MetalTypes.metal */,
-				C60A11D522B2A4C900B3F509 /* Shaders.metal */,
+				C617AF4222D1966000A14D10 /* Tessellation.metal */,
+				C60A11D522B2A4C900B3F509 /* BasicShaders.metal */,
 			);
 			path = shaders;
 			sourceTree = "<group>";
@@ -627,7 +630,7 @@
 				C60A11D222B25C3200B3F509 /* EngineSettings.swift in Sources */,
 				C60A11E022B2B0BA00B3F509 /* GameNode.swift in Sources */,
 				C6441EC622B68AB900CAA3FE /* BufferManager.swift in Sources */,
-				C60A11D622B2A4C900B3F509 /* Shaders.metal in Sources */,
+				C60A11D622B2A4C900B3F509 /* BasicShaders.metal in Sources */,
 				C6441EDA22B712EE00CAA3FE /* Mouse.swift in Sources */,
 				C6AAEA9922BC7CE500DF7AC0 /* Computable.swift in Sources */,
 				C6441ECA22B710FD00CAA3FE /* ModelMeshes.swift in Sources */,
@@ -662,6 +665,7 @@
 				C6441EDB22B712EE00CAA3FE /* Keyboard.swift in Sources */,
 				C68D076322BC6812006B6583 /* Quad.swift in Sources */,
 				C6441EFD22B7FD6C00CAA3FE /* Sphere.swift in Sources */,
+				C617AF4322D1966000A14D10 /* Tessellation.metal in Sources */,
 				C60A11CF22B25A1500B3F509 /* Engine.swift in Sources */,
 				C6441ED422B7126700CAA3FE /* Cruiser.swift in Sources */,
 				C60A11EF22B2B4A500B3F509 /* Triangle.swift in Sources */,
