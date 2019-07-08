@@ -105,7 +105,6 @@ fileprivate class BoundingMeshData {
         let radius = max(maxs.x - mins.x, maxs.y - mins.y, maxs.z - mins.z) / 2.0
         var indexCount: UInt32 = 0
         
-        
         let centerX = (maxs.x + mins.x) / 2
         let centerY = (maxs.y + mins.y) / 2
         let centerZ = (maxs.z + mins.z) / 2
@@ -132,7 +131,7 @@ fileprivate class BoundingMeshData {
             let posY = cos(Float(i) / Float(numSegments) * 360.0 / 360.0 * twopi) * radius + centerY
             let posZ = sin(Float(i) / Float(numSegments) * 360.0 / 360.0 * twopi) * radius + centerZ
             addVertex(BoundingVertex(position: float3(centerX, posY, posZ)))
-            indices.append(UInt32(numSegments * 2 + i))
+            indices.append(UInt32(indexCount) + UInt32(i))
         }
         indices.append(UInt32(numSegments / 4))
     }
