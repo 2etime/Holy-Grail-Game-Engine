@@ -10,7 +10,7 @@ import MetalKit
 
 enum BoundingTypes {
     case None
-    case Cube
+    case Box
     case Sphere
 }
 
@@ -60,8 +60,8 @@ fileprivate class BoundingMeshData {
         let maxs = boundingBox.maxs
         
         switch boundingType {
-        case .Cube:
-            createCubeMesh(mins: mins, maxs: maxs)
+        case .Box:
+            createBoxMesh(mins: mins, maxs: maxs)
         case .Sphere:
             createSphereMesh(mins: mins, maxs: maxs)
         default:
@@ -69,7 +69,7 @@ fileprivate class BoundingMeshData {
         }
     }
     
-    private func createCubeMesh(mins: float3, maxs: float3) {
+    private func createBoxMesh(mins: float3, maxs: float3) {
         //Front
         addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, maxs.z))) // Right Top Front
         addVertex(BoundingVertex(position: float3(maxs.x, mins.y, maxs.z))) // Right Bottom Front
@@ -100,7 +100,7 @@ fileprivate class BoundingMeshData {
     }
     
     private func createSphereMesh(mins: float3, maxs: float3) {
-        let numSegments: Int = 100
+        let numSegments: Int = 80
         let twopi = Float.pi * 2
         let radius = max(maxs.x - mins.x, maxs.y - mins.y, maxs.z - mins.z) / 2.0
         var indexCount: UInt32 = 0
@@ -142,6 +142,7 @@ class BoundingMesh {
     
     init(boundingBoxs: [BoundingBox]) {
         for boundingBox in boundingBoxs {
+//            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: .Box))
             _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: .Sphere))
         }
     }
