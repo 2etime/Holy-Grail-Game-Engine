@@ -8,87 +8,103 @@
 
 import MetalKit
 
-class BoundingMesh {
-    private var _instanceCount: Int = 1
-    private var _vertexBuffer: MTLBuffer!
-    private var _vertices: [BoundingVertex] = []
-    private var _vertexCount: Int {
-        return _vertices.count
-    }
+enum BoundingTypes {
+    case None
+    case Cube
+}
 
-    init(boundingBoxs: [BoundingBox]) {
-        self.calculateVertices(boundingBoxs)
-        self.createBuffers()
+fileprivate class BoundingMeshData {
+    var boundingBox: BoundingBox! = nil
+    var boundingType: BoundingTypes = .None
+    var vertexBuffer: MTLBuffer! = nil
+    var vertices: [BoundingVertex] = []
+    var vertexCount: Int {
+        return self.vertices.count
+    }
+    
+    init(boundingBox: BoundingBox, boundingType: BoundingTypes) {
+        self.boundingBox = boundingBox
+        self.boundingType = boundingType
+        
+        calculateVertices()
+        generateBuffers()
     }
     
     func addVertex(_ boundingVertex: BoundingVertex) {
-        self._vertices.append(boundingVertex)
+        self.vertices.append(boundingVertex)
     }
     
-    func calculateVertices(_ boundingBoxs: [BoundingBox]) { }
-    
-    private func createBuffers() {
-        if(_vertexCount > 0) {
-            self._vertexBuffer = Engine.Device.makeBuffer(bytes: self._vertices,
-                                                          length: BoundingVertex.size(_vertexCount),
+    func generateBuffers() {
+        if(vertexCount > 0) {
+            self.vertexBuffer = Engine.Device.makeBuffer(bytes: self.vertices,
+                                                         length: BoundingVertex.size(vertexCount),
                                                           options: .storageModeShared)
         }
     }
     
-    func setInstanceCount(_ count: Int) {
-        self._instanceCount = count
-    }
-    
-    func drawPatches(_ renderCommandEncoder: MTLRenderCommandEncoder) { }
-
-    func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        if(_vertexCount > 0) {
-            renderCommandEncoder.setVertexBuffer(_vertexBuffer,
-                                                 offset: 0,
-                                                 index: 0)
-            renderCommandEncoder.drawPrimitives(type: .lineStrip,
-                                                vertexStart: 0,
-                                                vertexCount: _vertexCount)
+    func calculateVertices() {
+        vertices = []
+        let mins = boundingBox.mins
+        let maxs = boundingBox.maxs
+        
+        switch boundingType {
+        case .Cube:
+            createCubeMesh(mins: mins, maxs: maxs)
+        default:
+            return
         }
     }
     
+    private func createCubeMesh(mins: float3, maxs: float3) {
+        //Front
+        addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, maxs.z))) // Right Top Front
+        addVertex(BoundingVertex(position: float3(maxs.x, mins.y, maxs.z))) // Right Bottom Front
+        addVertex(BoundingVertex(position: float3(mins.x, mins.y, maxs.z))) // Left Bottom Front
+        addVertex(BoundingVertex(position: float3(mins.x, maxs.y, maxs.z))) // Left Top Front
+        addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, maxs.z))) // Right Top Front
+        
+        //Left
+        addVertex(BoundingVertex(position: float3(mins.x, maxs.y, maxs.z)))  // Left Top Front
+        addVertex(BoundingVertex(position: float3(mins.x, mins.y, maxs.z)))  // Left Bottom Front
+        addVertex(BoundingVertex(position: float3(mins.x, mins.y, mins.z)))  // Left Bottom Back
+        addVertex(BoundingVertex(position: float3(mins.x, maxs.y, mins.z)))  // Left Top Back
+        addVertex(BoundingVertex(position: float3(mins.x, maxs.y, maxs.z)))  // Left Top Front
+        
+        //Right
+        addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, maxs.z)))  // Right Top Front
+        addVertex(BoundingVertex(position: float3(maxs.x, mins.y, maxs.z)))  // Right Bottom Front
+        addVertex(BoundingVertex(position: float3(maxs.x, mins.y, mins.z)))  // Right Bottom Back
+        addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, mins.z)))  // Right Top Back
+        addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, maxs.z)))  // Right Top Front
+        
+        //Back
+        addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, mins.z))) // Right Top Back
+        addVertex(BoundingVertex(position: float3(maxs.x, mins.y, mins.z))) // Right Bottom Back
+        addVertex(BoundingVertex(position: float3(mins.x, mins.y, mins.z))) // Left Bottom Back
+        addVertex(BoundingVertex(position: float3(mins.x, maxs.y, mins.z))) // Left Top Back
+        addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, mins.z))) // Right Top Back
+    }
 }
 
-class Cube_BoundingMesh: BoundingMesh {
+class BoundingMesh {
+    private var _boundingMeshDatas: [BoundingMeshData] = []
     
-    override func calculateVertices(_ boundingBoxs: [BoundingBox]) {
+    init(boundingBoxs: [BoundingBox]) {
         for boundingBox in boundingBoxs {
-            let mins = boundingBox.mins
-            let maxs = boundingBox.maxs
-            
-            //Front
-            addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, maxs.z))) // Right Top Front
-            addVertex(BoundingVertex(position: float3(maxs.x, mins.y, maxs.z))) // Right Bottom Front
-            addVertex(BoundingVertex(position: float3(mins.x, mins.y, maxs.z))) // Left Bottom Front
-            addVertex(BoundingVertex(position: float3(mins.x, maxs.y, maxs.z))) // Left Top Front
-            addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, maxs.z))) // Right Top Front
-            
-            //Left
-            addVertex(BoundingVertex(position: float3(mins.x, maxs.y, maxs.z)))  // Left Top Front
-            addVertex(BoundingVertex(position: float3(mins.x, mins.y, maxs.z)))  // Left Bottom Front
-            addVertex(BoundingVertex(position: float3(mins.x, mins.y, mins.z)))  // Left Bottom Back
-            addVertex(BoundingVertex(position: float3(mins.x, maxs.y, mins.z)))  // Left Top Back
-            addVertex(BoundingVertex(position: float3(mins.x, maxs.y, maxs.z)))  // Left Top Front
-            
-            //Right
-            addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, maxs.z)))  // Right Top Front
-            addVertex(BoundingVertex(position: float3(maxs.x, mins.y, maxs.z)))  // Right Bottom Front
-            addVertex(BoundingVertex(position: float3(maxs.x, mins.y, mins.z)))  // Right Bottom Back
-            addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, mins.z)))  // Right Top Back
-            addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, maxs.z)))  // Right Top Front
-            
-            //Back
-            addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, mins.z))) // Right Top Back
-            addVertex(BoundingVertex(position: float3(maxs.x, mins.y, mins.z))) // Right Bottom Back
-            addVertex(BoundingVertex(position: float3(mins.x, mins.y, mins.z))) // Left Bottom Back
-            addVertex(BoundingVertex(position: float3(mins.x, maxs.y, mins.z))) // Left Top Back
-            addVertex(BoundingVertex(position: float3(maxs.x, maxs.y, mins.z))) // Right Top Back
-            
+            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: .Cube))
+        }
+    }
+    
+    func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+        for meshData in _boundingMeshDatas {
+            if(meshData.vertexCount > 0) {
+                renderCommandEncoder.setVertexBuffer(meshData.vertexBuffer,
+                                                     offset: 0,
+                                                     index: 0)
+                renderCommandEncoder.drawPrimitives(type: .lineStrip,
+                                                    vertexStart: 0,
+                                                    vertexCount: meshData.vertexCount)
+            }
         }
     }
     

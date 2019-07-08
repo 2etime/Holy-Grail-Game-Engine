@@ -14,7 +14,7 @@ class BoundingObject: Node {
     
     init(_ mesh: Mesh) {
         super.init(name: "Bounding Mesh")
-        self._boundingMesh = Cube_BoundingMesh(boundingBoxs: mesh.bounds)
+        self._boundingMesh = BoundingMesh(boundingBoxs: mesh.bounds)
     }
     
     override func update() {
