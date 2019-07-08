@@ -37,7 +37,6 @@
 		C617AF4A22D2238A00A14D10 /* BoundingObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C617AF4922D2238A00A14D10 /* BoundingObject.swift */; };
 		C63ED19C22D227C200BEB811 /* BoundingMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63ED19B22D227C200BEB811 /* BoundingMesh.swift */; };
 		C63ED1A022D3E66000BEB811 /* Boundable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63ED19F22D3E66000BEB811 /* Boundable.swift */; };
-		C642C1AE22C7027F009493D6 /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642C1AD22C7027F009493D6 /* Terrain.swift */; };
 		C642C1D622CAEEBC009493D6 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = C642C1D522CAEEBC009493D6 /* bird.png */; };
 		C6441EAF22B5CCD600CAA3FE /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EAE22B5CCD600CAA3FE /* Shader.swift */; };
 		C6441EB322B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */; };
@@ -132,7 +131,6 @@
 		C617AF4922D2238A00A14D10 /* BoundingObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingObject.swift; sourceTree = "<group>"; };
 		C63ED19B22D227C200BEB811 /* BoundingMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingMesh.swift; sourceTree = "<group>"; };
 		C63ED19F22D3E66000BEB811 /* Boundable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boundable.swift; sourceTree = "<group>"; };
-		C642C1AD22C7027F009493D6 /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
 		C642C1D522CAEEBC009493D6 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
 		C6441EAE22B5CCD600CAA3FE /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
 		C6441EB222B5CEB200CAA3FE /* RenderPipelineStateLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPipelineStateLibrary.swift; sourceTree = "<group>"; };
@@ -359,7 +357,6 @@
 				C6441ED322B7126700CAA3FE /* Cruiser.swift */,
 				C6441EFC22B7FD6C00CAA3FE /* Sphere.swift */,
 				C68D076222BC6812006B6583 /* Quad.swift */,
-				C642C1AD22C7027F009493D6 /* Terrain.swift */,
 			);
 			path = game_objects;
 			sourceTree = "<group>";
@@ -661,7 +658,6 @@
 				C617AF4522D19C2000A14D10 /* BoundingBox.swift in Sources */,
 				C60A11F822B3B59D00B3F509 /* Library.swift in Sources */,
 				C63ED1A022D3E66000BEB811 /* Boundable.swift in Sources */,
-				C642C1AE22C7027F009493D6 /* Terrain.swift in Sources */,
 				C60A11DD22B2B03A00B3F509 /* math.swift in Sources */,
 				C6441EC222B67D5A00CAA3FE /* SceneManager.swift in Sources */,
 				C6441EE622B7F89000CAA3FE /* LightObject.swift in Sources */,

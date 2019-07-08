@@ -10,7 +10,6 @@ import MetalKit
 
 enum ComputePipelineStateTypes {
     case None
-    case QuadTessellation
 }
 
 class ComputePipelineStateLibrary {
@@ -22,7 +21,7 @@ class ComputePipelineStateLibrary {
     }
     
     private func createLibrary() {
-        _library.updateValue(QuadTessellation_ComputePipelineState(), forKey: .QuadTessellation)
+
     }
     
     subscript(_ type: ComputePipelineStateTypes)->MTLComputePipelineState{
@@ -35,16 +34,5 @@ protocol ComputePipelineState {
     var computePipelineState: MTLComputePipelineState! { get }
 }
 
-public struct QuadTessellation_ComputePipelineState: ComputePipelineState {
-    var computePipelineState: MTLComputePipelineState!
-    init(){
-        let function = Engine.DefaultLibrary.makeFunction(name: "quad_tessellation")
-        do{
-            computePipelineState = try Engine.Device.makeComputePipelineState(function: function!)
-        } catch let error as NSError {
-            print("ERROR::CREATE::COMPUTE_PIPELINE_STATE::\(error)")
-        }
-    }
-}
 
 

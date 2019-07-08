@@ -7,8 +7,9 @@
 //
 
 class Sphere: GameObject, Boundable {
-    
-    var boundingTypes: [BoundingTypes] = [.Sphere]
+    var boundingType: BoundingTypes {
+        return .Sphere
+    }
     
     init() {
         super.init(name: "Sphere", meshType: .Sphere)

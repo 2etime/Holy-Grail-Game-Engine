@@ -15,8 +15,6 @@ enum MeshTypes {
     
     case Cruiser
     case Sphere
-    
-    case Quad_Tessellated
 }
 
 class MeshLibrary: Library<MeshTypes, Mesh> {
@@ -29,10 +27,8 @@ class MeshLibrary: Library<MeshTypes, Mesh> {
         _library.updateValue(Triangle_CustomMesh(), forKey: .Triangle)
         _library.updateValue(Quad_CustomMesh(), forKey: .Quad)
         
-        _library.updateValue(ModelMesh(modelName: "cruiser", boundingType: .Box), forKey: .Cruiser)
-        _library.updateValue(ModelMesh(modelName: "sphere", boundingType: .Sphere), forKey: .Sphere)
-        
-        _library.updateValue(QuadTessellated_CustomMesh(), forKey: .Quad_Tessellated)
+        _library.updateValue(ModelMesh(modelName: "cruiser"), forKey: .Cruiser)
+        _library.updateValue(ModelMesh(modelName: "sphere"), forKey: .Sphere)
     }
     
     override subscript(_ type: MeshTypes)->Mesh {

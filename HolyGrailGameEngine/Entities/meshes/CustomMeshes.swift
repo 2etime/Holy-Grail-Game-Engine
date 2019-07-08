@@ -137,34 +137,34 @@ class Quad_CustomMesh: CustomMesh {
     }
 }
 
-class QuadTessellated_CustomMesh: CustomMesh {
-    
-    override func createVertices() {
-        let rightVec = float3(1,0,0)
-        let normal = float3(0,1,0)
-        let tangent = cross(rightVec, normal)
-        
-        addVertex(float3(-0.5,   0.0,-0.5), textureCoordinates: float2(0,    0), tangent: tangent)
-        addVertex(float3(-0.167, 0.0,-0.5), textureCoordinates: float2(0.333,0), tangent: tangent)
-        addVertex(float3( 0.166, 0.0,-0.5), textureCoordinates: float2(0.666,0), tangent: tangent)
-        addVertex(float3( 0.5,   0.0,-0.5), textureCoordinates: float2(1.00, 0), tangent: tangent)
-     
-        addVertex(float3(-0.5,   0.0,-0.167), textureCoordinates: float2(0,    0.333), tangent: tangent)
-        addVertex(float3(-0.167, 0.0,-0.167), textureCoordinates: float2(0.333,0.333), tangent: tangent)
-        addVertex(float3( 0.166, 0.0,-0.167), textureCoordinates: float2(0.666,0.333), tangent: tangent)
-        addVertex(float3( 0.5,   0.0,-0.167), textureCoordinates: float2(1.00, 0.333), tangent: tangent)
-
-        addVertex(float3(-0.5,   0.0, 0.166), textureCoordinates:  float2(0,    0.666), tangent: tangent)
-        addVertex(float3(-0.167, 0.0, 0.166), textureCoordinates:  float2(0.333,0.666), tangent: tangent)
-        addVertex(float3( 0.166, 0.0, 0.166), textureCoordinates:  float2(0.666,0.666), tangent: tangent)
-        addVertex(float3( 0.5,   0.0, 0.166), textureCoordinates:  float2(1.00, 0.666), tangent: tangent)
-
-        addVertex(float3(-0.5,   0.0, 0.5), textureCoordinates: float2(0,    1.0), tangent: tangent)
-        addVertex(float3(-0.167, 0.0, 0.5), textureCoordinates: float2(0.333,1.0), tangent: tangent)
-        addVertex(float3( 0.166, 0.0, 0.5), textureCoordinates: float2(0.666,1.0), tangent: tangent)
-        addVertex(float3( 0.5,   0.0, 0.5), textureCoordinates: float2(1.00, 1.0), tangent: tangent)
-        
-        setPatchControlPointCount(16)
-        setPatchCount(16)
-    }
-}
+//class QuadTessellated_CustomMesh: CustomMesh {
+//
+//    override func createVertices() {
+//        let rightVec = float3(1,0,0)
+//        let normal = float3(0,1,0)
+//        let tangent = cross(rightVec, normal)
+//
+//        addVertex(float3(-0.5,   0.0,-0.5), textureCoordinates: float2(0,    0), tangent: tangent)
+//        addVertex(float3(-0.167, 0.0,-0.5), textureCoordinates: float2(0.333,0), tangent: tangent)
+//        addVertex(float3( 0.166, 0.0,-0.5), textureCoordinates: float2(0.666,0), tangent: tangent)
+//        addVertex(float3( 0.5,   0.0,-0.5), textureCoordinates: float2(1.00, 0), tangent: tangent)
+//     
+//        addVertex(float3(-0.5,   0.0,-0.167), textureCoordinates: float2(0,    0.333), tangent: tangent)
+//        addVertex(float3(-0.167, 0.0,-0.167), textureCoordinates: float2(0.333,0.333), tangent: tangent)
+//        addVertex(float3( 0.166, 0.0,-0.167), textureCoordinates: float2(0.666,0.333), tangent: tangent)
+//        addVertex(float3( 0.5,   0.0,-0.167), textureCoordinates: float2(1.00, 0.333), tangent: tangent)
+//
+//        addVertex(float3(-0.5,   0.0, 0.166), textureCoordinates:  float2(0,    0.666), tangent: tangent)
+//        addVertex(float3(-0.167, 0.0, 0.166), textureCoordinates:  float2(0.333,0.666), tangent: tangent)
+//        addVertex(float3( 0.166, 0.0, 0.166), textureCoordinates:  float2(0.666,0.666), tangent: tangent)
+//        addVertex(float3( 0.5,   0.0, 0.166), textureCoordinates:  float2(1.00, 0.666), tangent: tangent)
+//
+//        addVertex(float3(-0.5,   0.0, 0.5), textureCoordinates: float2(0,    1.0), tangent: tangent)
+//        addVertex(float3(-0.167, 0.0, 0.5), textureCoordinates: float2(0.333,1.0), tangent: tangent)
+//        addVertex(float3( 0.166, 0.0, 0.5), textureCoordinates: float2(0.666,1.0), tangent: tangent)
+//        addVertex(float3( 0.5,   0.0, 0.5), textureCoordinates: float2(1.00, 1.0), tangent: tangent)
+//
+//        setPatchControlPointCount(16)
+//        setPatchCount(16)
+//    }
+//}

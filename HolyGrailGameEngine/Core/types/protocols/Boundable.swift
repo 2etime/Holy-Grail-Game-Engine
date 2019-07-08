@@ -7,11 +7,16 @@
 //
 
 protocol Boundable {
-    var boundingTypes: [BoundingTypes] { get set }
+    var boundingType: BoundingTypes { get }
 }
 
 extension Boundable {
     func intersects(_ boundable: Boundable)->Bool {
+        
         return true
+    }
+    
+    private func checkSphereOnSphere(boundable: Boundable) {
+        
     }
 }

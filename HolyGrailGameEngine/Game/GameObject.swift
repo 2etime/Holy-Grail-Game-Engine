@@ -15,27 +15,14 @@ class GameObject: Node {
     private var _mesh: Mesh!
     private var _baseTextureType: TextureTypes! = .None
     private var _textureTileCounts: float2 = float2(1,1)
-    
-    private var _useTessellation: Bool = false
-    private var _tessellationFactorsBuffer: MTLBuffer!
-    
-    private var edgeFactor: Float = 1.0
-    private var insideFactor: Float = 1.0
- 
-    init(name: String, meshType: MeshTypes, useTessellation: Bool = false) {
+
+    init(name: String, meshType: MeshTypes) {
         super.init(name: name)
         self._mesh = Entities.Meshes[meshType]
-        createTesselationFactorsBuffer()
-        setUseTessellation(useTessellation)
     
-        if let _ = self as? Boundable {
-            addChild(BoundingObject(self._mesh))
+        if let boundable = self as? Boundable {
+            addChild(BoundingObject(self._mesh, boundingType: boundable.boundingType))
         }
-    }
-    
-    private func createTesselationFactorsBuffer() {
-        _tessellationFactorsBuffer = Engine.Device.makeBuffer(length: 256, options: [MTLResourceOptions.storageModeManaged])
-        _tessellationFactorsBuffer.label = "Tessellation Factors"
     }
     
     override func update() {
@@ -46,29 +33,11 @@ class GameObject: Node {
     private func updateModelConstants() {
         self._modelConstants.modelMatrix = self.modelMatrix
     }
-    
-    private func getTesselationFactors() {
-        let commandBuffer = Engine.CommandQueue.makeCommandBuffer()
-        let computeCommandEncoder = commandBuffer?.makeComputeCommandEncoder()
-        computeCommandEncoder?.setComputePipelineState(Graphics.ComputePipelineStates[.QuadTessellation])
 
-        computeCommandEncoder?.setBytes(&edgeFactor, length: Float.size, index: 0)
-        computeCommandEncoder?.setBytes(&insideFactor, length: Float.size, index: 1)
-        computeCommandEncoder?.setBuffer(self._tessellationFactorsBuffer, offset: 0, index: 2)
-        computeCommandEncoder?.dispatchThreadgroups(MTLSize(width: 1, height: 1, depth: 1),
-                                                    threadsPerThreadgroup: MTLSize(width: 1, height: 1, depth: 1))
-
-        computeCommandEncoder?.endEncoding()
-        commandBuffer?.commit()
-    }
     
     override func setRenderPipelineValues(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        if(_useTessellation){
-            renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.QuadTessellation])
-            renderCommandEncoder.setTessellationFactorBuffer(_tessellationFactorsBuffer, offset: 0, instanceStride: 0)
-        }else{
-            renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic])
-        }
+        renderCommandEncoder.setRenderPipelineState(Graphics.RenderPipelineStates[.Basic])
+        
         renderCommandEncoder.setDepthStencilState(Graphics.DepthStencilStates[.Less])
         
         renderCommandEncoder.setVertexBytes(&_modelConstants, length: ModelConstants.stride, index: 2)
@@ -83,31 +52,10 @@ class GameObject: Node {
     }
 }
 
-extension GameObject: Renderable, Computable {
-    func doCompute() {
-        getTesselationFactors()
-    }
-    
+extension GameObject: Renderable {
     func doRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
-        if(self._useTessellation) {
-            _mesh.drawPatches(renderCommandEncoder)
-        }else{
-            _mesh.drawRender(renderCommandEncoder)            
-        }
+        _mesh.drawRender(renderCommandEncoder)
     }
-}
-
-// Tessellation
-extension GameObject {
-    public func setUseTessellation(_ useTessellation: Bool) {
-        self._useTessellation = useTessellation
-    }
-    
-    public func setEdgeFactor(_ edgeFactor: Float) { self.edgeFactor = edgeFactor }
-    public func addEdgeFactor(_ value: Float) { self.edgeFactor = min(max(edgeFactor + value, 1), 64) }
-    
-    public func setInsideFactor(_ insideFactor: Float) { self.insideFactor = insideFactor }
-    public func addInsideFactor(_ value: Float) { self.insideFactor = min(max(insideFactor + value, 1), 64) }
 }
 
 //MATERIALS

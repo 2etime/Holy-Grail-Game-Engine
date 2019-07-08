@@ -7,7 +7,9 @@
 //
 
 class Cruiser: GameObject, Boundable {
-    var boundingTypes: [BoundingTypes] = [.Box]
+    var boundingType: BoundingTypes {
+        return .Box
+    }
     
     init() {
         super.init(name: "Cruiser", meshType: .Cruiser)

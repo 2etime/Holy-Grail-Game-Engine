@@ -141,11 +141,10 @@ class BoundingMesh {
     private var _boundingMeshDatas: [BoundingMeshData] = []
     var boundingBoxes: [BoundingBox]!
     
-    init(boundingBoxes: [BoundingBox]) {
+    init(boundingBoxes: [BoundingBox], boundingType: BoundingTypes) {
         self.boundingBoxes = boundingBoxes
         for boundingBox in boundingBoxes {
-            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: boundingBox.getBoundingType()))
-//            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: .Sphere))
+            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: boundingType))
         }
     }
     
