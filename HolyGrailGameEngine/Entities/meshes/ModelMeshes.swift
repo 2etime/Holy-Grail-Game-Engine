@@ -94,8 +94,8 @@ class ModelMesh: Mesh {
             self._meshes.append(mtkMesh!)
         }
         
-        let bb = MDLAxisAlignedBoundingBox(maxBounds: float3(1,1,1), minBounds: float3(-1,-1,-1))
-        addBoundingBox(bb)
+//        let bb = MDLAxisAlignedBoundingBox(maxBounds: float3(1,1,1), minBounds: float3(-1,-1,-1))
+//        addBoundingBox(bb)
     }
     
     func setInstanceCount(_ count: Int) {
