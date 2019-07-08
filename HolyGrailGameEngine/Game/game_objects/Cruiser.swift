@@ -7,6 +7,8 @@
 //
 
 class Cruiser: GameObject, Boundable {
+    var boundingTypes: [BoundingTypes] = [.Box]
+    
     init() {
         super.init(name: "Cruiser", meshType: .Cruiser)
         setBaseTexture(.Cruiser_Base)

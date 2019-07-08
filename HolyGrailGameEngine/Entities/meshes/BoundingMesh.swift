@@ -140,11 +140,25 @@ fileprivate class BoundingMeshData {
 class BoundingMesh {
     private var _boundingMeshDatas: [BoundingMeshData] = []
     
-    init(boundingBoxs: [BoundingBox]) {
-        for boundingBox in boundingBoxs {
-            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: .Box))
+    init(boundingBoxs: [BoundingBox], boundingTypes: [BoundingTypes]) {
+        
+        for (i, boundingBox) in boundingBoxs.enumerated() {
+            let boundingType = getBoundingType(boundingTypes, i)
+            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: boundingType))
 //            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: .Sphere))
         }
+    }
+    
+    private func getBoundingType(_ boundingTypes: [BoundingTypes], _ index: Int)->BoundingTypes {
+        if(boundingTypes.count == 0) {
+            return .Box
+        }
+        
+        if(index <= boundingTypes.count - 1){
+            return boundingTypes[index]
+        }
+        
+        return .Box
     }
     
     func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {

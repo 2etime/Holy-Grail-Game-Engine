@@ -28,8 +28,8 @@ class GameObject: Node {
         createTesselationFactorsBuffer()
         setUseTessellation(useTessellation)
     
-        if let _ = self as? Boundable {
-            addChild(BoundingObject(self._mesh))
+        if let boundable = self as? Boundable {
+            addChild(BoundingObject(self._mesh, boundingTypes: boundable.boundingTypes))
         }
     }
     

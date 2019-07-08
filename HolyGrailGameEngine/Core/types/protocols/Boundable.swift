@@ -6,4 +6,12 @@
 //  Copyright © 2019 Rick Twohy Jr. All rights reserved.
 //
 
-protocol Boundable { }
+protocol Boundable {
+    var boundingTypes: [BoundingTypes] { get set }
+}
+
+extension Boundable {
+    func intersects(_ boundable: Boundable)->Bool {
+        return true
+    }
+}

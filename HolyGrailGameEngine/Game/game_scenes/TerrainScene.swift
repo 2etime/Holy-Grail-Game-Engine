@@ -8,9 +8,14 @@
 
 import MetalKit
 
+
 class TerrainScene: Scene {
+    let Green: float4 = float4(0.1, 0.7, 0.1, 1.0)
+    let White: float4 = float4(1,1,1,1)
+
     let debugCamera = DebugCamera()
-    let cruiser = Cruiser()
+    let sphereRed = Sphere()
+    let sphereWhite = Sphere()
     let lamp = Lamp()
     override func buildScene() {
         debugCamera.setPosition(0,0,5)
@@ -19,16 +24,23 @@ class TerrainScene: Scene {
         lamp.setPosition(0,1,0)
         addLight(lamp)
         
-        cruiser.setMaterialAmbient(0.2)
-        cruiser.setMaterialShininess(20)
-        cruiser.setMaterialSpecular(2)
-        addGameObject(cruiser)
+        sphereRed.setPosition(-1,0,0)
+        sphereRed.setMaterialColor(float4(0.9,0.2,0.1,1))
+        addGameObject(sphereRed)
+        
+        sphereWhite.setPosition(1,0,0)
+        addGameObject(sphereWhite)
     }
     
     override func onUpdate() {
         if(Mouse.IsMouseButtonPressed(button: .left)){
-            cruiser.rotateX(Mouse.GetDY() * GameTime.DeltaTime)
-            cruiser.rotateY(Mouse.GetDX() * GameTime.DeltaTime)
+            sphereRed.moveX(Mouse.GetDX() * GameTime.DeltaTime)
+        }
+        
+        if(sphereRed.intersects(sphereWhite)) {
+            sphereWhite.setMaterialColor(Green)
+        }else{
+            sphereWhite.setMaterialColor(White)
         }
     }
 }

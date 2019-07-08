@@ -12,9 +12,9 @@ class BoundingObject: Node {
     private var _boundingMesh: BoundingMesh!
     private var _modelConstants = ModelConstants()
     
-    init(_ mesh: Mesh) {
+    init(_ mesh: Mesh, boundingTypes: [BoundingTypes]) {
         super.init(name: "Bounding Mesh")
-        self._boundingMesh = BoundingMesh(boundingBoxs: mesh.bounds)
+        self._boundingMesh = BoundingMesh(boundingBoxs: mesh.bounds, boundingTypes: boundingTypes)
     }
     
     override func update() {
