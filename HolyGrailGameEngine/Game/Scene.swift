@@ -9,7 +9,7 @@
 import MetalKit
 
 
-class GameScene: GameNode {
+class Scene: Node {
     private var _sceneConstants = SceneConstants()
     private var _lightManager = LightManager()
 
@@ -19,7 +19,7 @@ class GameScene: GameNode {
         buildScene()
     }
     
-    func addCamera(_ camera: GameCamera) {
+    func addCamera(_ camera: Camera) {
         Entities.Cameras.addCamera(camera: camera)
     }
     
@@ -43,7 +43,7 @@ class GameScene: GameNode {
         if(Entities.Cameras.currentCamera != nil) {
             self._sceneConstants.viewMatrix = Entities.Cameras.currentCamera.viewMatrix
             self._sceneConstants.inverseViewMatrix = self._sceneConstants.viewMatrix
-            self._sceneConstants.projectionMatrix = Entities.Cameras.currentCamera.projectionMatrix            
+            self._sceneConstants.projectionMatrix = Entities.Cameras.currentCamera.projectionMatrix
         }
     }
     

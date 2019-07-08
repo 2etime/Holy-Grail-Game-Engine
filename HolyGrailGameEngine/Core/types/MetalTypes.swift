@@ -42,6 +42,10 @@ struct Vertex: sizeable {
     var bitangent: float3
 }
 
+struct BoundingVertex: sizeable {
+    var position: float3
+}
+
 struct ModelConstants: sizeable{
     var modelMatrix = matrix_identity_float4x4
 }

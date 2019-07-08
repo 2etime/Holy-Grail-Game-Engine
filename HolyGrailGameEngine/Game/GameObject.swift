@@ -8,7 +8,7 @@
 
 import MetalKit
 
-class GameObject: GameNode {
+class GameObject: Node {
     private var _materialConstants = MaterialConstants()
     private var _modelConstants = ModelConstants()
     
@@ -31,6 +31,8 @@ class GameObject: GameNode {
         self._mesh = Entities.Meshes[meshType]
         createTesselationFactorsBuffer()
         setUseTessellation(useTessellation)
+    
+        addChild(BoundingObject(self._mesh))
     }
     
     private func createTesselationFactorsBuffer() {

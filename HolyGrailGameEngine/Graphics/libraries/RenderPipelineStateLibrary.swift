@@ -11,6 +11,7 @@ import MetalKit
 enum RenderPipelineStateTypes {
     case None
     case Basic
+    case Bounds
     case QuadTessellation
 }
 
@@ -24,6 +25,7 @@ class RenderPipelineStateLibrary {
     
     private func createLibrary() {
         _library.updateValue(Basic_RenderPipelineState(), forKey: .Basic)
+        _library.updateValue(Bounds_RenderPipelineState(), forKey: .Bounds)
         _library.updateValue(QuadTessellation_RenderPipelineState(), forKey: .QuadTessellation)
     }
     
@@ -89,6 +91,34 @@ private class Basic_RenderPipelineState: RenderPipelineState {
         super.init(renderPipelineDescriptor: renderPipelineDescriptor)
     }
 }
+
+
+private class Bounds_RenderPipelineState: RenderPipelineState {
+    init() {
+        let vertexFunction = Engine.DefaultLibrary.makeFunction(name: "bounds_vertex_shader")
+        let fragmentFunction = Engine.DefaultLibrary.makeFunction(name: "bounds_fragment_shader")
+        
+        let vertexDescriptor = MTLVertexDescriptor()
+        
+        //Position
+        vertexDescriptor.attributes[0].format = .float3
+        vertexDescriptor.attributes[0].bufferIndex = 0
+        vertexDescriptor.attributes[0].offset = 0
+
+        vertexDescriptor.layouts[0].stride = BoundingVertex.stride
+        
+        let renderPipelineDescriptor = MTLRenderPipelineDescriptor()
+        renderPipelineDescriptor.colorAttachments[0].pixelFormat = EngineSettings.MainPixelFormat
+        renderPipelineDescriptor.depthAttachmentPixelFormat = EngineSettings.MainDepthPixelFormat
+        renderPipelineDescriptor.sampleCount = EngineSettings.SampleCount
+        renderPipelineDescriptor.vertexFunction = vertexFunction
+        renderPipelineDescriptor.fragmentFunction = fragmentFunction
+        renderPipelineDescriptor.vertexDescriptor = vertexDescriptor
+        
+        super.init(renderPipelineDescriptor: renderPipelineDescriptor)
+    }
+}
+
 
 private class QuadTessellation_RenderPipelineState: RenderPipelineState {
     init() {

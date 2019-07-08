@@ -80,7 +80,7 @@ fragment half4 fragment_shader(RasterizerData rd [[ stage_in ]],
     }else if(material.useMaterialColor) {
         color = material.color;
     }else{
-        color = float4(1,1,1,1);
+        color = float4(0.5,0.5,0.5,1);
     }
 
     if(material.isLightable){

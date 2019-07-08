@@ -42,12 +42,14 @@ class MeshLibrary: Library<MeshTypes, Mesh> {
 }
 
 class NoMesh: Mesh {
+    var bounds: [BoundingBox] = []
     func setInstanceCount(_ count: Int) { }
     func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {}
     func drawPatches(_ renderCommandEncoder: MTLRenderCommandEncoder) {}
 }
 
 protocol Mesh {
+    var bounds: [BoundingBox] { get }
     func setInstanceCount(_ count: Int)
     func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder)
     func drawPatches(_ renderCommandEncoder: MTLRenderCommandEncoder)

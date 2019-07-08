@@ -8,11 +8,12 @@
 
 import MetalKit
 
-class GameNode {
+class Node {
     private var _id: String!
     private var _name: String = "Node"
-    private var _children: [GameNode] = []
+    private var _children: [Node] = []
     private var _triangleFillMode: MTLTriangleFillMode = .fill
+    var parentModelMatrix = matrix_identity_float4x4
     
     private var _position: float3 = float3(0,0,0)
     private var _rotation: float3 = float3(0,0,0)
@@ -24,7 +25,7 @@ class GameNode {
         modelMatrix.rotate(angle: self._rotation.y, axis: Y_AXIS)
         modelMatrix.rotate(angle: self._rotation.z, axis: Z_AXIS)
         modelMatrix.scale(axis: self._scale)
-        return modelMatrix
+        return matrix_multiply(parentModelMatrix, modelMatrix)
     }
     
     init(name: String) {
@@ -32,13 +33,14 @@ class GameNode {
         self._name = name
     }
     
-    internal func addChild(_ node: GameNode) {
+    internal func addChild(_ node: Node) {
         self._children.append(node)
     }
     
     public func update() {
         onUpdate()
         for child in self._children {
+            child.parentModelMatrix = self.modelMatrix
             child.update()
         }
     }
@@ -70,7 +72,7 @@ class GameNode {
     }
 }
 
-extension GameNode {
+extension Node {
     // Labeling
     public var getId: String { return self._id }
     func getName()->String { return self._name }

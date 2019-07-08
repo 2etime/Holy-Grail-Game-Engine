@@ -11,9 +11,14 @@ import MetalKit
 class ModelMesh: Mesh {
     private var _meshes: [Any]! = []
     private var _instanceCount: Int = 1
+    var bounds: [BoundingBox] = []
     
     init(modelName: String) {
         loadModel(modelName: modelName)
+    }
+    
+    func addBoundingBox(_ box: MDLAxisAlignedBoundingBox){
+        bounds.append(BoundingBox(mins: box.minBounds, maxs: box.maxBounds))
     }
     
     func loadModel(modelName: String) {
@@ -78,6 +83,8 @@ class ModelMesh: Mesh {
                                  bitangentAttributeNamed: MDLVertexAttributeBitangent)
             mesh.vertexDescriptor = descriptor
             
+            addBoundingBox(mesh.boundingBox)
+            
             var mtkMesh: MTKMesh!
             do {
                 mtkMesh = try MTKMesh(mesh: mesh, device: Engine.Device)
@@ -86,6 +93,9 @@ class ModelMesh: Mesh {
             }
             self._meshes.append(mtkMesh!)
         }
+        
+        let bb = MDLAxisAlignedBoundingBox(maxBounds: float3(1,1,1), minBounds: float3(-1,-1,-1))
+        addBoundingBox(bb)
     }
     
     func setInstanceCount(_ count: Int) {

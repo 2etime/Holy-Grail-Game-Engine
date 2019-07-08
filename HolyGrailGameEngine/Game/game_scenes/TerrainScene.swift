@@ -8,9 +8,9 @@
 
 import MetalKit
 
-class TerrainScene: GameScene {
+class TerrainScene: Scene {
     let debugCamera = DebugCamera()
-    let sphere = Cruiser()
+    let cruiser = Cruiser()
     let light = LightObject(name: "Light")
     override func buildScene() {
         debugCamera.setPosition(0,0,5)
@@ -20,14 +20,14 @@ class TerrainScene: GameScene {
         light.setLightBrightness(0.5)
         addLight(light)
         
-        sphere.setMaterialAmbient(0.2)
-        addGameObject(sphere)
+        cruiser.setMaterialAmbient(0.2)
+        addGameObject(cruiser)
     }
     
     override func onUpdate() {
         if(Mouse.IsMouseButtonPressed(button: .left)){
-            sphere.rotateX(Mouse.GetDY() * GameTime.DeltaTime)
-            sphere.rotateY(Mouse.GetDX() * GameTime.DeltaTime)
+            cruiser.rotateX(Mouse.GetDY() * GameTime.DeltaTime)
+            cruiser.rotateY(Mouse.GetDX() * GameTime.DeltaTime)
         }
     }
 }

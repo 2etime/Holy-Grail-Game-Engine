@@ -1,5 +1,5 @@
 //
-//  GameCamera.swift
+//  Camera.swift
 //  HolyGrailGameEngine
 //
 //  Created by Rick Twohy Jr on 6/16/19.
@@ -8,7 +8,7 @@
 
 import simd
 
-class GameCamera: GameNode {
+class Camera: Node {
     var cameraType: CameraTypes!
     
     var viewMatrix: matrix_float4x4 {

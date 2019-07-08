@@ -1,5 +1,5 @@
 //
-//  GameLightObject.swift
+//  LightObject.swift
 //  HolyGrailGameEngine
 //
 //  Created by Rick Twohy Jr on 6/17/19.

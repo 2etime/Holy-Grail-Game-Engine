@@ -14,7 +14,7 @@ enum SceneTypes{
 }
 
 class SceneManager {
-    private var _currentScene: GameScene!
+    private var _currentScene: Scene!
     
     init(startingSceneType: SceneTypes) {
         setScene(startingSceneType)

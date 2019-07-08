@@ -8,7 +8,7 @@
 
 import MetalKit
 
-class SandboxScene: GameScene {
+class SandboxScene: Scene {
     let sphere = Sphere()
     let debugCamera = DebugCamera()
     let light = Lamp()

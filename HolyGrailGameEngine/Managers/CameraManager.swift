@@ -11,14 +11,14 @@ enum CameraTypes {
 }
 
 class CameraManager {
-    private var _cameras: [CameraTypes : GameCamera] = [:]
-    public var currentCamera: GameCamera!
+    private var _cameras: [CameraTypes : Camera] = [:]
+    public var currentCamera: Camera!
     
-    public func addCamera(camera: GameCamera) {
+    public func addCamera(camera: Camera) {
         self.registerCamera(camera: camera)
     }
     
-    private func registerCamera(camera: GameCamera){
+    private func registerCamera(camera: Camera){
         self._cameras.updateValue(camera, forKey: camera.cameraType)
         
         // Always register the first camera

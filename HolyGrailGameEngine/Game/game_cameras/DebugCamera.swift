@@ -8,7 +8,7 @@
 
 import MetalKit
 
-class DebugCamera: GameCamera {
+class DebugCamera: Camera {
     private var _zoom: Float = 45.0
     
     override var projectionMatrix: matrix_float4x4 {
