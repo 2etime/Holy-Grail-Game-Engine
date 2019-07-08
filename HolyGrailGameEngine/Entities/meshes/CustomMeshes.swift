@@ -12,7 +12,7 @@ class CustomMesh: Mesh {
     private var _vertices: [Vertex] = []
     private var _vertexBuffer: MTLBuffer!
     private var _vertexCount: Int { return _vertices.count }
-    var bounds: [BoundingBox] = []
+    var boundingBoxes: [BoundingBox] = []
     
     private var _indices: [uint32] = []
     private var _indexBuffer: MTLBuffer!

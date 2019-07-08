@@ -12,13 +12,17 @@ class BoundingBox {
     private var _mins: float3 = float3(0,0,0)
     private var _maxs: float3 = float3(0,0,0)
     
-    init(mins: float3, maxs: float3) {
+    private var _boundingType: BoundingTypes = .None
+    
+    init(mins: float3, maxs: float3, boundingType: BoundingTypes) {
+        self._boundingType = boundingType
         self._mins = mins
         self._maxs = maxs
     }
     
     public func setMins(_ mins: float3) { self._mins = mins }
     public func setMaxs(_ maxs: float3) { self._maxs = maxs }
+    public func getBoundingType()->BoundingTypes { return self._boundingType }
     
     public var mins: float3 { return self._mins }
     public var minX: Float { return self._mins.x }

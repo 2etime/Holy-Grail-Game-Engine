@@ -11,17 +11,17 @@ import MetalKit
 class ModelMesh: Mesh {
     private var _meshes: [Any]! = []
     private var _instanceCount: Int = 1
-    var bounds: [BoundingBox] = []
+    var boundingBoxes: [BoundingBox] = []
     
-    init(modelName: String) {
-        loadModel(modelName: modelName)
+    init(modelName: String, boundingType: BoundingTypes) {
+        loadModel(modelName: modelName, boundingType: boundingType)
     }
     
-    func addBoundingBox(_ box: MDLAxisAlignedBoundingBox){
-        bounds.append(BoundingBox(mins: box.minBounds, maxs: box.maxBounds))
+    func addBoundingBox(_ box: MDLAxisAlignedBoundingBox, boundingType: BoundingTypes){
+        boundingBoxes.append(BoundingBox(mins: box.minBounds, maxs: box.maxBounds, boundingType: boundingType))
     }
     
-    func loadModel(modelName: String) {
+    func loadModel(modelName: String, boundingType: BoundingTypes) {
         guard let assetURL = Bundle.main.url(forResource: modelName, withExtension: "obj") else {
             fatalError("Asset \(modelName) does not exist.")
         }
@@ -83,7 +83,7 @@ class ModelMesh: Mesh {
                                  bitangentAttributeNamed: MDLVertexAttributeBitangent)
             mesh.vertexDescriptor = descriptor
             
-            addBoundingBox(mesh.boundingBox)
+            addBoundingBox(mesh.boundingBox, boundingType: boundingType)
             
             var mtkMesh: MTKMesh!
             do {

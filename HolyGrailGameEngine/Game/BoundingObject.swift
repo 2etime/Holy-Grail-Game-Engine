@@ -12,9 +12,15 @@ class BoundingObject: Node {
     private var _boundingMesh: BoundingMesh!
     private var _modelConstants = ModelConstants()
     
-    init(_ mesh: Mesh, boundingTypes: [BoundingTypes]) {
+    init(_ mesh: Mesh) {
         super.init(name: "Bounding Mesh")
-        self._boundingMesh = BoundingMesh(boundingBoxs: mesh.bounds, boundingTypes: boundingTypes)
+        self._boundingMesh = BoundingMesh(boundingBoxes: mesh.boundingBoxes)
+    }
+    
+    func intersects(object: BoundingObject) {
+//        let myBoundingBoxes = _boundingMesh.boundingBoxes[0]
+//        let objectBoundingBoxes = object._boundingMesh.boundingBoxes
+//
     }
     
     override func update() {
