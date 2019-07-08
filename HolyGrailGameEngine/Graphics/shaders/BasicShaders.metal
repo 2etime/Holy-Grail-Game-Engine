@@ -43,7 +43,7 @@ float3 getPhongIntensity(constant MaterialConstants &material,
         LightData lightData = lightDatas[i];
         
         float3 unitToLightVector = normalize(lightData.position - worldPosition);
-        float3 unitLightReflection = normalize(reflect(unitToLightVector, surfaceNormal));
+        float3 unitLightReflection = normalize(reflect(-unitToLightVector, surfaceNormal));
         
         float3 ambientess = material.ambient * lightData.ambientIntensity;
         float3 ambientColor = clamp(ambientess * lightData.color * lightData.brightness, 0.0, 1.0);

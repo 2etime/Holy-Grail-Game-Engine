@@ -42,7 +42,7 @@ class Scene: Node {
     private func updateSceneConstants() {
         if(Entities.Cameras.currentCamera != nil) {
             self._sceneConstants.viewMatrix = Entities.Cameras.currentCamera.viewMatrix
-            self._sceneConstants.inverseViewMatrix = self._sceneConstants.viewMatrix
+            self._sceneConstants.inverseViewMatrix = self._sceneConstants.viewMatrix.inverse
             self._sceneConstants.projectionMatrix = Entities.Cameras.currentCamera.projectionMatrix
         }
     }

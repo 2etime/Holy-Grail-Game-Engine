@@ -11,16 +11,17 @@ import MetalKit
 class TerrainScene: Scene {
     let debugCamera = DebugCamera()
     let cruiser = Cruiser()
-    let light = LightObject(name: "Light")
+    let lamp = Lamp()
     override func buildScene() {
         debugCamera.setPosition(0,0,5)
         addCamera(debugCamera)
         
-        light.setPosition(30,30,30)
-        light.setLightBrightness(0.5)
-        addLight(light)
+        lamp.setPosition(0,1,0)
+        lamp.setLightBrightness(0.5)
+        addLight(lamp)
         
         cruiser.setMaterialAmbient(0.2)
+        cruiser.setMaterialShininess(128)
         addGameObject(cruiser)
     }
     
