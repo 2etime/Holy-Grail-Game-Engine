@@ -14,10 +14,6 @@ class GameObject: Node {
     
     private var _mesh: Mesh!
     private var _baseTextureType: TextureTypes! = .None
-    private var _normalTextureType: TextureTypes! = .None
-    private var _specularTextureType: TextureTypes! = .None
-    private var _ambientTextureType: TextureTypes! = .None
-    private var _heightTextureType: TextureTypes! = .None
     private var _textureTileCounts: float2 = float2(1,1)
     
     private var _useTessellation: Bool = false
@@ -32,7 +28,9 @@ class GameObject: Node {
         createTesselationFactorsBuffer()
         setUseTessellation(useTessellation)
     
-        addChild(BoundingObject(self._mesh))
+        if let _ = self as? Boundable {
+            addChild(BoundingObject(self._mesh))
+        }
     }
     
     private func createTesselationFactorsBuffer() {
@@ -77,9 +75,6 @@ class GameObject: Node {
         
         renderCommandEncoder.setFragmentBytes(&_materialConstants, length: MaterialConstants.stride, index: 0)
         renderCommandEncoder.setFragmentSamplerState(Graphics.SamplerStates[.Linear], index: 0)
-        if(_materialConstants.useHeightMap) {
-            renderCommandEncoder.setVertexTexture(Entities.Textures[_heightTextureType], index: 0)
-        }
         if(_materialConstants.useBaseTexture) {
             renderCommandEncoder.setFragmentTexture(Entities.Textures[_baseTextureType], index: 0)
         }
@@ -129,11 +124,6 @@ extension GameObject {
         self._baseTextureType = textureType
         self._materialConstants.useBaseTexture = textureType != .None
         self._materialConstants.useMaterialColor = textureType == .None
-    }
-    
-    public func setHeightMap(_ textureType: TextureTypes) {
-        self._heightTextureType = textureType
-        self._materialConstants.useHeightMap = textureType != .None
     }
     
     public func setTextureTileCount(_ wide: Float, _ high: Float) { self._textureTileCounts = float2(wide, high) }

@@ -17,11 +17,11 @@ class TerrainScene: Scene {
         addCamera(debugCamera)
         
         lamp.setPosition(0,1,0)
-        lamp.setLightBrightness(0.5)
         addLight(lamp)
         
         cruiser.setMaterialAmbient(0.2)
-        cruiser.setMaterialShininess(128)
+        cruiser.setMaterialShininess(20)
+        cruiser.setMaterialSpecular(2)
         addGameObject(cruiser)
     }
     

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rick Twohy Jr. All rights reserved.
 //
 
-class Cruiser: GameObject {
+class Cruiser: GameObject, Boundable {
     init() {
         super.init(name: "Cruiser", meshType: .Cruiser)
         setBaseTexture(.Cruiser_Base)

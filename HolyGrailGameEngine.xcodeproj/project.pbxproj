@@ -36,6 +36,7 @@
 		C617AF4822D1A18600A14D10 /* Bounds.metal in Sources */ = {isa = PBXBuildFile; fileRef = C617AF4722D1A18600A14D10 /* Bounds.metal */; };
 		C617AF4A22D2238A00A14D10 /* BoundingObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C617AF4922D2238A00A14D10 /* BoundingObject.swift */; };
 		C63ED19C22D227C200BEB811 /* BoundingMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63ED19B22D227C200BEB811 /* BoundingMesh.swift */; };
+		C63ED1A022D3E66000BEB811 /* Boundable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63ED19F22D3E66000BEB811 /* Boundable.swift */; };
 		C642C1AE22C7027F009493D6 /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642C1AD22C7027F009493D6 /* Terrain.swift */; };
 		C642C1D622CAEEBC009493D6 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = C642C1D522CAEEBC009493D6 /* bird.png */; };
 		C6441EAF22B5CCD600CAA3FE /* Shader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6441EAE22B5CCD600CAA3FE /* Shader.swift */; };
@@ -130,6 +131,7 @@
 		C617AF4722D1A18600A14D10 /* Bounds.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Bounds.metal; sourceTree = "<group>"; };
 		C617AF4922D2238A00A14D10 /* BoundingObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingObject.swift; sourceTree = "<group>"; };
 		C63ED19B22D227C200BEB811 /* BoundingMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingMesh.swift; sourceTree = "<group>"; };
+		C63ED19F22D3E66000BEB811 /* Boundable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boundable.swift; sourceTree = "<group>"; };
 		C642C1AD22C7027F009493D6 /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
 		C642C1D522CAEEBC009493D6 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
 		C6441EAE22B5CCD600CAA3FE /* Shader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shader.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 			children = (
 				C60A11E422B2B2DB00B3F509 /* Renderable.swift */,
 				C6AAEA9822BC7CE500DF7AC0 /* Computable.swift */,
+				C63ED19F22D3E66000BEB811 /* Boundable.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				C60A11DA22B2A68C00B3F509 /* MetalTypes.swift in Sources */,
 				C617AF4522D19C2000A14D10 /* BoundingBox.swift in Sources */,
 				C60A11F822B3B59D00B3F509 /* Library.swift in Sources */,
+				C63ED1A022D3E66000BEB811 /* Boundable.swift in Sources */,
 				C642C1AE22C7027F009493D6 /* Terrain.swift in Sources */,
 				C60A11DD22B2B03A00B3F509 /* math.swift in Sources */,
 				C6441EC222B67D5A00CAA3FE /* SceneManager.swift in Sources */,

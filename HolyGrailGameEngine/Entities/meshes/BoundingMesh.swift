@@ -141,10 +141,10 @@ class BoundingMesh {
     private var _boundingMeshDatas: [BoundingMeshData] = []
     
     init(boundingBoxs: [BoundingBox]) {
-//        for boundingBox in boundingBoxs {
-//            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: .Box))
+        for boundingBox in boundingBoxs {
+            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: .Box))
 //            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: .Sphere))
-//        }
+        }
     }
     
     func drawRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
