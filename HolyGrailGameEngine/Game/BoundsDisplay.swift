@@ -8,19 +8,13 @@
 
 import MetalKit
 
-class BoundingObject: Node {
+class BoundsDisplay: Node {
     private var _boundingMesh: BoundingMesh!
     private var _modelConstants = ModelConstants()
     
-    init(_ mesh: Mesh, boundingType: BoundingTypes) {
+    init(_ mesh: Mesh) {
         super.init(name: "Bounding Mesh")
-        self._boundingMesh = BoundingMesh(boundingBoxes: mesh.boundingBoxes, boundingType: boundingType)
-    }
-    
-    func intersects(object: BoundingObject) {
-//        let myBoundingBoxes = _boundingMesh.boundingBoxes[0]
-//        let objectBoundingBoxes = object._boundingMesh.boundingBoxes
-//
+        self._boundingMesh = BoundingMesh(boundingBoxes: mesh.boundingBoxes)
     }
     
     override func update() {
@@ -40,7 +34,7 @@ class BoundingObject: Node {
     }
 }
 
-extension BoundingObject: Renderable {
+extension BoundsDisplay: Renderable {
     func doRender(_ renderCommandEncoder: MTLRenderCommandEncoder) {
         _boundingMesh.drawRender(renderCommandEncoder)
     }

@@ -20,9 +20,26 @@ class GameObject: Node {
         super.init(name: name)
         self._mesh = Entities.Meshes[meshType]
     
-        if let boundable = self as? Boundable {
-            addChild(BoundingObject(self._mesh, boundingType: boundable.boundingType))
+        if let _ = self as? Boundable {
+            addChild(BoundsDisplay(self._mesh))
         }
+    }
+    
+    func intersects(_ gameObject: GameObject)->Bool {
+        for myBounds in self._mesh.boundingBoxes {
+            for gameObjectBounds in gameObject._mesh.boundingBoxes {
+                if(checkSphereCollision(myBounds, gameObjectBounds, self.getPosition(), gameObject.getPosition())) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    private func checkSphereCollision(_ a: BoundingBox, _ b: BoundingBox, _ aPos: float3, _ bPos: float3)->Bool {
+        let radiusA = max(a.maxs.x - a.mins.x, a.maxs.y - a.mins.y, a.maxs.z - a.mins.z) / 2.0
+        let radiusB = max(b.maxs.x - b.mins.x, b.maxs.y - b.mins.y, b.maxs.z - b.mins.z) / 2.0
+        return length(abs(aPos - bPos)) > radiusA + radiusB
     }
     
     override func update() {

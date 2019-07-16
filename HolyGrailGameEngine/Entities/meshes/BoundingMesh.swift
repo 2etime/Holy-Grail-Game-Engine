@@ -16,7 +16,6 @@ enum BoundingTypes {
 
 fileprivate class BoundingMeshData {
     var boundingBox: BoundingBox! = nil
-    var boundingType: BoundingTypes = .None
     var vertexBuffer: MTLBuffer! = nil
     var indexBuffer: MTLBuffer! = nil
     var vertices: [BoundingVertex] = []
@@ -28,10 +27,8 @@ fileprivate class BoundingMeshData {
         return self.indices.count
     }
     
-    init(boundingBox: BoundingBox, boundingType: BoundingTypes) {
+    init(boundingBox: BoundingBox) {
         self.boundingBox = boundingBox
-        self.boundingType = boundingType
-        
         calculateVertices()
         generateBuffers()
     }
@@ -58,15 +55,9 @@ fileprivate class BoundingMeshData {
         vertices = []
         let mins = boundingBox.mins
         let maxs = boundingBox.maxs
-        
-        switch boundingType {
-        case .Box:
-            createBoxMesh(mins: mins, maxs: maxs)
-        case .Sphere:
-            createSphereMesh(mins: mins, maxs: maxs)
-        default:
-            return
-        }
+ 
+        createSphereMesh(mins: mins, maxs: maxs)
+ 
     }
     
     private func createBoxMesh(mins: float3, maxs: float3) {
@@ -141,10 +132,10 @@ class BoundingMesh {
     private var _boundingMeshDatas: [BoundingMeshData] = []
     var boundingBoxes: [BoundingBox]!
     
-    init(boundingBoxes: [BoundingBox], boundingType: BoundingTypes) {
+    init(boundingBoxes: [BoundingBox]) {
         self.boundingBoxes = boundingBoxes
         for boundingBox in boundingBoxes {
-            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox, boundingType: boundingType))
+            _boundingMeshDatas.append(BoundingMeshData(boundingBox: boundingBox))
         }
     }
     

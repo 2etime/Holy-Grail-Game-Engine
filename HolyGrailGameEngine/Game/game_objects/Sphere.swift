@@ -14,7 +14,7 @@ class Sphere: GameObject, Boundable {
     init() {
         super.init(name: "Sphere", meshType: .Sphere)
         
-        setMaterialAmbient(0.2)
+        setMaterialAmbient(0.06)
         setMaterialShininess(35)
     }
 }

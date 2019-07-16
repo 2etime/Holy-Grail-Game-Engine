@@ -21,5 +21,9 @@ class DebugCamera: Camera {
     init() {
         super.init(name: "Debug Camera", cameraType: .Debug)
     }
+    
+    override func onUpdate() {
+        self._zoom += Mouse.GetDWheel()
+    }
 
 }
